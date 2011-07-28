@@ -43,4 +43,7 @@
 
 (setq-default show-trailing-whitespace t)
 
+; Removes annoying messages upon leaving
+(setq save-abbrevs 'silently)
+
 (require 'caml-font)
