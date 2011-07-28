@@ -65,3 +65,8 @@ let vimclojure#ParenRainbow = 1
 " C
 set formatoptions=tcqlron
 set cinoptions=:0,l1,t0,g0
+
+" OMLet specific (OCaml)
+let omlet_indent_match = 0
+let omlet_indent_function = 0
+let omlet_indent_let = 0
