@@ -4,7 +4,7 @@ filetype plugin indent on
 set backspace=indent,eol,start
 set wildmode=list:longest
 "set cursorcolumn
-set cursorline
+"set cursorline
 set list
 set listchars=tab:>-,trail:-
 set number
@@ -32,6 +32,7 @@ set laststatus=2 " always show the status line
 colorscheme delek
 set guifont=Monospace\ 8
 set mouse=a
+set colorcolumn=80
 
 "### Python specific
 " Add a tab after newline for special keywords
