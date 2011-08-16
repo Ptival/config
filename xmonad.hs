@@ -1,3 +1,4 @@
 import XMonad
+import XMonad.Config.Azerty
 
-main = do xmonad $ defaultConfig
+main = do xmonad $ azertyConfig
