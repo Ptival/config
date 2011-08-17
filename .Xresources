@@ -1,0 +1,14 @@
+XTerm*background:   black
+XTerm*foreground:   white
+XTerm*pointerColor: red
+
+Xft.dpi:        96
+Xft.antialias:  1
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.rgba:       rgb
+
+urxvt*font: xft:DejaVu Sans Mono:size=8
+xterm*faceName: DejaVu Sans Mono:size=8
+
+urxvt*iso14755:False
