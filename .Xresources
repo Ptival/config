@@ -8,7 +8,7 @@ Xft.hinting:    1
 Xft.hintstyle:  hintfull
 Xft.rgba:       rgb
 
-urxvt*font: xft:DejaVu Sans Mono:size=8
-xterm*faceName: DejaVu Sans Mono:size=8
-
-urxvt*iso14755:False
+URxvt*font:         xft:AnonymousPro:size=10
+URxvt*iso14755:     False
+URxvt*perl-ext:     default,matcher
+URxvt*urlLauncher:  chromium

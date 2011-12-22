@@ -17,3 +17,11 @@ User vrobert
 Host enseirb
 HostName ssh.enseirb-matmeca.fr
 User robertv
+
+Host cse
+HostName csegrad.ucsd.edu
+User vrobert
+
+Host haskellfr
+HostName haskell.fr
+User haskellf

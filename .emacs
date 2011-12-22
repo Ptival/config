@@ -1,4 +1,7 @@
-(load-library "cl") 
+;; Load ProofGeneral
+(load "/usr/local/ProofGeneral/generic/proof-site.el")
+
+(load-library "cl")
 (setq lisp-indent-function 'common-lisp-indent-function)
 
 (require 'color-theme)
@@ -18,10 +21,11 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(coq-one-command-per-line nil)
  '(coq-time-commands nil)
  '(proof-allow-undo-in-read-only t)
  '(proof-delete-empty-windows t)
- '(proof-disappearing-proofs t)
+ '(proof-disappearing-proofs nil)
  '(proof-keep-response-history t)
  '(proof-multiple-frames-enable nil)
  '(proof-script-fly-past-comments t)
@@ -35,7 +39,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "black"
+                 :foreground "grey85" :inverse-video nil :box nil
+                 :strike-through nil :overline nil :underline nil :slant normal
+                 :weight normal :height 83 :width normal :foundry "unknown"
+                 :family "DejaVu Sans Mono")))))
 
 (setq scroll-step 1)
 
@@ -43,7 +51,8 @@
 
 (setq-default show-trailing-whitespace t)
 
-; Removes annoying messages upon leaving
+;; Removes annoying messages upon leaving
 (setq save-abbrevs 'silently)
 
-(require 'caml-font)
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))

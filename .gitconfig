@@ -18,3 +18,7 @@
     added = yellow
     changed = green
     untracked = cyan
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 613x382+751+0
+	main-window-view = FileView
