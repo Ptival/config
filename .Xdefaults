@@ -1,0 +1,39 @@
+urxvt*foreground: #f2f2f2
+urxvt*background: #101010
+
+urxvt*color0:   #6c6c6c
+urxvt*color1:   #e9897c
+urxvt*color2:   #b6e77d
+urxvt*color3:   #eedd44
+urxvt*color4:   #a9cdeb
+urxvt*color5:   #ea96eb
+urxvt*color6:   #c9caec
+urxvt*color7:   #f2f2f2
+urxvt*color8:   #747474
+urxvt*color9:   #f99286
+urxvt*color10:  #c3f786
+urxvt*color11:  #ffee55
+urxvt*color12:  #b6defb
+urxvt*color13:  #fba1fb
+urxvt*color14:  #d7d9fc
+urxvt*color15:  #e2e2e2
+
+URxvt*scrollBar_right:  false
+URxvt*scrollBar:        false
+URxvt*borderLess:       false
+
+XTerm*background:   black
+XTerm*foreground:   white
+XTerm*pointerColor: red
+
+Xft.dpi:        96
+Xft.antialias:  1
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.rgba:       rgb
+
+URxvt*font:     xft:DejaVu Sans Mono:size=8
+URxvt*iso14755: False
+
+URxvt.perl-ext-common:  default,matcher
+URxvt.urlLauncher:      /usr/bin/chromium

@@ -34,3 +34,16 @@ let omlet_indent_let = 0
 
 au Bufenter *.hs compiler ghc
 let g:haddock_browser = "chromium"
+
+map <Esc>[7~ <Home>
+imap <Esc>[7~ <Home>
+map <Esc>[8~ <End>
+imap <Esc>[8~ <End>
+map <Esc>[5~ <PageUp>
+imap <Esc>[5~ <PageUp>
+map <Esc>[6~ <PageDown>
+imap <Esc>[6~ <PageDown>
+map <Esc>[1~ <Home>
+imap <Esc>[1~ <Home>
+map <Esc>[4~ <End>
+imap <Esc>[4~ <End>

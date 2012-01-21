@@ -11,7 +11,6 @@ import XMonad.Util.Paste
 
 myBrowser   = "chromium"
 myIM        = "pidgin"
---myTerminal  = "xterm -u8"
 myTerminal  = "urxvt -depth 32 -fg white -bg black -sr -bc"
 
 myTopics = ["term", "web", "irc", "im", "5", "6", "7", "8", "9"]
@@ -35,7 +34,7 @@ myKeys conf@(XConfig {modMask = modm}) = M.fromList $
 
 spawnBrowser    = spawn $ myBrowser
 spawnIM         = spawn $ myIM
-spawnIRC        = spawn $ "ssh -t pichon \"tmux attach -t irssi\""
+spawnIRC        = spawn $ "ssh pichon -t \"tmux a\""
 spawnTerminal   = spawn $ myTerminal
 
 tall_1_2 = Tall 1 (1/100) (50/100)
