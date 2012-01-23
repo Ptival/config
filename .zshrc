@@ -1,11 +1,20 @@
-PROMPT="[%T] "
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd nomatch
+unsetopt beep notify
+bindkey -e
+# End of lines configured by zsh-newuser-install
 
-# Autocompletion
-autoload -U compinit
-compinit
+. ~/.zsh_completion
 
-alias gco="git checkout"
-alias gst="git status"
-alias ll="ls -lah"
-alias pacman="sudo pacman-color"
-alias ssh="TERM=linux ssh"
+autoload omz
+zstyle :omz:style theme arch-blue
+plugins=(archlinux sprunge git)
+omz init
+
+alias cls="echo -ne '\033c'"
+alias ls="ls -h --color"
+alias ll="ls -l"
+alias lla="ll -a"
