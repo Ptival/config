@@ -26,6 +26,7 @@ colorscheme slate
 set mouse=a
 set colorcolumn=80
 :nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+set hlsearch
 
 " OMLet specific (OCaml)
 let omlet_indent_match = 0
