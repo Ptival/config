@@ -1,5 +1,5 @@
 ;; Load ProofGeneral
-(load "/usr/local/ProofGeneral/generic/proof-site.el")
+(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 
 (load-library "cl")
 (setq lisp-indent-function 'common-lisp-indent-function)
@@ -39,11 +39,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black"
-                 :foreground "grey85" :inverse-video nil :box nil
-                 :strike-through nil :overline nil :underline nil :slant normal
-                 :weight normal :height 83 :width normal :foundry "unknown"
-                 :family "DejaVu Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 (setq scroll-step 1)
 
@@ -56,3 +52,4 @@
 
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
+(setq agda2-highlight-face-groups 'default-faces)
