@@ -32,7 +32,7 @@ set hlsearch
 let omlet_indent_match = 0
 let omlet_indent_function = 0
 let omlet_indent_let = 0
-let ocaml_folding = 1
+" let ocaml_folding = 1
 
 au Bufenter *.hs compiler ghc
 let g:haddock_browser = "chromium"
