@@ -1,7 +1,11 @@
-"### Global configuration
+colorscheme slate
 
-set nobackup
 filetype plugin indent on
+
+syntax on
+
+set paste
+set nobackup
 set backspace=indent,eol,start
 set wildmode=list:longest
 set list
@@ -10,32 +14,22 @@ set number
 set ruler
 set showmatch
 set shiftround
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 set expandtab
-set softtabstop=4
+set softtabstop=2
 set cindent
 set smartindent
 set autoindent
 set nocompatible
-syntax on
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]
 set laststatus=2 " always show the status line
-colorscheme slate
 set mouse=a
 set colorcolumn=80
-:nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set hlsearch
 
-" OMLet specific (OCaml)
-let omlet_indent_match = 0
-let omlet_indent_function = 0
-let omlet_indent_let = 0
-" let ocaml_folding = 1
-
-au Bufenter *.hs compiler ghc
-let g:haddock_browser = "chromium"
+:nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 map <Esc>[7~ <Home>
 imap <Esc>[7~ <Home>
