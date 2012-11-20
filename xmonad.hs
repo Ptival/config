@@ -23,8 +23,10 @@ myTopicConfig = TopicConfig
         []
     }
 
+dmenu = "GTK_IM_MODULE=xim QT_IM_MODULE=xin dmenu_run"
+
 myKeys conf@(XConfig {modMask = modm}) = M.fromList $
-    [ ((modm,               xK_p), spawn "dmenu_run")
+    [ ((modm,               xK_p), spawn dmenu)
     ]
 
 spawnTerminal   = spawn $ myTerminal
