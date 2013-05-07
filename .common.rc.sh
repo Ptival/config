@@ -5,3 +5,5 @@ alias lla="ll -a"
 alias gbv="git branch -a -vv"
 alias ocaml="rlwrap ocaml"
 alias ocamldebug="rlwrap ocamldebug"
+
+export GTK_IM_MODULE=xim
