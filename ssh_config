@@ -19,7 +19,7 @@ HostName ssh.enseirb-matmeca.fr
 User robertv
 
 Host cse
-HostName csegrad.ucsd.edu
+HostName login.eng.ucsd.edu
 User vrobert
 
 Host haskellfr
