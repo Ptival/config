@@ -1,3 +1,4 @@
+import Data.Default
 import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.UpdatePointer
@@ -23,10 +24,10 @@ myTopicConfig = TopicConfig
         []
     }
 
-dmenu = "GTK_IM_MODULE=xim QT_IM_MODULE=xin dmenu_run"
+dmenu = "GTK_IM_MODULE=xim QT_IM_MODULE=xin /home/vrobert/.dmenu_run"
 
 myKeys conf@(XConfig {modMask = modm}) = M.fromList $
-    [ ((modm,               xK_p), spawn dmenu)
+    [ ((modm, xK_p), spawn dmenu)
     ]
 
 spawnTerminal   = spawn $ myTerminal
@@ -38,7 +39,7 @@ myLayoutHook =
     avoidStruts $
     (noBorders Full ||| tall_1_2 ||| Mirror tall_1_2 ||| Grid)
 
-myLogHook = updatePointer (Relative 0.5 0.5)
+myLogHook = updatePointer Nearest
 
 myConfig = do
     checkTopicConfig myTopics myTopicConfig

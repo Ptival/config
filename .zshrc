@@ -48,7 +48,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export KRAKEN=/home/vrobert/kraken
-#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl
+export PATH=/home/vrobert/ocaml-build/bin:/home/vrobert/coq-build/bin:/home/vrobert/.gem/ruby/2.2.0/bin:/home/varobert/flow/bin:/home/vrobert/.cabal/bin:/home/vrobert/flow/:$PATH
+export EDITOR=vim
+export VISUAL=vim
 
 SSH_AGENT_FILE=~/.ssh-agent
 touch $SSH_AGENT_FILE      # there is probably a cleverer way...
@@ -62,3 +64,10 @@ else
   ssh-add
   echo $AGENT > $SSH_AGENT_FILE
 fi
+
+# OPAM configuration
+. /home/vrobert/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+eval `opam config env`
+
+alias make='make --warn-undefined-variables'
+

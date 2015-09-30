@@ -1,11 +1,19 @@
-colorscheme slate
+set nocompatible
+
+execute pathogen#infect()
+
+au FileType coq call coquille#CoqideMapping()
+
+colorscheme default
+
+filetype on
 
 filetype plugin indent on
 
 syntax on
 
 set paste
-set nobackup
+set backupdir=~/.vim/backup
 set backspace=indent,eol,start
 set wildmode=list:longest
 set list
@@ -22,7 +30,6 @@ set softtabstop=2
 set cindent
 set smartindent
 set autoindent
-set nocompatible
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]
 set laststatus=2 " always show the status line
 set mouse=a
@@ -43,3 +50,10 @@ map <Esc>[1~ <Home>
 imap <Esc>[1~ <Home>
 map <Esc>[4~ <End>
 imap <Esc>[4~ <End>
+
+if &diff
+  colorscheme murphy
+endif
+
+au Bufenter *.hs compiler ghc
+let g:haddock_browser = "chromium"

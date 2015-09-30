@@ -1,140 +1,130 @@
-;; Load ProofGeneral
+;;(require 'color-theme)
+;;(color-theme-initialize)
+
+;;(add-to-list 'custom-theme-load-path "/usr/share/emacs/etc/themes")
+;;(color-theme-solarized-dark)
+
+;;(require 'rainbow-delimiters)
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  (package-initialize)
+  )
+
 (load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 
-(load-library "cl")
-(setq lisp-indent-function 'common-lisp-indent-function)
+;;(load "/home/vrobert/install/ssreflect-1.5.coq85beta2/pg-ssr.el")
 
-(global-whitespace-mode 1)
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-midnight)))
-
-(column-number-mode 1)
+(setq backup-directory-alist
+  `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+  `((".*" ,temporary-file-directory t)))
 
 (global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
 (global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
 (global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(agda2-include-dirs (quote ("/home/varobert/agda/lib-0.6/src" ".")))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(agda2-include-dirs
+   (quote
+    ("." "/home/vrobert/install/agda/agda-stdlib-0.9/src")))
  '(column-number-mode t)
+ '(coq-load-path (quote ("/home/vrobert/kraken/reflex/coq")))
  '(coq-one-command-per-line nil)
- '(coq-time-commands nil)
+ '(coq-prog-args
+   (quote
+    ("-emacs-U" "-R" "/usr/local/lib/coq/user-contrib/Ssreflect/" "Ssreflect" "-R" "/usr/local/lib/coq/user-contrib/MathComp/" "MathComp" "-impredicative-set")))
+ '(coq-unicode-tokens-enable nil)
+ '(custom-safe-themes
+   (quote
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+ '(electric-indent-mode nil)
+ '(fill-column 80)
+ '(global-visual-line-mode t)
+ '(haskell-process-type (quote cabal-repl))
  '(inhibit-startup-screen t)
+ '(latex-run-command "pdflatex")
+ '(menu-bar-mode nil)
  '(proof-allow-undo-in-read-only t)
- '(proof-delete-empty-windows t)
+ '(proof-colour-locked (quote red))
  '(proof-disappearing-proofs nil)
- '(proof-keep-response-history t)
- '(proof-multiple-frames-enable nil)
  '(proof-script-fly-past-comments t)
  '(proof-shrink-windows-tofit t)
  '(proof-splash-enable nil)
  '(proof-three-window-enable t)
- '(proof-toolbar-enable nil)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode nil)
+ '(show-trailing-whitespace t)
  '(tool-bar-mode nil)
- '(whitespace-line-column 80)
- '(whitespace-space (quote whitespace-space))
- '(whitespace-style (quote (face tabs trailing lines space-before-tab empty space-after-tab tab-mark))))
+ '(tuareg-skip-after-eval-phrase nil))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "unifont")))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "WhiteSmoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(agda2-highlight-datatype-face ((t (:foreground "deep sky blue"))))
+ '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
+ '(agda2-highlight-module-face ((t (:foreground "magenta"))))
+ '(agda2-highlight-primitive-type-face ((t (:foreground "deep sky blue"))))
+ '(agda2-highlight-record-face ((t (:foreground "deep sky blue"))))
+ '(font-lock-function-name-face ((t (:foreground "mediumspringgreen" :weight bold :height 1.0))))
+ '(highlight ((t (:background "dark gray" :foreground "Old Lace"))))
+ '(mode-line-buffer-id ((t (:background "black" :foreground "indian red" :family "Monaco")))))
 
 (setq scroll-step 1
       scroll-conservatively 10000)
 
-(set-scroll-bar-mode 'right)
-
-;; Removes annoying messages upon leaving
-(setq save-abbrevs 'silently)
+;; Agda
 
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
 (setq agda2-highlight-face-groups 'default-faces)
 
-(require 'evil)
-(evil-mode 1)
+;; Haskell
 
-(setq auto-mode-alist (cons '("\\.ml[iylp]?$" . caml-mode) auto-mode-alist))
-(autoload 'caml-mode "caml" "Major mode for editing Caml code." t)
-(autoload 'run-caml "inf-caml" "Run an inferior Caml process." t)
-(add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . tuareg-mode))
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode/")
+(require 'haskell-mode-autoloads)
+(add-to-list 'Info-default-directory-list "/usr/share/emacs/site-lisp/haskell-mode/")
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (turn-on-haskell-decl-scan)
+            (turn-on-haskell-doc)
+            (turn-on-haskell-indentation)))
+
+;;(require 'bind-key)
+;;(bind-key "C-c C-l" 'haskell-process-load-file haskell-mode-map)
+;;(bind-key "C-c C-t" 'haskell-process-do-type   haskell-mode-map)
+;;(bind-key "C-c C-i" 'haskell-process-do-info   haskell-mode-map)
+;;(bind-key "SPC" 'haskell-mode-contextual-space haskell-mode-map)
+
+;; OCaml
+
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist))
+
+(setq haskell-process-log t)
+
+;; no tabs thanks
 (setq-default indent-tabs-mode nil)
 
+;; nice completion bro
+(global-set-key (kbd "<C-return>") 'dabbrev-expand)
 
+(setq column-number-mode t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; TypeRex configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;(require 'whitespace)
+;;(setq whitespace-style '(face empty tabs lines-tail trailing))
+;;(global-whitespace-mode t)
 
-;; Loading TypeRex mode for OCaml files
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-(add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . typerex-mode))
-(add-to-list 'interpreter-mode-alist '("ocamlrun" . typerex-mode))
-(add-to-list 'interpreter-mode-alist '("ocaml" . typerex-mode))
-(autoload 'typerex-mode "typerex" "Major mode for editing Caml code" t)
+;;(load-theme 'solarized t)
+;;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-;; TypeRex mode configuration
-(setq ocp-server-command "/usr/local/bin/ocp-wizard")
-(setq-default indent-tabs-mode nil)
-
-;; Uncomment to enable typerex command menu by right click
-;;(setq ocp-menu-trigger [mouse-3])
-
-;; Uncomment to make new syntax coloring look almost like Tuareg
-;;(setq ocp-theme "tuareg_like")
-;; Uncomment to disable new syntax coloring and use Tuareg one
-;;(setq ocp-theme "tuareg")
-;; Uncomment to disable syntax coloring completely
-;;(setq ocp-syntax-coloring nil)
-
-;; TypeRex currently uses the Tuareg indentation mechanism. To get a result
-;; closer to the OCaml programming guidelines described at
-;; http://caml.inria.fr/resources/doc/guides/guidelines.en.html
-;; Some users prefer to indent slightly less, as
-;;(setq typerex-let-always-indent nil)
-;;(setq typerex-with-indent 0)
-;;(setq typerex-function-indent 0)
-;;(setq typerex-fun-indent 0)
-;; Another reasonable choice regarding if-then-else is:
-;;(setq typerex-if-then-else-indent 0)
-
-;;;; Auto completion (experimental)
-;;;; Don't use M-x invert-face default with auto-complete! (emacs -r is OK)
-;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/auto-complete-mode")
-;;(setq ocp-auto-complete t)
-
-;;;; Using <`> to complete whatever the context, and <C-`> for `
-;;(setq auto-complete-keys 'ac-keys-backquote-backslash)
-;;;; Options: nil (default), 'ac-keys-default-start-with-c-tab, 'ac-keys-two-dollar
-;;;; Note: this overrides individual auto-complete key settings
-
-;;;; I want immediate menu pop-up
-;;(setq ac-auto-show-menu 0.)
-;;;; Short delay before showing help
-;;(setq ac-quick-help-delay 0.3)
-;;;; Number of characters required to start (nil to disable)
-;;(setq ac-auto-start 0)
-
-;;;; Uncomment to enable auto complete mode globally (independently of OCaml)
-;;(require 'auto-complete-config)
-;;(add-to-list 'ac-dictionary-directories "/usr/local/share/emacs/site-lisp/auto-complete-mode/ac-dict")
-;;(ac-config-default)
-
-;; For debugging only
-;;;;(setq ocp-debug t)
-;;;;(setq ocp-profile t)
-;;;;(setq ocp-dont-catch-errors t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; End of TypeRex configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
