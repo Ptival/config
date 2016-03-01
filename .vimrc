@@ -1,6 +1,8 @@
 set nocompatible
 
-execute pathogen#infect()
+set backupdir=/tmp
+
+"execute pathogen#infect()
 
 au FileType coq call coquille#CoqideMapping()
 
@@ -13,7 +15,6 @@ filetype plugin indent on
 syntax on
 
 set paste
-set backupdir=~/.vim/backup
 set backspace=indent,eol,start
 set wildmode=list:longest
 set list
@@ -55,5 +56,5 @@ if &diff
   colorscheme murphy
 endif
 
-au Bufenter *.hs compiler ghc
-let g:haddock_browser = "chromium"
+"au Bufenter *.hs compiler ghc
+"let g:haddock_browser = "chromium"

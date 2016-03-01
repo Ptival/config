@@ -3,34 +3,33 @@
 ;; MELPA
 (when (>= emacs-major-version 24)
   (require 'package)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
   (package-initialize)
   )
 
-(setq backup-directory-alist
-  `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-  `((".*" ,temporary-file-directory t)))
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-(load-theme 'leuven t)
+(load-theme 'hc-zenburn t)
 (set-background-color "WhiteSmoke")
+(setq line-number-mode t)
+(setq column-number-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(tool-bar-mode nil))
+ '(column-number-mode t)
+ '(fringe-mode 0 nil (fringe)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "Fira Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bold ((t (:foreground "white" :weight bold))))
  '(bold-italic ((t (:foreground "white" :slant italic :weight bold))))
  '(completions-first-difference ((t (:inherit bold :foreground "white"))))
@@ -55,10 +54,10 @@
  '(speedbar-directory-face ((t (:foreground "deep sky blue")))))
 
 ;; Coq
-(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
-(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
-(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+;;(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+;;(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
+;;(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
+;;(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
 
 ;; Haskell
 (require 'haskell-mode)
@@ -110,4 +109,3 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-

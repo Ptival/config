@@ -1,31 +1,11 @@
-URxvt*termName: rxvt
+!URxvt*termName: rxvt
 
 ! The next four commands make Ctrl+Arrow send the same keycode as xterm would
 ! Useful for vim not to get confused by urxvt...
-URxvt.keysym.Control-Up:    \033[1;5A
-URxvt.keysym.Control-Down:  \033[1;5B
-URxvt.keysym.Control-Left:  \033[1;5D
-URxvt.keysym.Control-Right: \033[1;5C
-
-!urxvt*foreground: #f2f2f2
-urxvt*background: #202020
-
-!urxvt*color0:   #6c6c6c
-!urxvt*color1:   #e9897c
-!urxvt*color2:   #b6e77d
-!urxvt*color3:   #eedd44
-urxvt*color4:   #99adeb
-!urxvt*color5:   #ea96eb
-!urxvt*color6:   #c9caec
-!urxvt*color7:   #f2f2f2
-!urxvt*color8:   #747474
-!urxvt*color9:   #f99286
-!urxvt*color10:  #c3f786
-!urxvt*color11:  #ffee55
-urxvt*color12:  #96cefb
-!urxvt*color13:  #fba1fb
-!urxvt*color14:  #d7d9fc
-!urxvt*color15:  #e2e2e2
+!URxvt.keysym.Control-Up:    \033[1;5A
+!URxvt.keysym.Control-Down:  \033[1;5B
+!URxvt.keysym.Control-Left:  \033[1;5D
+!URxvt.keysym.Control-Right: \033[1;5C
 
 !URxvt*scrollBar_right:  false
 URxvt*scrollBar:        false
@@ -41,12 +21,61 @@ Xft.hinting:    1
 Xft.hintstyle:  hintfull
 Xft.rgba:       rgb
 
-!URxvt*font:     xft:DejaVu Sans Mono:size=8
-URxvt*font:     xft:Unifont:size=12
-URxvt*iso14755: False
+*font: xft:SourceCodePro+Powerline+Awesome Regular:size=14
+emacs*font:Monospace 14
+!URxvt*font: xft:DejaVu Sans Mono for Powerline:size=14
+!URxvt*iso14755: False
 
-URxvt.perl-ext-common:  default,matcher
-URxvt.url-launcher:     /usr/bin/chromium
-URxvt.matcher.button:   1
-URxvt.colorUL:          #4682B4
+!URxvt.perl-ext-common:  default,matcher
+!URxvt.url-launcher:     /usr/bin/chromium
+!URxvt.matcher.button:   1
+!URxvt.colorUL:          #4682B4
+
+! Cursor
+!URxvt.cursorBlink:          true
+!URxvt.cursorColor:          #657b83
+!URxvt.cursorUnderline:      false
+!
+!! Pointer
+!URxvt.pointerBlank:         true
+
+*background: #002b36
+*foreground: #657b83
+!!*fading: 40
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+!! black dark/light
+*color0: #073642
+*color8: #002b36
+
+!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+
+!! green dark/light
+*color2: #859900
+*color10: #586e75
+
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
+!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+
+!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+
+!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1
+
+!! white dark/light
+*color7: #eee8d5
+*color15: #fdf6e3
 
