@@ -13,3 +13,4 @@ alias gco='git checkout'
 alias "nix-shell"="nix-shell --run zsh"
 
 #export GTK_IM_MODULE=xim
+
