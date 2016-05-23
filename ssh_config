@@ -1,22 +1,6 @@
-Host yquem
-HostName yquem.inria.fr
-User varobert
-
-Host pichon
-ProxyCommand ssh -q yquem nc -q0 pichon 22
-User varobert
-
 Host goto
 HostName goto.ucsd.edu
 User vrobert
-
-Host godel
-HostName godel.ucsd.edu
-User vrobert
-
-Host enseirb
-HostName ssh.enseirb-matmeca.fr
-User robertv
 
 Host cse
 HostName login.eng.ucsd.edu
@@ -25,3 +9,4 @@ User vrobert
 Host haskellfr
 HostName haskell.fr
 User haskellf
+
