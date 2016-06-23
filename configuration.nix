@@ -2,18 +2,24 @@
 
 {
   require = [
+    ./ghc.nix
     ./xmonad.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
 
   environment.systemPackages = with pkgs; [
+    gettext # needed momentarily because of a buggy build
     samba
   ];
 
   environment.variables = {
     EDITOR = "vim";
     SUDO_EDITOR = "vim";
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
   };
 
   virtualisation.virtualbox.guest.enable = true;
@@ -81,3 +87,4 @@
   time.timeZone = "America/Los_Angeles";
 
 }
+
