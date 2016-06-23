@@ -6,7 +6,7 @@ set backupdir=/tmp
 
 au FileType coq call coquille#CoqideMapping()
 
-colorscheme default
+colorscheme slate
 
 filetype on
 
