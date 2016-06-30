@@ -47,16 +47,16 @@ myLogHook = return () --updatePointer Nearest
 
 myConfig = do
     checkTopicConfig myTopics myTopicConfig
-    return $ defaultConfig
+    return $ def
         { workspaces            = myTopics
         , terminal              = myTerminal
         , normalBorderColor     = "#0000ff"
-        , focusedBorderColor    = "#ff0000"
+        , focusedBorderColor    = "#ffffff"
         , modMask               = mod4Mask
         , layoutHook            = myLayoutHook
         , logHook               = myLogHook
         , manageHook            = manageDocks
-        , keys                  = \c -> myKeys c `M.union` keys defaultConfig c
+        , keys                  = \c -> myKeys c `M.union` keys def c
         }
 
 main = xmonad =<< myConfig
