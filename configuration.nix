@@ -1,50 +1,32 @@
 { config, pkgs, ...} :
 
 {
-  require = [
-    ./ghc.nix
-    ./xmonad.nix
-  ];
-
-  boot.loader.grub.device = "/dev/sda";
-
-  environment.systemPackages = with pkgs; [
-    gettext # needed momentarily because of a buggy build
-    samba
-  ];
-
-  environment.variables = {
-    EDITOR = "vim";
-    SUDO_EDITOR = "vim";
+  boot = {
+    initrd.checkJournalingFS = false;
+    loader.grub.device = "/dev/sda";
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
-  virtualisation.virtualbox.guest.enable = true;
-
-  services.openssh.enable = true;
-
-  services.virtualbox.guest.enable = true;
-
-  services.samba = {
-    enable = true;
-    shares = {
-      peacoq =
-        { path = "/home/ptival/PeaCoq/";
-          browseable = "yes";
-          "guest ok" = "yes";
-          "public" = "yes";
-          "read only" = "no";
-        };
+  environment = {
+    systemPackages = with pkgs; [
+      baobab
+      cabal2nix
+      chromium
+      dmenu
+      emacs
+      firefox
+      git
+      gitg
+      htop
+      mosh
+      rlwrap
+      vim
+      wget
+      xclip
+    ];
+    variables = {
+      EDITOR = "vim";
+      SUDO_EDITOR = "vim";
     };
-    extraConfig = ''
-    guest account = ptival
-    map to guest = bad user
-    security = user
-    workgroup = WORKGROUP
-    '';
   };
 
   fileSystems = [
@@ -52,39 +34,73 @@
       mountPoint = "/";
       label = "nixos";
     }
-    {
-      mountPoint = "/vboxshare";
-      fsType = "vboxsf";
-      device = "Shared";
-      options = ["rw"];
-    }
   ];
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "devicemapper";
-
-  fonts.fonts = [ pkgs.fira pkgs.fira-code pkgs.fira-mono ];
-
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    displayManager.lightdm.enable = true;
+  fonts = {
+    fonts = with pkgs; [
+      fira
+      fira-code
+      fira-mono
+    ];
   };
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = "/run/current-system/sw/bin/zsh";
-  services.locate.enable = true;
+  networking = {
+    hostName = "onyx";
+  };
 
-  users.mutableUsers = false;
-  users.extraUsers.ptival =
-    { isNormalUser = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
+
+  programs = {
+    zsh.enable = true;
+  };
+
+  services = {
+    openssh.enable = true;
+    xserver = {
+      enable = true;
+      layout = "us";
+      desktopManager = {
+        default = "none";
+        xfce.enable = true;
+        xterm.enable = false;
+      };
+      displayManager = {
+        lightdm.enable = false;
+        slim.enable = true;
+      };
+      windowManager = {
+        default = "xmonad";
+        xmonad.enable = true;
+        xmonad.enableContribAndExtras = true;
+        xmonad.extraPackages = haskellPackages: with haskellPackages; [
+          xmonad-contrib
+          xmonad-extras
+        ];
+      };
+    };
+  };
+
+  time = {
+    timeZone = "America/Los_Angeles";
+  };
+
+  users = {
+    defaultUserShell = "/run/current-system/sw/bin/zsh";
+    mutableUsers = false;
+    extraUsers.ptival = {
+      isNormalUser = true;
       home = "/home/ptival";
       description = "Valentin Robert";
-      extraGroups = [ "docker" "wheel" ];
+      extraGroups = [ "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
     };
+  };
 
-  time.timeZone = "America/Los_Angeles";
+  virtualisation = {
+    virtualbox.guest.enable = false;
+  };
 
 }
 
