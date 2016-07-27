@@ -1,4 +1,4 @@
-{ config, pkgs, ...} :
+{ config, lib, pkgs, ...} :
 
 {
   boot = {
@@ -19,6 +19,7 @@
       htop
       mosh
       rlwrap
+      (texlive.combine { inherit (texlive) scheme-small; })
       vim
       wget
       xclip
@@ -87,19 +88,19 @@
   };
 
   users = {
-    defaultUserShell = "/run/current-system/sw/bin/zsh";
     mutableUsers = false;
     extraUsers.ptival = {
       isNormalUser = true;
       home = "/home/ptival";
       description = "Valentin Robert";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
+      shell = "/run/current-system/sw/bin/zsh";
     };
   };
 
   virtualisation = {
-    virtualbox.guest.enable = false;
+    virtualbox.guest.enable = true;
   };
 
 }
