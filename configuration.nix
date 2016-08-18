@@ -13,13 +13,15 @@
       chromium
       dmenu
       emacs
+      evince
+      feh
       firefox
       git
       gitg
       htop
       mosh
       rlwrap
-      (texlive.combine { inherit (texlive) scheme-small; })
+      (texlive.combine { inherit (texlive) scheme-full metafont; })
       vim
       wget
       xclip
