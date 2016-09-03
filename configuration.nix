@@ -8,23 +8,29 @@
 
   environment = {
     systemPackages = with pkgs; [
+
+      # THESE ARE ALWAYS GOOD TO HAVE
+      dmenu
+      gitAndTools.gitFull
+      vim
+      xfce.terminal
+
+      # THESE CAN BE COMMENTED OUT WHEN BISECTING
       baobab
       cabal2nix
       chromium
-      dmenu
       emacs
       evince
       feh
       firefox
-      git
       gitg
       htop
       mosh
       rlwrap
       (texlive.combine { inherit (texlive) scheme-full metafont; })
-      vim
       wget
       xclip
+
     ];
     variables = {
       EDITOR = "vim";
