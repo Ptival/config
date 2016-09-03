@@ -1,0 +1,8 @@
+[user]
+	email = valentin.robert.42@gmail.com
+	name = Valentin Robert
+[color]
+	ui = auto
+[alias]
+lol = log --graph --decorate --pretty=oneline --abbrev-commit
+lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
