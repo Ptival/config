@@ -3,6 +3,17 @@
   allowUnfree = true;
 
   packageOverrides = pkgs: {
+
+    mystuff = with pkgs; buildEnv {
+      name = "mystuff";
+      paths = [
+        atom
+        opam
+        psmisc # killall command
+        vscode
+      ];
+    };
+
     haskell = pkgs.haskell // {
       packages = pkgs.haskell.packages // {
         ghc7103 = pkgs.haskell.packages.ghc7103.override {
