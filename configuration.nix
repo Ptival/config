@@ -25,9 +25,12 @@
       firefox
       gitg
       htop
+      m4
       mosh
+      psmisc # killall command
       rlwrap
       (texlive.combine { inherit (texlive) scheme-full metafont; })
+      unzip # opam needs it
       wget
       xclip
 

@@ -9,7 +9,6 @@
       paths = [
         atom
         opam
-        psmisc # killall command
         vscode
       ];
     };
