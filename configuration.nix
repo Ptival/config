@@ -19,6 +19,7 @@
       baobab
       cabal2nix
       chromium
+      colordiff
       emacs
       evince
       feh
