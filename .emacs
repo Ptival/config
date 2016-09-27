@@ -55,9 +55,11 @@
 
 ;; Coq
 ;;(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-;;(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
-;;(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
-;;(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+(require 'proof-site)
+(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
+(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
+(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+(add-hook 'coq-mode-hook #'company-coq-mode)
 
 ;; Haskell
 (require 'haskell-mode)

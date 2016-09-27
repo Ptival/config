@@ -8,6 +8,8 @@
       name = "mystuff";
       paths = [
         atom
+        coq_8_5
+        nodejs
         opam
         vscode
       ];

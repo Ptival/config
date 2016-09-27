@@ -1,6 +1,11 @@
 { config, lib, pkgs, ...} :
 
 {
+
+  imports = [
+    ./emacs.nix
+  ];
+
   boot = {
     initrd.checkJournalingFS = false;
     loader.grub.device = "/dev/sda";
