@@ -81,6 +81,11 @@
       };
       displayManager = {
         lightdm.enable = false;
+        sessionCommands = ''
+          setxkbmap -option compose:ralt
+          export GTK_IM_MODULE=xim
+          export XCOMPOSEFILE = "/home/ptival/.XCompose"
+        '';
         slim.enable = true;
       };
       windowManager = {
