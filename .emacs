@@ -8,6 +8,14 @@
   (package-initialize)
   )
 
+;; OPAM
+(dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+  (setenv (car var) (cadr var)))
+(defun opam-env ()
+  (interactive nil)
+  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var))))
+
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
@@ -60,6 +68,8 @@
 (global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
 (global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
 (add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'proof-mode-hook
+          (lambda () (set (make-local-variable 'overlay-arrow-string) nil)))
 
 ;; Haskell
 (require 'haskell-mode)
@@ -92,6 +102,10 @@
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+;; OCaml
+(add-to-list 'load-path "/home/ptival/.opam/4.03.0/share/emacs/site-lisp")
+(require 'ocp-indent)
 
 ;; No toolbar
 (tool-bar-mode -1)

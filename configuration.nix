@@ -15,8 +15,11 @@
     systemPackages = with pkgs; [
 
       # THESE ARE ALWAYS GOOD TO HAVE
+      binutils
       dmenu
+      gcc
       gitAndTools.gitFull
+      gnumake
       vim
       xfce.terminal
 
