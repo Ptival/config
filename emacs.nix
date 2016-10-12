@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
 
-let emacs = pkgs.emacsWithPackages (
-  with pkgs.emacsPackages;
-  with pkgs.emacsPackagesNg;
+let emacsImageMagick = pkgs.emacs.override (with pkgs; {
+  inherit imagemagick;
+}); in
+
+let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (
+  with pkgs.emacsPackages;   # has proofgeneral_HEAD and such...
+  with pkgs.emacsPackagesNg; # has color-theme and such...
   [
 
     color-theme
@@ -30,6 +34,7 @@ let emacs = pkgs.emacsWithPackages (
     magit
     markdown-mode
     mouse3
+    nyan-mode
 
     org-plus-contrib
     org-gnome
@@ -44,6 +49,6 @@ let emacs = pkgs.emacsWithPackages (
 );
 in {
   environment.systemPackages = [
-    emacs
+    myEmacs
   ];
 }

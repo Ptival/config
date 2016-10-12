@@ -28,12 +28,12 @@
       cabal2nix
       chromium
       colordiff
-      emacs
       evince
       feh
       firefox
       gitg
       htop
+      imagemagick
       m4
       mosh
       psmisc # killall command
@@ -59,9 +59,12 @@
 
   fonts = {
     fonts = with pkgs; [
+      emojione
       fira
       fira-code
       fira-mono
+      symbola
+      unifont
     ];
   };
 
@@ -129,4 +132,3 @@
   };
 
 }
-

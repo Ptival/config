@@ -30,7 +30,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(fringe-mode 0 nil (fringe)))
+ '(fringe-mode 0 nil (fringe))
+ '(inhibit-startup-screen t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -67,9 +70,30 @@
 (global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
 (global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
 (global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+(add-hook
+ 'coq-mode-hook
+ (lambda ()
+   (setq-local
+    prettify-symbols-alist
+    '(
+      (":=" . ?≜)
+      ("Proof." . ?∵)
+      ("Qed." . ?■)
+      ("Defined." . ?□)
+      ("Time" . ?⏱)
+      ("Admitted." . ?😱)
+      )
+    )
+   )
+ )
+(setq company-coq-features/prettify-symbols-in-terminals t)
+;;(dolist (ft (fontset-list))
+;;  (set-fontset-font ft 'unicode (font-spec :name "EmojiOne Color" :size 14))
+;;  (set-fontset-font ft 'unicode (font-spec :name "Symbola") nil 'append))
 (add-hook 'coq-mode-hook #'company-coq-mode)
-(add-hook 'proof-mode-hook
-          (lambda () (set (make-local-variable 'overlay-arrow-string) nil)))
+(add-hook
+ 'proof-mode-hook
+ (lambda () (set (make-local-variable 'overlay-arrow-string) nil)))
 
 ;; Haskell
 (require 'haskell-mode)
@@ -125,3 +149,9 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(require 'nyan-mode)
+(nyan-mode)
+(display-time-mode)
+
+(set-mouse-color "red")
