@@ -9,6 +9,8 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (
   with pkgs.emacsPackagesNg; # has color-theme and such...
   [
 
+    bind-key
+
     color-theme
 
     company
@@ -18,8 +20,8 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (
     company-ghc
     company-ghci
 
-    # evil
-    # evil-leader
+    #evil
+    #evil-leader
     ghc-mod
 
     git-timemachine
@@ -35,6 +37,8 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (
     markdown-mode
     mouse3
     nyan-mode
+
+    #ocp-indent
 
     org-plus-contrib
     org-gnome

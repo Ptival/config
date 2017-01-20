@@ -24,21 +24,21 @@
       xfce.terminal
 
       # THESE CAN BE COMMENTED OUT WHEN BISECTING
-      baobab
+      #baobab
       cabal2nix
       chromium
       colordiff
-      evince
-      feh
-      firefox
-      gitg
-      htop
-      imagemagick
-      m4
+      #evince
+      #feh
+      #firefox
+      #gitg
+      #htop
+      #imagemagick
+      #m4
       mosh
-      psmisc # killall command
+      #psmisc # killall command
       rlwrap
-      (texlive.combine { inherit (texlive) scheme-full metafont; })
+      #(texlive.combine { inherit (texlive) scheme-full metafont; })
       unzip # opam needs it
       wget
       xclip

@@ -7,10 +7,10 @@
     mystuff = with pkgs; buildEnv {
       name = "mystuff";
       paths = [
-        atom
-        coq_8_5
+        #atom
+        #coq_8_5
         nodejs
-        opam
+        #opam
         vscode
       ];
     };

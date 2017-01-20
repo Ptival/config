@@ -19,7 +19,7 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-(load-theme 'hc-zenburn t)
+;;(load-theme 'hc-zenburn t)
 (set-background-color "WhiteSmoke")
 (setq line-number-mode t)
 (setq column-number-mode t)
@@ -129,7 +129,7 @@
 
 ;; OCaml
 (add-to-list 'load-path "/home/ptival/.opam/4.03.0/share/emacs/site-lisp")
-(require 'ocp-indent)
+;;(require 'ocp-indent)
 
 ;; No toolbar
 (tool-bar-mode -1)
