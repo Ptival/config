@@ -1,3 +1,6 @@
+Lookup Haskell-related packages:
+  nix-env -f "<nixpkgs>" -qaP -A haskellPackages
+
 Search for a package:
   nix-env -qaP | grep package
 
