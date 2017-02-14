@@ -28,17 +28,17 @@
       cabal2nix
       chromium
       colordiff
-      #evince
+      evince
       #feh
       #firefox
       #gitg
       #htop
       #imagemagick
-      #m4
+      m4 # opam needs this sometimes
       mosh
       #psmisc # killall command
       rlwrap
-      #(texlive.combine { inherit (texlive) scheme-full metafont; })
+      (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
       unzip # opam needs it
       wget
       xclip
