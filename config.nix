@@ -1,6 +1,16 @@
+{ pkgs }:
 {
-
+  allowBroken = true;
   allowUnfree = true;
+
+  haskellPackageOverrides = with pkgs.haskell.lib; self: super: {
+    #base-orphans = dontCheck super.base-orphans;
+    #concurrent-output = doJailbreak super.concurrent-output;
+    #directory = doJailbreak super.directory;
+    #liquid-fixpoint = overrideCabal super.liquid-fixpoint (args: {
+    #  src = /home/ptival/liquid-fixpoint;
+    #});
+  };
 
   packageOverrides = pkgs: {
 

@@ -11,6 +11,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Util.Paste
+import XMonad.Util.Run
 
 --myTerminal = "urxvt -depth 32 -fg white -bg black -sr -bc"
 myTerminal = "xfce4-terminal"
@@ -48,16 +49,19 @@ myLogHook = return () --updatePointer Nearest
 myConfig = do
     checkTopicConfig myTopics myTopicConfig
     return $ def
-        { workspaces            = myTopics
-        , terminal              = myTerminal
-        , normalBorderColor     = "#0000ff"
-        , focusedBorderColor    = "#ffffff"
-        , modMask               = mod4Mask
+        { focusedBorderColor    = "#ffffff"
+        , handleEventHook       = docksEventHook
+        , keys                  = \c -> myKeys c `M.union` keys def c
         , layoutHook            = myLayoutHook
         , logHook               = myLogHook
         , manageHook            = manageDocks
-        , keys                  = \c -> myKeys c `M.union` keys def c
+        , modMask               = mod4Mask
+        , normalBorderColor     = "#0000ff"
+        , terminal              = myTerminal
+        , workspaces            = myTopics
         }
 
-main = xmonad =<< myConfig
+main = do
+  xmproc <- spawnPipe "xmobar ~/config/xmobar.hs"
+  xmonad =<< myConfig
 

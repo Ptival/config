@@ -30,8 +30,39 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(display-time-mode t)
  '(fringe-mode 0 nil (fringe))
  '(inhibit-startup-screen t)
+ '(proof-three-window-mode-policy (quote hybrid))
+ '(safe-local-variable-values
+   (quote
+    ((eval progn
+           (let
+               ((coq-root-directory
+                 (when buffer-file-name
+                   (locate-dominating-file buffer-file-name ".dir-locals.el")))
+                (coq-project-find-file
+                 (and
+                  (boundp
+                   (quote coq-project-find-file))
+                  coq-project-find-file)))
+             (set
+              (make-local-variable
+               (quote tags-file-name))
+              (concat coq-root-directory "TAGS"))
+             (setq camldebug-command-name
+                   (concat coq-root-directory "dev/ocamldebug-coq"))
+             (unless coq-project-find-file
+               (set
+                (make-local-variable
+                 (quote compile-command))
+                (concat "make -C " coq-root-directory))
+               (set
+                (make-local-variable
+                 (quote compilation-search-path))
+                (cons coq-root-directory nil)))
+             (when coq-project-find-file
+               (setq default-directory coq-root-directory)))))))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -40,7 +71,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
  '(bold ((t (:foreground "white" :weight bold))))
  '(bold-italic ((t (:foreground "white" :slant italic :weight bold))))
  '(completions-first-difference ((t (:inherit bold :foreground "white"))))
@@ -86,11 +117,11 @@
     )
    )
  )
-(setq company-coq-features/prettify-symbols-in-terminals t)
+;;(setq company-coq-features/prettify-symbols-in-terminals t)
 ;;(dolist (ft (fontset-list))
 ;;  (set-fontset-font ft 'unicode (font-spec :name "EmojiOne Color" :size 14))
 ;;  (set-fontset-font ft 'unicode (font-spec :name "Symbola") nil 'append))
-(add-hook 'coq-mode-hook #'company-coq-mode)
+;;(add-hook 'coq-mode-hook #'company-coq-mode)
 (add-hook
  'proof-mode-hook
  (lambda () (set (make-local-variable 'overlay-arrow-string) nil)))
@@ -123,6 +154,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'thaskell-indentation-mode)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

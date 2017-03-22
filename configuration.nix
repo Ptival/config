@@ -32,8 +32,11 @@
       #feh
       #firefox
       #gitg
+      haskellPackages.xmobar
       #htop
       #imagemagick
+      #input-fonts
+      lolcat
       m4 # opam needs this sometimes
       mosh
       #psmisc # killall command
@@ -63,6 +66,7 @@
       fira
       fira-code
       fira-mono
+      input-fonts
       symbola
       unifont
     ];
@@ -71,6 +75,11 @@
   networking = {
     hostName = "onyx";
   };
+
+  nix.nixPath = [
+    "nixpkgs=/home/ptival/nixpkgs"
+    "nixos-config=/etc/nixos/configuration.nix"
+  ];
 
   nixpkgs = {
     config.allowUnfree = true;
