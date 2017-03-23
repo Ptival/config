@@ -14,6 +14,11 @@
 
   packageOverrides = pkgs: {
 
+#    emacs = pkgs.lib.overrideDerivation (pkgs.emacs.override {
+#      withGTK2 = true;
+#      withGTK3 = false;
+#    });
+
     mystuff = with pkgs; buildEnv {
       name = "mystuff";
       paths = [

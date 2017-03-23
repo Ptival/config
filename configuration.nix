@@ -29,17 +29,16 @@
       chromium
       colordiff
       evince
-      #feh
+      feh
       #firefox
-      #gitg
+      gitg
       haskellPackages.xmobar
-      #htop
-      #imagemagick
-      #input-fonts
+      htop
+      imagemagick
       lolcat
       m4 # opam needs this sometimes
       mosh
-      #psmisc # killall command
+      psmisc # killall command
       rlwrap
       (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
       unzip # opam needs it
@@ -81,8 +80,12 @@
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
-  nixpkgs = {
-    config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    emacs = pkgs.lib.overrideDerivation (pkgs.emacs.override {
+      withGTK2 = true;
+      withGTK3 = false;
+    });
   };
 
   programs = {
