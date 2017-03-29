@@ -24,3 +24,7 @@ First, comment out non-important packages in configuration.nix, then:
   sudo nixos-rebuild switch -I nixpkgs=/path/to/nixpkgs
 Reboot if dealing with something startup-related
 
+Find a package specific to a language module:
+  nix-env -f /home/ptival/nixpks -qaP -A haskellPackages
+  nix-env -f /home/ptival/nixpks -qaP -A coqPackages_8_6
+
