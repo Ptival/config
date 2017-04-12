@@ -82,10 +82,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    emacs = pkgs.lib.overrideDerivation (pkgs.emacs.override {
-      withGTK2 = true;
-      withGTK3 = false;
-    });
   };
 
   programs = {
