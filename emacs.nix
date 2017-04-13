@@ -6,9 +6,6 @@ let emacsImageMagick = pkgs.emacs.override (with pkgs; {
   withGTK3 = false;
 }); in
 
-#  with pkgs.emacsPackages;   # has proofgeneral_HEAD and such...
-#  with pkgs.emacsPackagesNg; # has color-theme and such...
-
 let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkgs:
   (with epkgs.melpaPackages;
     [
@@ -46,8 +43,6 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkg
       ghc-mod
     ]
   )
-#
-#  ] )
 );
 in {
   environment.systemPackages = [
