@@ -31,7 +31,7 @@
       evince
       feh
       #firefox
-      gitg
+      #gitg
       haskellPackages.xmobar
       htop
       imagemagick
