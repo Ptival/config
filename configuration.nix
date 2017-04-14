@@ -30,6 +30,7 @@
       colordiff
       evince
       feh
+      file
       #firefox
       #gitg
       haskellPackages.xmobar

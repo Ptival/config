@@ -1,28 +1,64 @@
-(setenv "PATH" (getenv "PATH"))
+;; General emacs
 
-;; MELPA
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/") t)
-  (package-initialize)
-  )
 
-;; OPAM
-;; (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-;;   (setenv (car var) (cadr var)))
-;; (defun opam-env ()
-;;   (interactive nil)
-;;   (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-;;     (setenv (car var) (cadr var))))
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
+(global-git-gutter-mode +1) ;; Show git diffs in the gutter
+(tool-bar-mode -1) ;; No toolbar at the top
+;; Ctrl-Enter smart completion
+(global-set-key (kbd "<C-return>") 'dabbrev-expand)
+;; Don't jump around when I scroll
+(setq scroll-step 1 scroll-conservatively 10000)
+;; Never use tabs
+(setq-default indent-tabs-mode nil)
+;; Delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(require 'nyan-mode) (nyan-mode) ;; Nyan Cat
+(set-mouse-color "red") ;; Red mouse pointer is easier to spot
+;; Emacs save files go in /tmp
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-
-;;(load-theme 'hc-zenburn t)
 (set-background-color "WhiteSmoke")
-(setq line-number-mode t)
-(setq column-number-mode t)
+;; Show line and column number
+(setq line-number-mode t) (setq column-number-mode t)
+;; Turn on rainbow-delimiters whenever entering a programming mode
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+;; Add a new line at the end if missing
+(setq require-final-newline t)
+
+;; Coq
+(require 'proof-site)
+(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
+(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
+(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+(add-hook 'coq-mode-hook #'company-coq-mode)
+
+;; Haskell
+(require 'haskell-mode)
+(require 'haskell-process)
+(require 'bind-key)
+(bind-key "C-`"     'haskell-interactive-bring     haskell-mode-map)
+(bind-key "SPC"     'haskell-mode-contextual-space haskell-mode-map)
+(bind-key "C-c C-?" 'haskell-mode-find-uses        haskell-mode-map)
+(bind-key "C-c C-t" 'haskell-mode-show-type-at     haskell-mode-map)
+(bind-key "C-c C-l" 'haskell-process-load-file     haskell-mode-map)
+(bind-key "C-c C-i" 'haskell-process-do-info       haskell-mode-map)
+(setq
+ haskell-align-imports-pad-after-name        t
+ haskell-font-lock-symbols                   t
+ haskell-process-args-cabal-repl             '("--ghc-option=-ferror-spans")
+ haskell-process-auto-import-loaded-modules  t
+ haskell-process-log                         t
+ haskell-process-path-ghci                   "ghci-ng"
+ haskell-process-suggest-hoogle-imports      t
+ haskell-process-suggest-remove-import-lines t
+ haskell-process-type                        'cabal-repl
+ haskell-stylish-on-save                     nil
+ )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -31,7 +67,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(display-time-mode t)
- '(fringe-mode 0 nil (fringe))
+ '(fringe-mode left-only nil (fringe))
  '(inhibit-startup-screen t)
  '(proof-three-window-mode-policy (quote hybrid))
  '(safe-local-variable-values
@@ -94,96 +130,3 @@
  '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "brown"))))
  '(speedbar-directory-face ((t (:foreground "deep sky blue")))))
-
-;; Coq
-;;(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-(require 'proof-site)
-(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
-(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
-(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
-(add-hook
- 'coq-mode-hook
- (lambda ()
-   (setq-local
-    prettify-symbols-alist
-    '(
-      (":=" . ?≜)
-      ("Proof." . ?∵)
-      ("Qed." . ?■)
-      ("Defined." . ?□)
-      ("Time" . ?⏱)
-      ("Admitted." . ?😱)
-      )
-    )
-   )
- )
-;;(setq company-coq-features/prettify-symbols-in-terminals t)
-;;(dolist (ft (fontset-list))
-;;  (set-fontset-font ft 'unicode (font-spec :name "EmojiOne Color" :size 14))
-;;  (set-fontset-font ft 'unicode (font-spec :name "Symbola") nil 'append))
-;;(add-hook 'coq-mode-hook #'company-coq-mode)
-(add-hook
- 'proof-mode-hook
- (lambda () (set (make-local-variable 'overlay-arrow-string) nil)))
-
-;; Haskell
-(require 'haskell-mode)
-(require 'haskell-process)
-(require 'bind-key)
-(bind-key "C-`"     'haskell-interactive-bring     haskell-mode-map)
-(bind-key "SPC"     'haskell-mode-contextual-space haskell-mode-map)
-(bind-key "C-c C-?" 'haskell-mode-find-uses        haskell-mode-map)
-(bind-key "C-c C-t" 'haskell-mode-show-type-at     haskell-mode-map)
-(bind-key "C-c C-l" 'haskell-process-load-file     haskell-mode-map)
-(bind-key "C-c C-i" 'haskell-process-do-info       haskell-mode-map)
-(setq
- haskell-align-imports-pad-after-name        t
- haskell-font-lock-symbols                   t
- haskell-process-args-cabal-repl             '("--ghc-option=-ferror-spans")
- haskell-process-auto-import-loaded-modules  t
- haskell-process-log                         t
- haskell-process-path-ghci                   "ghci-ng"
-;; haskell-process-suggest-hoogle-imports      t
-;; haskell-process-suggest-remove-import-lines t
- haskell-process-type                        'cabal-repl
- haskell-stylish-on-save                     nil
- )
-(require 'speedbar)
-(speedbar-add-supported-extension ".hs")
-;;(speedbar 1)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;(add-hook 'haskell-mode-hook 'thaskell-indentation-mode)
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
-;; OCaml
-(add-to-list 'load-path "/home/ptival/.opam/4.03.0/share/emacs/site-lisp")
-;;(require 'ocp-indent)
-
-;; No toolbar
-(tool-bar-mode -1)
-
-;; Turn on rainbow-delimiters whenever entering a programming mode
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-;; Ctrl-Enter smart completion
-(global-set-key (kbd "<C-return>") 'dabbrev-expand)
-
-;; Stop jumping around when I scroll
-(setq scroll-step 1
-      scroll-conservatively 10000)
-
-;; Never use tabs
-(setq-default indent-tabs-mode nil)
-
-;; Delete trailing whitespace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(require 'nyan-mode)
-(nyan-mode)
-(display-time-mode)
-
-(set-mouse-color "red")

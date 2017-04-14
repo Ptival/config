@@ -4,5 +4,8 @@ email = valentin.robert.42@gmail.com
 [color]
 ui = auto
 [alias]
+children = "!f() { git rev-list --all --not HEAD^@ --children | grep $(git rev-parse HEAD) | awk {'print $2'}; }; f"
 lol = log --graph --decorate --pretty=oneline --abbrev-commit
 lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+next = "!f() { git checkout `git children`; }; f"
+prev = "!f() { git checkout HEAD^; }; f"
