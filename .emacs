@@ -32,10 +32,20 @@
 
 ;; Coq
 (require 'proof-site)
-(global-set-key (kbd "C-c <C-right>") (kbd "C-c <C-return>"))
-(global-set-key (kbd "C-c <C-down>") (kbd "C-c C-n"))
-(global-set-key (kbd "C-c <C-up>") (kbd "C-c C-u"))
+(setq coq-one-command-per-line nil)
 (add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'coq-mode-hook
+          (lambda () (local-set-key
+                      (kbd "<C-M-right>")
+                      #'company-coq-proof-goto-point)))
+(add-hook 'coq-mode-hook
+          (lambda () (local-set-key
+                      (kbd "<C-M-down>")
+                      #'proof-assert-next-command-interactive)))
+(add-hook 'coq-mode-hook
+          (lambda () (local-set-key
+                      (kbd "<C-M-up>")
+                      #'proof-undo-last-successful-command)))
 
 ;; Haskell
 (require 'haskell-mode)
