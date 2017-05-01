@@ -9,8 +9,6 @@
 
 (global-git-gutter-mode +1) ;; Show git diffs in the gutter
 (tool-bar-mode -1) ;; No toolbar at the top
-;; Ctrl-Enter smart completion
-(global-set-key (kbd "<C-return>") 'dabbrev-expand)
 ;; Don't jump around when I scroll
 (setq scroll-step 1 scroll-conservatively 10000)
 ;; Never use tabs
@@ -30,33 +28,57 @@
 ;; Add a new line at the end if missing
 (setq require-final-newline t)
 
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; Coq
 (require 'proof-site)
 (setq coq-one-command-per-line nil)
 (add-hook 'coq-mode-hook #'company-coq-mode)
+(setq company-coq-live-on-the-edge t)
 (add-hook 'coq-mode-hook
-          (lambda () (local-set-key
-                      (kbd "<C-M-right>")
-                      #'company-coq-proof-goto-point)))
+          (lambda ()
+            (local-set-key
+             (kbd "<C-M-right>")
+             #'company-coq-proof-goto-point)
+            (local-set-key
+             (kbd "<C-M-down>")
+             #'proof-assert-next-command-interactive)
+            (local-set-key
+             (kbd "<C-M-up>")
+             #'proof-undo-last-successful-command)
+            )
+)
+
+(defun coq-compile ()
+  "Traveling up the path, find a Makefile and `compile'."
+  (interactive)
+  (when (locate-dominating-file default-directory "Makefile")
+  (with-temp-buffer
+    (cd (locate-dominating-file default-directory "Makefile"))
+    (compile "make -k"))))
+
 (add-hook 'coq-mode-hook
-          (lambda () (local-set-key
-                      (kbd "<C-M-down>")
-                      #'proof-assert-next-command-interactive)))
-(add-hook 'coq-mode-hook
-          (lambda () (local-set-key
-                      (kbd "<C-M-up>")
-                      #'proof-undo-last-successful-command)))
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (coq-compile))))
 
 ;; Haskell
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 (require 'haskell-mode)
-(require 'haskell-process)
-(require 'bind-key)
-(bind-key "C-`"     'haskell-interactive-bring     haskell-mode-map)
-(bind-key "SPC"     'haskell-mode-contextual-space haskell-mode-map)
-(bind-key "C-c C-?" 'haskell-mode-find-uses        haskell-mode-map)
-(bind-key "C-c C-t" 'haskell-mode-show-type-at     haskell-mode-map)
-(bind-key "C-c C-l" 'haskell-process-load-file     haskell-mode-map)
-(bind-key "C-c C-i" 'haskell-process-do-info       haskell-mode-map)
+
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (set (make-local-variable 'company-backends)
+                 (append '((company-capf company-dabbrev-code))
+                         company-backends))
+          )
+)
+
 (setq
  haskell-align-imports-pad-after-name        t
  haskell-font-lock-symbols                   t
@@ -67,7 +89,7 @@
  haskell-process-suggest-hoogle-imports      t
  haskell-process-suggest-remove-import-lines t
  haskell-process-type                        'cabal-repl
- haskell-stylish-on-save                     nil
+ haskell-stylish-on-save                     t
  )
 
 (custom-set-variables
