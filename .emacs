@@ -7,6 +7,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(setq inhibit-startup-screen t)
 (global-git-gutter-mode +1) ;; Show git diffs in the gutter
 (tool-bar-mode -1) ;; No toolbar at the top
 ;; Don't jump around when I scroll
@@ -27,29 +28,26 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 ;; Add a new line at the end if missing
 (setq require-final-newline t)
+;; next-error will scroll the compilation pane to the error line
+(setq compilation-context-lines 0)
+(fringe-mode '(nil . 0))
+
+;; Evil mode
+(require 'evil)
+(evil-mode 1)
+(setq evil-want-fine-undo nil)
 
 ;; Company mode
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; Flycheck
+;; (global-flycheck-mode)
+
 ;; Coq
 (require 'proof-site)
+(setq proof-three-window-mode-policy 'hybrid)
 (setq coq-one-command-per-line nil)
-(add-hook 'coq-mode-hook #'company-coq-mode)
 (setq company-coq-live-on-the-edge t)
-(add-hook 'coq-mode-hook
-          (lambda ()
-            (local-set-key
-             (kbd "<C-M-right>")
-             #'company-coq-proof-goto-point)
-            (local-set-key
-             (kbd "<C-M-down>")
-             #'proof-assert-next-command-interactive)
-            (local-set-key
-             (kbd "<C-M-up>")
-             #'proof-undo-last-successful-command)
-            )
-)
-
 (defun coq-compile ()
   "Traveling up the path, find a Makefile and `compile'."
   (interactive)
@@ -57,27 +55,40 @@
   (with-temp-buffer
     (cd (locate-dominating-file default-directory "Makefile"))
     (compile "make -k"))))
-
-(add-hook 'coq-mode-hook
-          (lambda ()
-            (set (make-local-variable 'compile-command)
-                 (coq-compile))))
+(add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook
+ 'coq-mode-hook
+ (lambda ()
+   (local-set-key
+    (kbd "<C-M-right>")
+    #'company-coq-proof-goto-point)
+   (local-set-key
+    (kbd "<C-M-down>")
+    #'proof-assert-next-command-interactive)
+   (local-set-key
+    (kbd "<C-M-up>")
+    #'proof-undo-last-successful-command)
+   (set (make-local-variable 'compile-command)
+        (coq-compile))
+   )
+ )
 
 ;; Haskell
-;; (add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'intero-mode)
 (require 'haskell-mode)
 
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends)
-                 (append '((company-capf company-dabbrev-code))
-                         company-backends))
-          )
-)
+;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+;; ;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;; (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+;; (add-hook 'haskell-mode-hook 'haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook
+;;           (lambda ()
+;;             (set (make-local-variable 'company-backends)
+;;                  (append '((company-capf company-dabbrev-code))
+;;                          company-backends))
+;;           )
+;; )
 
 (setq
  haskell-align-imports-pad-after-name        t
@@ -90,7 +101,7 @@
  haskell-process-suggest-remove-import-lines t
  haskell-process-type                        'cabal-repl
  haskell-stylish-on-save                     t
- )
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -99,9 +110,6 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(display-time-mode t)
- '(fringe-mode left-only nil (fringe))
- '(inhibit-startup-screen t)
- '(proof-three-window-mode-policy (quote hybrid))
  '(safe-local-variable-values
    (quote
     ((eval progn

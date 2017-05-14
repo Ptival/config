@@ -9,7 +9,7 @@ let emacsImageMagick = pkgs.emacs.override (with pkgs; {
 let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkgs:
   (with epkgs.melpaPackages;
     [
-      bind-key              # useful to bind some Haskell shortcuts
+      bind-key                # useful to bind some Haskell shortcuts
       color-theme
       company-cabal
       company-coq
@@ -19,11 +19,12 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkg
       evil
       evil-leader
       #git-timemachine
-      git-gutter            # show git information in emacs' gutter
-      gitconfig-mode        # helps when editing .git/config
-      gitignore-mode        # helps when editing .gitignore
+      git-gutter              # show git information in emacs' gutter
+      gitconfig-mode          # helps when editing .git/config
+      gitignore-mode          # helps when editing .gitignore
       hamlet-mode
       haskell-mode
+      idris-mode
       intero
       markdown-mode
       mouse3
@@ -39,6 +40,7 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkg
   ) ++
   (with pkgs.emacsPackagesNg;
     [
+      #structured-haskell-mode
     ]
   )
 );

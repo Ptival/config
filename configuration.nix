@@ -43,6 +43,7 @@
       rlwrap
       (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
       unzip # opam needs it
+      vscode
       wget
       xclip
 
