@@ -21,7 +21,7 @@ Xft.hinting:    1
 Xft.hintstyle:  hintfull
 Xft.rgba:       rgb
 
-*font: xft:SourceCodePro+Powerline+Awesome Regular:size=14
+*font:Monospace 14
 emacs*font:Monospace 14
 !URxvt*font: xft:DejaVu Sans Mono for Powerline:size=14
 !URxvt*iso14755: False

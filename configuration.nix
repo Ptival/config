@@ -39,6 +39,7 @@
       lolcat
       m4 # opam needs this sometimes
       mosh
+      #nodePackages.node2nix # seems kinda useless at the moment
       psmisc # killall command
       rlwrap
       (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
@@ -63,9 +64,12 @@
 
   fonts = {
     fonts = with pkgs; [
+      emacs-all-the-icons-fonts
+      dejavu_fonts
       emojione
       fira
       fira-code
+      fira-code-symbols
       fira-mono
       input-fonts
       symbola

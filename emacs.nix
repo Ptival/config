@@ -9,28 +9,34 @@ let emacsImageMagick = pkgs.emacs.override (with pkgs; {
 let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkgs:
   (with epkgs.melpaPackages;
     [
-      bind-key                # useful to bind some Haskell shortcuts
-      color-theme
-      company-cabal
-      company-coq
-      company-ghc
-      company-ghci
-      company-nixos-options
-      evil
-      evil-leader
-      #git-timemachine
-      git-gutter              # show git information in emacs' gutter
-      gitconfig-mode          # helps when editing .git/config
-      gitignore-mode          # helps when editing .gitignore
-      hamlet-mode
-      haskell-mode
-      idris-mode
-      intero
-      markdown-mode
-      mouse3
-      nyan-mode
-      rainbow-delimiters
-      tuareg
+      #   bind-key                # useful to bind some Haskell shortcuts
+      #   color-theme
+      #   company-cabal
+      #   company-coq
+      #   company-ghc
+      #   company-ghci
+      #   company-nixos-options
+      #   elm-mode
+      #   #evil                   # transiently broken
+      #   #evil-leader            # transiently broken
+      #   flycheck-elm
+      #   flycheck-purescript
+      #   #git-timemachine
+      #   git-gutter              # show git information in emacs' gutter
+      #   gitconfig-mode          # helps when editing .git/config
+      #   gitignore-mode          # helps when editing .gitignore
+      #   #hamlet-mode            # transiently broken, useless to me at the moment
+      #   haskell-mode
+      #   idris-mode
+      #   intero
+      #   markdown-mode
+      #   #mouse3                 # transiently broken
+      #   nyan-mode
+      #   psc-ide
+      #   purescript-mode
+      #   rainbow-delimiters
+      #   #tide
+      #   tuareg
     ]
   ) ++
   (with pkgs.emacsPackages;

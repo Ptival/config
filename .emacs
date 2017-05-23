@@ -33,15 +33,21 @@
 (fringe-mode '(nil . 0))
 
 ;; Evil mode
-(require 'evil)
-(evil-mode 1)
-(setq evil-want-fine-undo nil)
+;; (require 'evil)
+;; (evil-mode 1)
+;; (setq evil-want-fine-undo nil)
 
 ;; Company mode
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Flycheck
-;; (global-flycheck-mode)
+(global-flycheck-mode)
+
+;; Elm
+(require 'elm-mode)
+(setq elm-oracle-command "./elm-oracle")
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
 
 ;; Coq
 (require 'proof-site)
