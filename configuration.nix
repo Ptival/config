@@ -24,6 +24,7 @@
       xfce.terminal
 
       # THESE CAN BE COMMENTED OUT WHEN BISECTING
+      bashInteractive
       #baobab
       cabal2nix
       chromium
@@ -31,7 +32,7 @@
       evince
       feh
       file
-      #firefox
+      firefox
       #gitg
       haskellPackages.xmobar
       htop
@@ -137,7 +138,7 @@
       description = "Valentin Robert";
       extraGroups = [ "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
-      shell = "/run/current-system/sw/bin/zsh";
+      shell = pkgs.zsh;
     };
   };
 

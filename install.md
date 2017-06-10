@@ -13,3 +13,4 @@ cd awesome-terminal-fonts
 gco patching-strategy
 mkdir -p ~/.local/share/fonts
 cp patched/*.ttf ~/.local/share/fonts
+fc-cache -rv
