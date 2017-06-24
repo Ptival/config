@@ -72,7 +72,7 @@
       fira-code
       fira-code-symbols
       fira-mono
-      input-fonts
+      #input-fonts
       symbola
       unifont
     ];
