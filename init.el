@@ -43,7 +43,6 @@
 
        :completion
        company         ; auto-completion backend
-      ;auto-complete   ; TODO alternative auto-completion backend
        ivy             ; a search engine for love and life
       ;helm
       ;ido
@@ -65,6 +64,7 @@
        gist            ; interacting with github gists
        macos           ; macos-specific commands
        neotree         ; a project drawer, like NERDTree for vim
+       password-store  ; password manager for nerds
        rotate-text     ; cycle region at point between text candidates
        term            ; terminals in Emacs
        tmux            ; an API for interacting with tmux
@@ -86,7 +86,8 @@
        latex           ; writing papers in Emacs has never been so fun
        ;lua             ; one-based indices? one-based indices
        markdown        ; writing docs for people to ignore
-       org             ; for organized fearless leader (WIP)
+       ocaml           ; non-subjective camel
+       ;org             ; for organized fearless leader (WIP)
        ;php             ; make php less awful to work with
        purescript
        python          ; beautiful is better than ugly

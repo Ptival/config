@@ -43,6 +43,7 @@
       #nodePackages.node2nix # seems kinda useless at the moment
       psmisc # killall command
       rlwrap
+      stack
       (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
       unzip # opam needs it
       vscode
