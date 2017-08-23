@@ -20,20 +20,22 @@
       gcc
       gitAndTools.gitFull
       gnumake
+      nix-repl
       vim
       xfce.terminal
 
       # THESE CAN BE COMMENTED OUT WHEN BISECTING
       bashInteractive
-      #baobab
+      baobab
       cabal2nix
       chromium
       colordiff
       evince
-      feh
+      #feh
       file
-      firefox
+      #firefox
       #gitg
+      graphviz
       haskellPackages.xmobar
       htop
       imagemagick
@@ -44,9 +46,22 @@
       psmisc # killall command
       rlwrap
       stack
-      (texlive.combine { inherit (texlive) scheme-small metafont stmaryrd; })
+      (texlive.combine {
+        inherit (texlive)
+        caption
+        cleveref
+        collection-fontsrecommended
+        collection-pictures
+        latexmk
+        metafont
+        ms
+        scheme-basic
+        stmaryrd
+        xcolor
+        ;
+      })
       unzip # opam needs it
-      vscode
+      #vscode
       wget
       xclip
 
