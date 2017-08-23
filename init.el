@@ -34,6 +34,7 @@
        jump            ; helping you navigate your code base
        snippets        ; my elves. They type so I don't have to
        file-templates  ; auto-snippets for empty files
+       hydra           ; keybindings that stick around
        spellcheck      ; tasing you for misspelling mispelling
        syntax-checker  ; tasing you for every forgotten semicolon
        version-control ; remember, remember that commit in November
@@ -62,9 +63,11 @@
        electric-indent ; smarter, keyword-based electric-indent
        eshell          ; a consistent, cross-platform shell (WIP)
        gist            ; interacting with github gists
-       macos           ; macos-specific commands
+       impatient-mode  ; show off code over HTTP
+      ;macos           ; macos-specific commands
        neotree         ; a project drawer, like NERDTree for vim
        password-store  ; password manager for nerds
+       prodigy         ; manage external services from within emacs
        rotate-text     ; cycle region at point between text candidates
        term            ; terminals in Emacs
        tmux            ; an API for interacting with tmux
@@ -76,10 +79,12 @@
        ;crystal         ; ruby at the speed of c
        ;csharp          ; unity, .NET, and mono shenanigans
        data            ; config/data formats
+       ;elixir          ; erlang done right
        elm
        emacs-lisp      ; drown in parentheses
        ;go              ; the hipster dialect
        haskell         ; a language that's lazier than I am
+       ;hy              ; readability of scheme w/ speed of python
        ;java            ; the poster child for carpal tunnel syndrome
        javascript      ; all(hope(abandon(ye(who(enter(here))))))
        ;julia           ; a better, faster MATLAB
@@ -87,8 +92,9 @@
        ;lua             ; one-based indices? one-based indices
        markdown        ; writing docs for people to ignore
        ocaml           ; non-subjective camel
-       ;org             ; for organized fearless leader (WIP)
+       ;perl            ; write code no one else can comprehend
        ;php             ; make php less awful to work with
+       ;plantuml        ; diagrams for confusing people more
        purescript
        python          ; beautiful is better than ugly
        ;rest            ; Emacs as a REST client
@@ -100,20 +106,28 @@
        typescript      ; javascript, but better
        web             ; the tubes
 
+       :org
+       org             ; organize your plain life in plain text
+       org-babel       ; executable code snippets in org-mode
+      ;org-attach      ; FIXME my own, simpler attachment system
+       org-capture     ; a better org-capture, in or outside of Emacs
+       org-export      ; a custom, centralized export system
+       org-notebook    ; org-mode as a notebook
+       org-present     ; using org-mode for presentations
+      ;org-sync        ; TODO sync with mobile
+      ;org-publish     ; TODO org + blogs
+
        ;; Applications are opinionated modules that transform Emacs to fulfill a
        ;; specific purpose. They should be loaded last.
        :app
-      ;crm             ; TODO org-mode for client relations management
       ;email           ; Emacs as an email client
-      ;finance         ; TODO keeping track of my shekels
       ;irc             ; TODO how neckbeards socialize
-      ;present         ; showing off presentations in emacs
-      ;regex           ; TODO emacs as a regexp IDE
       ;rss             ; emacs as an RSS reader
       ;twitter         ; twitter client https://twitter.com/vnought
        write           ; emacs as a word processor (latex + org + markdown)
 
        ;; Private modules are aren't tracked in the repo, except for mine. Use
        ;; it as a reference for your own.
-       :private hlissner
-       :private ptival)
+       :private
+       hlissner
+       ptival)
