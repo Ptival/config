@@ -37,6 +37,7 @@
       #gitg
       graphviz
       haskellPackages.xmobar
+      #hugs
       htop
       imagemagick
       lolcat
@@ -52,12 +53,17 @@
         cleveref
         collection-fontsrecommended
         collection-pictures
+        euenc
+        fontspec
         latexmk
+        listings
         metafont
         ms
         scheme-basic
         stmaryrd
         xcolor
+        xetex
+        xetex-def
         ;
       })
       unzip # opam needs it
