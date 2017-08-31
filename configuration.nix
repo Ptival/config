@@ -46,6 +46,7 @@
       #nodePackages.node2nix # seems kinda useless at the moment
       psmisc # killall command
       rlwrap
+      #rxvt_unicode
       stack
       (texlive.combine {
         inherit (texlive)
@@ -86,17 +87,23 @@
   ];
 
   fonts = {
+    #fontconfig = {
+    #  enable = true;
+    #  includeUserConf = true;
+    #};
     fonts = with pkgs; [
       emacs-all-the-icons-fonts
       dejavu_fonts
-      emojione
-      fira
-      fira-code
-      fira-code-symbols
+      #emojione
+      #fira
+      #fira-code
+      #fira-code-symbols
       fira-mono
+      #font-awesome-ttf
       #input-fonts
-      symbola
-      unifont
+      nerdfonts
+      #symbola
+      #unifont
     ];
   };
 

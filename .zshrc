@@ -24,11 +24,16 @@ bindkey '^[[4~' end-of-line
 bindkey '\e[7~' beginning-of-line
 bindkey '\e[8~' end-of-line
 
+#source $HOME/awesome-terminal-fonts/build/devicons-regular.sh
+#source $HOME/awesome-terminal-fonts/build/fontawesome-regular.sh
+#source $HOME/awesome-terminal-fonts/build/octicons-regular.sh
+#source $HOME/awesome-terminal-fonts/build/pomicons-regular.sh
+
 ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="alanpeabody"
 #ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE="awesome-patched"
+POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs custom_nixshell)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 DIRCOLOR="007"
