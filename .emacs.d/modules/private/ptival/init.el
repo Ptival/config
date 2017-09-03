@@ -11,6 +11,10 @@
 ; (e.g. in ProofGeneral it's super annoying)
 (setq evil-want-abbrev-expand-on-insert-exit nil)
 
+; I really don't like how Haskell indents the line after a `let`, this prevents
+; it, but also has some bad side-effects
+(setq haskell-indentation-starter-offset 0)
+
 (setq require-final-newline t)
 
 ; preserve double spaces after period when re-flowing text into 80 columns
