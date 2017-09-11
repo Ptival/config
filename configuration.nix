@@ -44,6 +44,7 @@
       m4 # opam needs this sometimes
       mosh
       #nodePackages.node2nix # seems kinda useless at the moment
+      openssl
       psmisc # killall command
       rlwrap
       #rxvt_unicode
