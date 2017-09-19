@@ -5,7 +5,7 @@
 (setq delete-trailing-lines t)
 
 (setq doom-font (font-spec :size 15)
-      doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 15))
+      doom-unicode-font (font-spec :family "DejaVu Sans" :size 15))
 
 ; prevents Evil from doing auto-completion when pressing Esc
 ; (e.g. in ProofGeneral it's super annoying)
