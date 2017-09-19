@@ -107,12 +107,14 @@
     fonts = with pkgs; [
       emacs-all-the-icons-fonts
       dejavu_fonts
-      #emojione
-      #fira
-      #fira-code
-      #fira-code-symbols
+      emojione
+      fira
+      fira-code
+      fira-code-symbols
       fira-mono
-      #font-awesome-ttf
+      font-awesome-ttf
+      freefont_ttf
+      hasklig
       #input-fonts
       nerdfonts
       #symbola
