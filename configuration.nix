@@ -51,21 +51,33 @@
       stack
       (texlive.combine {
         inherit (texlive)
+        booktabs
         caption
         cleveref
+        cmap
         collection-fontsrecommended
         collection-pictures
+        comment
+        environ
+        etoolbox
         euenc
+        float
         fontspec
         latexmk
         listings
         metafont
+        microtype
         ms
+        ncctools
         scheme-basic
         stmaryrd
+        textcase
+        totpages
+        trimspaces
         xcolor
         xetex
         xetex-def
+        xstring
         ;
       })
       unzip # opam needs it
