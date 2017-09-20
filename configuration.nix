@@ -58,6 +58,7 @@
         collection-fontsrecommended
         collection-pictures
         comment
+        dejavu
         environ
         etoolbox
         euenc
@@ -65,6 +66,8 @@
         fontspec
         latexmk
         listings
+        mathpartir
+        mdwtools
         metafont
         microtype
         ms
