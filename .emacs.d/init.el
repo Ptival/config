@@ -93,7 +93,7 @@
       ;ledger          ; an accounting system in Emacs
       ;lua             ; one-based indices? one-based indices
       ;markdown        ; writing docs for people to ignore
-      ;ocaml           ; an objective camel
+       ocaml           ; an objective camel
       ;perl            ; write code no one else can comprehend
       ;php             ; make php less awful to work with
       ;plantuml        ; diagrams for confusing people more
