@@ -24,6 +24,7 @@
 (setq +ivy-buffer-icons t)
 
 (set! :popup "^\\*intero:" :regexp t :align 'right :size 0.5)
+(set! :popup "^\\*OCaml\\*$" :regexp t :align 'right :size 0.5)
 
 (set-mouse-color "red")
 
