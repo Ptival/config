@@ -25,17 +25,22 @@
       xfce.terminal
 
       # THESE CAN BE COMMENTED OUT WHEN BISECTING
+      aspell
+      aspellDicts.en
+      aspellDicts.fr
       bashInteractive
       baobab
       cabal2nix
       chromium
       colordiff
+      coq
       evince
       #feh
       file
       #firefox
       #gitg
       graphviz
+      haskellPackages.ghc-mod
       haskellPackages.xmobar
       #hugs
       htop
@@ -51,14 +56,26 @@
       stack
       (texlive.combine {
         inherit (texlive)
+
+        #scheme-minimal # plain
+        #scheme-basic   # + latex
+        #scheme-small   # + xetex
+        scheme-medium  # + packages
+        #scheme-full    # + more packages
+
+
+        adjustbox
         booktabs
+        bussproofs
         caption
         cleveref
         cmap
+        collectbox
         collection-fontsrecommended
         collection-pictures
         comment
         dejavu
+        doublestroke
         environ
         etoolbox
         euenc
@@ -72,11 +89,11 @@
         microtype
         ms
         ncctools
-        scheme-basic
         stmaryrd
         textcase
         totpages
         trimspaces
+        soul
         xcolor
         xetex
         xetex-def
