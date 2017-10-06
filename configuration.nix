@@ -65,9 +65,13 @@
 
 
         adjustbox
+        anyfontsize
+        babel
+        babel-greek
         booktabs
         bussproofs
         caption
+        cbfonts
         cleveref
         cmap
         collectbox
@@ -81,6 +85,12 @@
         euenc
         float
         fontspec
+        gfsartemisia
+        gfsbaskerville
+        gfsdidot
+        gfsneohellenic
+        greek-fontenc
+        greektex
         latexmk
         listings
         mathpartir
@@ -94,6 +104,7 @@
         totpages
         trimspaces
         soul
+        ucs
         xcolor
         xetex
         xetex-def
