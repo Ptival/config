@@ -80,6 +80,7 @@
         comment
         dejavu
         doublestroke
+        enumitem
         environ
         etoolbox
         euenc
