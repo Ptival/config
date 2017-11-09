@@ -29,3 +29,5 @@
 (set-mouse-color "red")
 
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
+
+(setq-default TeX-master nil) ; AUCTeX should ask us what the main .tex is
