@@ -40,7 +40,7 @@
       #firefox
       #gitg
       graphviz
-      haskellPackages.ghc-mod
+      #haskellPackages.ghc-mod
       haskellPackages.xmobar
       #hugs
       htop
