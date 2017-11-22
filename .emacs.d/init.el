@@ -59,6 +59,7 @@
       ;unicode           ; extended unicode support for various languages
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       (window-select +ace-window)  ; visually switch windows
 
        :tools
        dired             ; making dired pretty [functional]
@@ -77,38 +78,38 @@
        upload            ; map local to remote projects via ssh/ftp
 
        :lang
-       ;assembly          ; assembly for fun or debugging
-       ;cc                ; C/C++/Obj-C madness
-       ;crystal           ; ruby at the speed of c
-       ;csharp            ; unity, .NET, and mono shenanigans
-       ;data              ; config/data formats
-       ;elixir            ; erlang done right
-       ;elm               ; care for a cup of TEA?
+       assembly          ; assembly for fun or debugging
+       cc                ; C/C++/Obj-C madness
+       crystal           ; ruby at the speed of c
+       csharp            ; unity, .NET, and mono shenanigans
+       data              ; config/data formats
+       elixir            ; erlang done right
+       elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
-       ;go                ; the hipster dialect
+       go                ; the hipster dialect
        (haskell +intero) ; a language that's lazier than I am
-       ;hy                ; readability of scheme w/ speed of python
-       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       ;javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       ;julia             ; a better, faster MATLAB
+       hy                ; readability of scheme w/ speed of python
+       (java +meghanada) ; the poster child for carpal tunnel syndrome
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       julia             ; a better, faster MATLAB
        latex             ; writing papers in Emacs has never been so fun
-       ;ledger            ; an accounting system in Emacs
-       ;lua               ; one-based indices? one-based indices
-       ;markdown          ; writing docs for people to ignore
+       ledger            ; an accounting system in Emacs
+       lua               ; one-based indices? one-based indices
+       markdown          ; writing docs for people to ignore
        ocaml             ; an objective camel
-       ;perl              ; write code no one else can comprehend
-       ;php               ; make php less awful to work with
-       ;plantuml          ; diagrams for confusing people more
+       perl              ; write code no one else can comprehend
+       php               ; make php less awful to work with
+       plantuml          ; diagrams for confusing people more
        purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
-       ;rest              ; Emacs as a REST client
-       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       ;scala             ; java, but good
-       ;sh                ; she sells (ba|z)sh shells on the C xor
-       ;swift             ; who asked for emoji variables?
-       ;typescript        ; javascript, but better
-       ;web               ; the tubes
+       rest              ; Emacs as a REST client
+       ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       scala             ; java, but good
+       sh                ; she sells (ba|z)sh shells on the C xor
+       swift             ; who asked for emoji variables?
+       typescript        ; javascript, but better
+       web               ; the tubes
 
        :org
        org               ; organize your plain life in plain text
@@ -116,7 +117,6 @@
        org-attach        ; a simpler attachment system
        org-capture       ; a better org-capture, in or outside of Emacs
        org-export        ; a custom, centralized export system
-       org-notebook      ; org-mode as a notebook
        org-present       ; using org-mode for presentations
       ;org-sync          ; TODO sync with mobile
       ;org-publish       ; TODO org + blogs
