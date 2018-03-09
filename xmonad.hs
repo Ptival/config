@@ -20,7 +20,7 @@ myTopics = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myTopicConfig = TopicConfig
     { defaultTopicAction    = const $ spawnTerminal >*> 3
-    , defaultTopic          = "term"
+    , defaultTopic          = "1"
     , maxTopicHistory       = 10
     , topicDirs             = M.fromList $
         []

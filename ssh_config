@@ -13,3 +13,7 @@ User haskellf
 Host uw
 HostName gpu0.cs.washington.edu
 User vrobert
+
+Host proverbot
+HostName alexsanchezstern.com
+User valentin

@@ -113,6 +113,7 @@
         ;
       })
       unzip # opam needs it
+      virtualbox
       #vscode
       wget
       xclip
