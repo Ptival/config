@@ -65,6 +65,7 @@
 
 
         adjustbox
+        algorithm2e
         anyfontsize
         babel
         babel-greek
@@ -85,6 +86,7 @@
         etoolbox
         euenc
         float
+        fontaxes
         fontspec
         gfsartemisia
         gfsbaskerville
@@ -92,20 +94,25 @@
         gfsneohellenic
         greek-fontenc
         greektex
+        inconsolata
         latexmk
+        libertine
         listings
         mathpartir
         mdwtools
         metafont
         microtype
         ms
+        mweights
         ncctools
+        newtx
+        soul
         stmaryrd
         textcase
         totpages
         trimspaces
-        soul
         ucs
+        upquote
         xcolor
         xetex
         xetex-def
