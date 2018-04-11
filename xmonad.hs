@@ -30,13 +30,13 @@ myTopicConfig = TopicConfig
 
 myKeys conf@(XConfig {modMask = modm}) = M.fromList $
     [ ((modm, xK_m), focusMaster)
-    , ((modm, xK_j),   focusDown)
-    , ((modm, xK_k),   focusUp)
+    , ((modm, xK_j), focusDown)
+    , ((modm, xK_k), focusUp)
 --    , ((modm,               xK_Tab), rotAllDown)
 --    , ((modm .|. shiftMask, xK_Tab), rotAllUp)
     ]
 
-spawnTerminal   = spawn $ myTerminal
+spawnTerminal = spawn $ myTerminal
 
 tall_1_2 = Tall 1 (1/100) (50/100)
 
