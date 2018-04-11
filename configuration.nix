@@ -70,9 +70,11 @@
         babel
         babel-greek
         booktabs
+        boondox
         bussproofs
         caption
         cbfonts
+        ccicons
         cleveref
         cmap
         collectbox
@@ -81,10 +83,12 @@
         comment
         dejavu
         doublestroke
+        draftwatermark
         enumitem
         environ
         etoolbox
         euenc
+        everypage
         float
         fontaxes
         fontspec
@@ -106,6 +110,7 @@
         mweights
         ncctools
         newtx
+        relsize
         soul
         stmaryrd
         textcase
