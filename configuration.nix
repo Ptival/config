@@ -89,6 +89,7 @@
         etoolbox
         euenc
         everypage
+        filehook
         float
         fontaxes
         fontspec
