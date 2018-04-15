@@ -35,3 +35,6 @@
 
 ; AUCTeX should ask us what the main .tex is
 (setq-default TeX-master nil)
+
+; Spellcheck when editing LaTeX files
+(add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
