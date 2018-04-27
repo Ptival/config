@@ -69,6 +69,7 @@
         anyfontsize
         babel
         babel-greek
+        blindtext
         booktabs
         boondox
         bussproofs
@@ -81,6 +82,7 @@
         collection-fontsrecommended
         collection-pictures
         comment
+        currvita
         dejavu
         doublestroke
         draftwatermark
@@ -115,13 +117,15 @@
         soul
         stmaryrd
         textcase
+        titlesec
+        tocloft
         totpages
         trimspaces
         ucs
         upquote
         xcolor
         xetex
-        xetex-def
+        #xetex-def
         xstring
         ;
       })
