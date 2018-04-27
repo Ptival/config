@@ -1,4 +1,8 @@
-;;; private/ptival/init.el
+;;; private/ptival/config.el -*- lexical-binding: t; -*-
+
+;;; Code:
+(when (featurep! :feature evil)
+  (load! bindings))
 
 (load "ProofGeneral/generic/proof-site")
 
