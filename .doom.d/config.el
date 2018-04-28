@@ -6,8 +6,9 @@
 
 (load "ProofGeneral/generic/proof-site")
 
-(setq doom-font (font-spec :size 15)
-      doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 15))
+(setq doom-font (font-spec :family "Fira Mono" :size 14)
+      doom-unicode-font (font-spec :family "Fira Mono" :size 14)
+      doom-big-font (font-spec :family "Fira Mono" :size 19))
 
 ; prevents Evil from doing auto-completion when pressing Esc
 ; (e.g. in ProofGeneral it's super annoying)
