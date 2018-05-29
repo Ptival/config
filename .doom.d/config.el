@@ -2,7 +2,7 @@
 
 ;;; Code:
 (when (featurep! :feature evil)
-  (load! bindings))
+  (load! "bindings"))
 
 (load "ProofGeneral/generic/proof-site")
 
