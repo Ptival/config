@@ -14,3 +14,7 @@ templates:
     #copyright:
 nix:
   enable: true
+  packages:
+    - pkgconfig
+    - zlib
+  path: [nixpkgs=/home/ptival/nixpkgs]
