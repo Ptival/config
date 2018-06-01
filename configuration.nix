@@ -63,7 +63,6 @@
         scheme-medium  # + packages
         #scheme-full    # + more packages
 
-
         adjustbox
         algorithm2e
         anyfontsize
