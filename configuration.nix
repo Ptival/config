@@ -108,6 +108,7 @@
         mdwtools
         metafont
         microtype
+        minted
         ms
         mweights
         ncctools
