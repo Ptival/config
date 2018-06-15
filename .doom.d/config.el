@@ -38,8 +38,11 @@
 ; deletes trailing whitespaces on every line upon saving files
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 
-; AUCTeX should ask us what the main .tex is
+; AUCTeX should ask us what the main .tex is, not guess
 (setq-default TeX-master nil)
 
-; Spellcheck when editing LaTeX files
+; spellcheck when editing LaTeX files
 (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+
+; prevents spellcheck on LaTeX output buffers
+(setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)

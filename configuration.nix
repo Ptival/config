@@ -51,6 +51,7 @@
       #nodePackages.node2nix # seems kinda useless at the moment
       openssl
       psmisc # killall command
+      python36Packages.pygments
       rlwrap
       #rxvt_unicode
       stack
@@ -94,12 +95,15 @@
         float
         fontaxes
         fontspec
+        framed         # needed by minted
+        fvextra        # needed by minted
         gfsartemisia
         gfsbaskerville
         gfsdidot
         gfsneohellenic
         greek-fontenc
         greektex
+        ifplatform     # needed by minted
         inconsolata
         latexmk
         libertine
@@ -114,6 +118,7 @@
         ncctools
         newtx
         relsize
+        sfmath
         soul
         stmaryrd
         textcase
@@ -155,6 +160,7 @@
     #  includeUserConf = true;
     #};
     fonts = with pkgs; [
+      corefonts
       emacs-all-the-icons-fonts
       dejavu_fonts
       emojione
@@ -163,6 +169,7 @@
       fira-code-symbols
       fira-mono
       font-awesome-ttf
+      helvetica-neue-lt-std
       freefont_ttf
       hasklig
       #input-fonts
