@@ -39,8 +39,9 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
+      ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
-      ;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
@@ -73,7 +74,7 @@
 
        :lang
       ;assembly          ; assembly for fun or debugging
-      ;cc                ; C/C++/Obj-C madness
+      ;(cc +irony +rtags); C/C++/Obj-C madness
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
       ;clojure           ; java with a lisp
@@ -88,7 +89,7 @@
        (haskell +intero) ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
-      ;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
        latex             ; writing papers in Emacs has never been so fun
       ;ledger            ; an accounting system in Emacs
@@ -106,7 +107,7 @@
       ;perl              ; write code no one else can comprehend
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
-      ;purescript        ; javascript, but functional
+       purescript        ; javascript, but functional
       ;python            ; beautiful is better than ugly
       ;qt                ; the 'cutest' gui framework ever
       ;rest              ; Emacs as a REST client
@@ -116,7 +117,7 @@
        sh                ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
       ;swift             ; who asked for emoji variables?
-      ;web               ; the tubes
+       web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
