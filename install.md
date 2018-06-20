@@ -1,3 +1,18 @@
+* To set up NixOS
+
+In /etc/nixos, symlink configuration.nix to /home/ptival/config/configuration.nix
+
+In /home/ptival/config, symlink:
+hardware-configuration.nix -> hardware-configuration/{machine}.nix
+      machine-specifig.nix ->       machine-specific/{machine}.nix
+
+No need to make up extra symlinks in /etc/nixos, since local paths are resolved
+after following the symlink.
+
+Also, it's nice to have a local copy of nixpkgs, and then:
+
+sudo nixos-rebuild switch -I nixpkgs=/home/ptival/nixpkgs
+
 * To reinstall oh-my-zsh
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
