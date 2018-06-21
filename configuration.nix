@@ -236,8 +236,9 @@
   services.xserver.displayManager = {
     lightdm.enable = true;
     sessionCommands = ''
+      setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
       #xmodmap -e "keysym Super_L = Multi_key"
-      setxkbmap -option compose:ralt
+      setxkbmap -option compose:ralt # RightAlt is a XCompose key
       setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
       export GTK_IM_MODULE=xim
       export XCOMPOSEFILE = "/home/ptival/.XCompose"
