@@ -47,6 +47,8 @@
     vim
     xfce.terminal
     wget
+    wpa_supplicant
+    wpa_supplicant_gui
 
     aspell
     aspellDicts.en

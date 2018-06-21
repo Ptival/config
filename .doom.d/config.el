@@ -46,3 +46,5 @@
 
 ; prevents spellcheck on LaTeX output buffers
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
+
+(setq +doom-modeline-buffer-file-name-style 'truncate-all)
