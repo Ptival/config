@@ -13,7 +13,6 @@
        spellcheck        ; tasing you for misspelling mispelling
        (syntax-checker   ; tasing you for every semicolon you forget
         +childframe)     ; use childframes for error popups (Emacs 26+ only)
-       version-control   ; remember, remember that commit in November
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
@@ -41,20 +40,23 @@
         +defaults)       ; default popup rules
       ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
-       unicode           ; extended unicode support for various languages
+      ;unicode           ; extended unicode support for various languages
+       vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
        :editor
       ;parinfer          ; turn lisp into python, sort of
+       rotate-text       ; cycle region at point between text candidates
 
        :emacs
        dired             ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
-       electric-indent   ; smarter, keyword-based electric-indent
+       electric          ; smarter, keyword-based electric-indent
       ;eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
       ;term              ; terminals in Emacs
+       vc                ; version-control and Emacs, sitting in a tree
 
        :tools
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -67,7 +69,6 @@
       ;pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
       ;rgb               ; creating color strings
-       rotate-text       ; cycle region at point between text candidates
       ;tmux              ; an API for interacting with tmux
       ;upload            ; map local to remote projects via ssh/ftp
       ;wakatime
@@ -108,7 +109,7 @@
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
        purescript        ; javascript, but functional
-      ;python            ; beautiful is better than ugly
+       python            ; beautiful is better than ugly
       ;qt                ; the 'cutest' gui framework ever
       ;rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
