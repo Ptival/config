@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      ./emacs.nix # Adds ProofGeneral
+      ./hardware-configuration.nix # Include the results of the hardware scan.
       ./machine-specific.nix
     ];
 
@@ -39,7 +40,6 @@
   environment.systemPackages = with pkgs; [
     binutils
     dmenu
-    emacs
     gcc
     gitAndTools.gitFull
     gnumake

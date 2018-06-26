@@ -2,8 +2,10 @@
 
 let emacsImageMagick = pkgs.emacs.override (with pkgs; {
   inherit imagemagick;
-  withGTK2 = true;
-  withGTK3 = false;
+  # withGTK2 = true;
+  # withGTK3 = false;
+  withGTK2 = false;
+  withGTK3 = true;
 }); in
 
 let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkgs:
@@ -50,6 +52,7 @@ let myEmacs = (pkgs.emacsPackagesNgGen emacsImageMagick).emacsWithPackages (epkg
     ]
   )
 );
+
 in {
   environment.systemPackages = [
     myEmacs

@@ -5,6 +5,7 @@
   (load! "bindings"))
 
 (load "ProofGeneral/generic/proof-site")
+(setq proof-three-window-mode-policy 'hybrid)
 
 (setq doom-font (font-spec :family "DejaVu Sans Mono" :size 14)
       doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 14)
