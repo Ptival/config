@@ -2,7 +2,9 @@
 {
   imports =
     [
+      ./wifi/dimos.nix
       ./wifi/pistachio.nix
+      ./wifi/rock-bottom.nix
       ./wifi/subterranean.nix
       ./wifi/ucsd-protected.nix
       ./wifi/wifi.nix
