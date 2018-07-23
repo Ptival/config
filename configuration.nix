@@ -43,12 +43,20 @@
     gcc
     gitAndTools.gitFull
     gnumake
+    libreoffice-still
     nix-repl
     vim
-    xfce.terminal
     wget
     wpa_supplicant
     wpa_supplicant_gui
+    xfce.terminal
+    xfce.xfce4-battery-plugin
+    xfce.xfce4-cpugraph-plugin
+    xfce.xfce4-datetime-plugin
+    xfce.xfce4-hardware-monitor-plugin
+    xfce.xfce4-icon-theme
+    xfce.xfce4_power_manager_gtk3
+    xfce.xfce4-screenshooter
 
     aspell
     aspellDicts.en
@@ -64,6 +72,8 @@
     file
     #firefox
     #gitg
+    gimp
+    glxinfo
     graphviz
     #haskellPackages.ghc-mod
     haskellPackages.xmobar
@@ -74,6 +84,7 @@
     mosh
     #nodePackages.node2nix    # seems kinda useless at the moment
     openssl
+    playonlinux
     psmisc                    # killall command
     python36Packages.pygments
     rlwrap
@@ -81,6 +92,7 @@
     slack
     spotify
     stack
+    steam
     (texlive.combine {
       inherit (texlive)
 
@@ -161,7 +173,9 @@
       ;
     })
     unzip # opam needs it
-    #vscode
+    vscode
+    wine
+    winetricks
     xclip
 
   ];
@@ -187,6 +201,7 @@
       #input-fonts
       #nerdfonts
       #symbola
+      tex-gyre.pagella
       #unifont
     ];
   };

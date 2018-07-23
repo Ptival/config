@@ -3,11 +3,14 @@
   imports =
     [
       ./wifi/dimos.nix
+      ./wifi/philz.nix
       ./wifi/pistachio.nix
       ./wifi/rock-bottom.nix
       ./wifi/subterranean.nix
       ./wifi/ucsd-protected.nix
       ./wifi/wifi.nix
+      ./wifi/working-class.nix
+      ./wifi/young-hickory.nix
     ];
 
   networking = {
@@ -23,4 +26,8 @@
       userControlled.enable = true;
     };
   };
+
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+  services.xserver.videoDrivers = [ "opengl" ];
 }
