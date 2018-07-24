@@ -18,3 +18,8 @@ nix:
     - pkgconfig
     - zlib
   path: [nixpkgs=/home/ptival/nixpkgs]
+  # Without this flag, stack will start ghci in a pure environment, whose
+  # locale gets reset from the lovely UTF-8 to the sad ASCII. This makes
+  # ghci unable to handle Unicode in input and output, and, as a result,
+  # intero fails to report any error message involving Unicode characters.
+  pure: false
