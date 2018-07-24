@@ -70,7 +70,7 @@
     evince
     feh
     file
-    #firefox
+    firefox
     #gitg
     gimp
     glxinfo
