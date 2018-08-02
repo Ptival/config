@@ -1,5 +1,7 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+(setq doom-theme 'doom-vibrant)
+
 ;;; Code:
 (when (featurep! :feature evil)
   (load! "bindings"))
@@ -18,6 +20,9 @@
 ; I really don't like how Haskell indents the line after a `let`, this prevents
 ; it, but also has some bad side-effects
 (setq haskell-indentation-starter-offset 0)
+
+; also align the qualified shorthand
+(setq haskell-align-imports-pad-after-name t)
 
 ; exactly one newline at the end of every file, unconditionally
 (setq require-final-newline t)
