@@ -82,6 +82,7 @@
     lolcat
     #m4                       # opam needs this sometimes
     mosh
+    nodejs
     #nodePackages.node2nix    # seems kinda useless at the moment
     openssl
     playonlinux
