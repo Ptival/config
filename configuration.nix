@@ -233,7 +233,8 @@
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.gutenprint pkgs.hplip ];
 
   # Enable sound.
   sound.enable = true;
@@ -290,7 +291,7 @@
       isNormalUser = true;
       home = "/home/ptival";
       description = "Valentin Robert";
-      extraGroups = [ "tty" "wheel" ];
+      extraGroups = [ "lp" "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
       shell = pkgs.zsh;
     };
