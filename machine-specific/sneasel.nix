@@ -16,6 +16,7 @@
 
   networking = {
     hostName = "sneasel";
+    nameservers = [ "8.8.8.8" "192.168.86.1" ];
     wicd.enable = true;
     wireless = {
       enable = true;
