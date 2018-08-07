@@ -190,7 +190,7 @@
       corefonts
       emacs-all-the-icons-fonts
       dejavu_fonts
-      #emojione
+      #emojione # REMOVED: interferes with Noto
       #fira
       #fira-code
       #fira-code-symbols
@@ -201,6 +201,7 @@
       #hasklig
       #input-fonts
       #nerdfonts
+      noto-fonts-emoji
       #symbola
       tex-gyre.pagella
       #unifont
