@@ -3,6 +3,7 @@
   imports =
     [
       ./wifi/dimos.nix
+      ./wifi/krakatoa.nix
       ./wifi/philz.nix
       ./wifi/pistachio.nix
       ./wifi/rock-bottom.nix
