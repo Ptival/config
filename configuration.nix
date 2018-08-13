@@ -44,7 +44,6 @@
     gitAndTools.gitFull
     gnumake
     libreoffice-still
-    nix-repl
     vim
     wget
     wpa_supplicant
