@@ -8,6 +8,7 @@
       ./wifi/pistachio.nix
       ./wifi/rock-bottom.nix
       ./wifi/subterranean.nix
+      ./wifi/toma-sol.nix
       ./wifi/ucsd-protected.nix
       ./wifi/wifi.nix
       ./wifi/working-class.nix
