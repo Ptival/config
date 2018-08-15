@@ -83,6 +83,7 @@
     mosh
     nodejs
     #nodePackages.node2nix    # seems kinda useless at the moment
+    okular
     openssl
     playonlinux
     psmisc                    # killall command
@@ -107,6 +108,7 @@
       anyfontsize
       babel
       babel-greek
+      biblatex
       blindtext
       booktabs
       boondox
@@ -146,6 +148,7 @@
       latexmk
       libertine
       listings
+      logreq         # needed by biblatex
       mathpartir
       mdwtools
       metafont
@@ -177,6 +180,7 @@
     wine
     winetricks
     xclip
+    zathura
 
   ];
 
