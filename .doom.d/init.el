@@ -18,20 +18,21 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto)           ; as-you-type code completion
-      ;(helm             ; the *other* search engine for love and life
-      ; +fuzzy)          ; enable fuzzy search backend for helm
+       (helm             ; the *other* search engine for love and life
+        +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        +fuzzy)          ; enable fuzzy search backend for ivy
+      ;(ivy              ; a search engine for love and life
+      ; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-modeline     ; a snazzy Atom-inspired mode-line
+      ;doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+       modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
@@ -46,6 +47,8 @@
        window-select     ; visually switch windows
 
        :editor
+      ;(format +onsave)  ; automated prettiness
+       multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
@@ -54,6 +57,7 @@
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
       ;eshell            ; a consistent, cross-platform shell (WIP)
+       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
       ;term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -75,7 +79,7 @@
 
        :lang
       ;assembly          ; assembly for fun or debugging
-      ;(cc +irony +rtags); C/C++/Obj-C madness
+       (cc +irony +rtags); C/C++/Obj-C madness
       ;clojure           ; java with a lisp
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
@@ -111,6 +115,7 @@
        purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
       ;qt                ; the 'cutest' gui framework ever
+      ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()

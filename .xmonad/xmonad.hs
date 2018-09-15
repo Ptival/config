@@ -12,14 +12,6 @@ import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerWorkspace (onWorkspace)
 import qualified XMonad.StackSet as W
 
-floatingClasses =
-  [ "MPlayer"
-  , "Gimp"
-  , "Wrapper"
-  , "xfce4-xkb-plugin"
-  , "xfce4-appfinder"
-  ]
-
 myWorkspaces = ["1:dev", "2:web"] ++ map show [3..6] ++ ["7:spotify", "8:slack", "9:full"]
 
 myManageHook = composeAll
@@ -62,13 +54,4 @@ myConfig = xfceConfig
   , terminal   = "xfce4-terminal"
   , layoutHook = myLayoutHook
   , manageHook = manageDocks <+> myManageHook
-  , keys       = myKeys <+> keys def
   }
-
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ ((modm,               xK_b     ), sendMessage ToggleStruts)
-    , ((modm .|. shiftMask, xK_q     ), spawn "xfce4-session-logout")
-    , ((modm .|. shiftMask, xK_Return), spawn "xfce4-terminal")
-    , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
-    , ((modm .|. shiftMask, xK_p     ), spawn "xfce4-appfinder")
-    ]

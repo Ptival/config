@@ -70,10 +70,12 @@
     feh
     file
     firefox
+    google-chrome
     #gitg
     gimp
     glxinfo
     graphviz
+    gsettings_desktop_schemas # vscode crashes without this
     #haskellPackages.ghc-mod
     haskellPackages.xmobar
     htop
@@ -81,7 +83,7 @@
     lolcat
     #m4                       # opam needs this sometimes
     mosh
-    nodejs
+    nodejs-10_x
     #nodePackages.node2nix    # seems kinda useless at the moment
     okular
     openssl
@@ -150,6 +152,7 @@
       listings
       logreq         # needed by biblatex
       mathpartir
+      mdframed
       mdwtools
       metafont
       microtype
@@ -157,6 +160,7 @@
       ms
       mweights
       ncctools
+      needspace      # needed by mdframed
       newtx
       relsize
       sfmath
@@ -172,6 +176,7 @@
       xcolor
       xetex
       #xetex-def
+      xpatch
       xstring
       ;
     })
@@ -180,7 +185,7 @@
     wine
     winetricks
     xclip
-    zathura
+    #zathura # tired of it, bugs in a weird way not displaying text sometimes
 
   ];
 
@@ -260,7 +265,7 @@
       setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
       #xmodmap -e "keysym Super_L = Multi_key"
       setxkbmap -option compose:ralt # RightAlt is a XCompose key
-      setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
+      #setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
       export GTK_IM_MODULE=xim
       export XCOMPOSEFILE = "/home/ptival/.XCompose"
     '';

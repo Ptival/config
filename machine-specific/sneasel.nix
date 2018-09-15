@@ -3,16 +3,20 @@
   imports =
     [
       ./wifi/dimos.nix
+      ./wifi/johns-appt-san-francisco.nix
       ./wifi/krakatoa.nix
       ./wifi/philz.nix
       ./wifi/pistachio.nix
       ./wifi/rock-bottom.nix
       ./wifi/subterranean.nix
       ./wifi/toma-sol.nix
-      ./wifi/ucsd-protected.nix
+      ./wifi/twiggs.nix
       ./wifi/wifi.nix
       ./wifi/working-class.nix
       ./wifi/young-hickory.nix
+
+      # I don't think WPA2-E supports pre-encrypted, so key is in clear :$
+      ./wifi/private/ucsd-protected.nix
     ];
 
   networking = {
