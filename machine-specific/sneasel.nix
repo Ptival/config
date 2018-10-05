@@ -2,6 +2,8 @@
 {
   imports =
     [
+      ./wifi/ariel.nix
+      ./wifi/better-buzz-pacific-beach.nix
       ./wifi/dimos.nix
       ./wifi/johns-appt-san-francisco.nix
       ./wifi/krakatoa.nix

@@ -3,14 +3,16 @@ import           Control.Monad              (liftM2, void)
 import           Data.Default               (def)
 import qualified Data.Map                   as M
 import           XMonad
+import           XMonad.Config.Kde
 import           XMonad.Config.Xfce
+import           XMonad.Hooks.EwmhDesktops  (ewmh)
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.Fullscreen
-import           XMonad.Layout.Named (named)
+import           XMonad.Layout.Named        (named)
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerWorkspace (onWorkspace)
-import qualified XMonad.StackSet as W
+import qualified XMonad.StackSet            as W
 
 myWorkspaces = ["1:dev", "2:web"] ++ map show [3..6] ++ ["7:spotify", "8:slack", "9:full"]
 
@@ -47,11 +49,29 @@ fixPanel = void $ forkIO $ do
   spawn "xfce4-panel -r"
 
 main :: IO ()
-main = fixPanel >> xmonad myConfig
+main =
+  -- for XFCE
+  -- fixPanel >> xmonad myConfig
+  -- for KDE5
+  xmonad $ ewmh $ myConfig
 
-myConfig = xfceConfig
-  { modMask    = mod4Mask
-  , terminal   = "xfce4-terminal"
+-- XFCE configuration
+-- myConfig = xfceConfig
+--   { modMask    = mod4Mask
+--   , terminal   = "xfce4-terminal"
+--   , layoutHook = myLayoutHook
+--   , manageHook = manageDocks <+> myManageHook
+--   }
+
+-- KDE5 configuration
+myConfig = kde4Config
+  { keys       = keys kde4Config
   , layoutHook = myLayoutHook
   , manageHook = manageDocks <+> myManageHook
+  , modMask    = mod4Mask
+  , terminal   = "xfce4-terminal"
   }
+
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+  [ ((modm              , xK_b     ), sendMessage ToggleStruts)
+  ]

@@ -63,7 +63,7 @@
     bashInteractive
     baobab
     cabal2nix
-    chromium
+    #chromium
     colordiff
     coq
     evince
@@ -251,16 +251,25 @@
   hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    # Enable touchpad support.
+    libinput.enable = true;
+    # xkbOptions = "eurosign:e";
+  };
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.xserver.desktopManager = {
+    # gnome3.enable = true;
+    plasma5.enable = true; # kde5
+    # xfce.enable = true;
+    # xfce.enableXfwm = false;
+  };
 
-  # Enable the KDE Desktop Environment.
   services.xserver.displayManager = {
-    lightdm.enable = true;
+    #gdm.enable = true;
+    #lightdm.enable = true;
+    sddm.enable = true;
     sessionCommands = ''
       setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
       #xmodmap -e "keysym Super_L = Multi_key"
@@ -270,15 +279,9 @@
       export XCOMPOSEFILE = "/home/ptival/.XCompose"
     '';
   };
-  services.xserver.desktopManager = {
-    default = "xfce";
-    xfce = {
-      enable = true;
-      enableXfwm = false;
-    };
-  };
+
   services.xserver.windowManager = {
-    default = "xmonad";
+    # default = "xmonad";
     xmonad = {
       enable = true;
       enableContribAndExtras = true;

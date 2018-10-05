@@ -9,9 +9,9 @@
 (load "ProofGeneral/generic/proof-site")
 (setq proof-three-window-mode-policy 'hybrid)
 
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 14)
-      doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 14)
-      doom-big-font (font-spec :family "DejaVu Sans Mono" :size 19))
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 20)
+      doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 20)
+      doom-big-font (font-spec :family "DejaVu Sans Mono" :size 20))
 
 ; prevents Evil from doing auto-completion when pressing Esc
 ; (e.g. in ProofGeneral it's super annoying)
@@ -35,8 +35,8 @@
 (setq +ivy-buffer-icons t)
 
 ; this tells popups where to go, default tends to be bottom and small
-;(set! :popup "^\\*intero:" :regexp t :align 'right :size 0.5)
-;(set! :popup "^\\*OCaml\\*$" :regexp t :align 'right :size 0.5)
+(set-popup-rule! "^\\*intero:" :side 'right :size 0.5)
+(set-popup-rule! "^\\*OCaml\\*$" :side 'right :size 0.5)
 
 ; mouse pointer is more visible when red
 (set-mouse-color "red")
@@ -54,3 +54,5 @@
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
 
 (setq +modeline-file-path-with-project 'modeline-file-path-truncated-upto-project-root)
+
+(setq merlin-command "ocamlmerlin")
