@@ -36,7 +36,7 @@
 
 ; this tells popups where to go, default tends to be bottom and small
 (set-popup-rule! "^\\*intero:" :side 'right :size 0.5)
-(set-popup-rule! "^\\*OCaml\\*$" :side 'right :size 0.5)
+(set-popup-rule! "^\\*OCaml\\*$" :side 'bottom :size 0.3)
 
 ; mouse pointer is more visible when red
 (set-mouse-color "red")
