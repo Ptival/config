@@ -23,6 +23,7 @@ myManageHook = composeAll
     -- , className =? "Kmix"           --> doFloat
     -- , className =? "kmix"           --> doFloat
     -- , className =? "plasma"         --> doFloat
+    , isKDETrayWindow               --> doFloat
     , className =? "plasmashell"    --> doCenterFloat
     -- , className =? "Plasma"         --> doFloat
     -- , className =? "plasma-desktop" --> doFloat
