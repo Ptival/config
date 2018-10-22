@@ -66,7 +66,8 @@
     #chromium
     colordiff
     coq
-    evince
+    #evince
+    epdfview                  # for pdf-tools in LaTeX-mode in emacs
     feh
     file
     firefox
@@ -151,6 +152,8 @@
       libertine
       listings
       logreq         # needed by biblatex
+      ltablex
+      makecell
       mathpartir
       mdframed
       mdwtools
@@ -180,7 +183,9 @@
       xstring
       ;
     })
+    transmission-gtk
     unzip # opam needs it
+    vlc
     vscode
     wine
     winetricks

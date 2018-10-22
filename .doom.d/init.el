@@ -70,7 +70,7 @@
       ;make              ; run make tasks from Emacs
       ;magit             ;
       ;password-store    ; password manager for nerds
-      ;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
       ;rgb               ; creating color strings
       ;tmux              ; an API for interacting with tmux
@@ -96,7 +96,7 @@
       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
-       latex             ; writing papers in Emacs has never been so fun
+       (latex +pdf-tools); writing papers in Emacs has never been so fun
       ;ledger            ; an accounting system in Emacs
       ;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore

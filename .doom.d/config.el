@@ -56,3 +56,7 @@
 (setq +modeline-file-path-with-project 'modeline-file-path-truncated-upto-project-root)
 
 (setq merlin-command "ocamlmerlin")
+
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
+
+(setq flycheck-idle-change-delay 5)
