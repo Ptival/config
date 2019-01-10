@@ -1,6 +1,5 @@
 export TERM="xterm-256color"
 
-. ~/.common.rc.sh
 . ~/.zsh_completion
 
 # Lines configured by zsh-newuser-install
@@ -32,8 +31,8 @@ bindkey '\e[8~' end-of-line
 ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="alanpeabody"
 #ZSH_THEME="agnoster"
+POWERLEVEL9K_MODE="awesome-fontconfig"
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE="awesome-patched"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs custom_nixshell)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 DIRCOLOR="007"
@@ -47,3 +46,5 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+# Do not move next line further up, needs to be late
+. ~/.common.rc.sh

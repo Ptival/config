@@ -18,3 +18,4 @@ alias very=git
 
 #export GTK_IM_MODULE=xim
 
+. /Users/val/.nix-profile/etc/profile.d/nix.sh
