@@ -2,6 +2,7 @@
 
 ;;; This is so emacs takes focus when started, on OSX
 ; (x-focus-frame nil)
+(add-hook! 'window-setup-hook (x-focus-frame nil))
 
 (setq doom-theme 'doom-vibrant)
 
@@ -10,18 +11,23 @@
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier  'alt)
   (define-key!
-    [A-left]      #'left-word
-    [A-right]     #'right-word
-    [A-up]        #'evil-backward-paragraph
-    [A-down]      #'evil-forward-paragraph
-    [A-backspace] #'backward-kill-word
-    [A-SPC]       #'just-one-space
-    [A-backslash] #'delete-horizontal-space
-    [M-left]      #'doom/backward-to-bol-or-indent
-    [M-right]     #'doom/forward-to-last-non-comment-or-eol
-    [M-up]        #'evil-backward-paragraph
-    [M-down]      #'evil-forward-paragraph
-    [M-backspace] #'doom/backward-kill-to-bol-and-indent
+    [A-left]        #'left-word
+    [A-right]       #'right-word
+    [A-up]          #'evil-backward-paragraph
+    [A-down]        #'evil-forward-paragraph
+    [A-backspace]   #'backward-kill-word
+    [A-S-backspace] #'kill-word
+    [A-delete]      #'kill-word
+    [A-kp-delete]   #'kill-word
+    [A-SPC]         #'just-one-space
+    [A-backslash]   #'delete-horizontal-space
+    [M-left]        #'doom/backward-to-bol-or-indent
+    [M-right]       #'doom/forward-to-last-non-comment-or-eol
+    [M-up]          #'evil-backward-paragraph
+    [M-down]        #'evil-forward-paragraph
+    [M-backspace]   #'doom/backward-kill-to-bol-and-indent
+    [M-delete]      #'kill-line
+    [M-kp-delete]   #'kill-word
     ))
 
 ;;; Code:
@@ -59,7 +65,7 @@
 (setq +ivy-buffer-icons t)
 
 ; this tells popups where to go, default tends to be bottom and small
-(set-popup-rule! "^\\*intero:" :side 'right :size 0.5)
+(set-popup-rule! "^\\*intero:" :side 'bottom :size 0.20)
 (set-popup-rule! "^\\*OCaml\\*$" :side 'bottom :size 0.3)
 
 ; mouse pointer is more visible when red
