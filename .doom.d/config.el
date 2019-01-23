@@ -27,7 +27,7 @@
     [M-down]        #'evil-forward-paragraph
     [M-backspace]   #'doom/backward-kill-to-bol-and-indent
     [M-delete]      #'kill-line
-    [M-kp-delete]   #'kill-word
+    [M-kp-delete]   #'kill-line
     ))
 
 ;;; Code:
