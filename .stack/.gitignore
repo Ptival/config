@@ -1,0 +1,11 @@
+/build-plan-cache/
+/build-plan/
+/compiler-tools/
+/global-project/
+/indices/
+/loaded-snapshot-cache/
+/precompiled/
+/programs/
+/setup-exe-cache/
+/setup-exe-src/
+/snapshots/
