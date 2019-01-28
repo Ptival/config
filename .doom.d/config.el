@@ -15,6 +15,8 @@
     [A-right]       #'right-word
     [A-up]          #'evil-backward-paragraph
     [A-down]        #'evil-forward-paragraph
+    ; This is mapped to M-\ by default, but let's also have it on A-\
+    [A-\\]          #'delete-horizontal-space
     [A-backspace]   #'backward-kill-word
     [A-S-backspace] #'kill-word
     [A-delete]      #'kill-word
@@ -28,6 +30,7 @@
     [M-backspace]   #'doom/backward-kill-to-bol-and-indent
     [M-delete]      #'kill-line
     [M-kp-delete]   #'kill-line
+    [M-v]           #'yank
     ))
 
 ;;; Code:
