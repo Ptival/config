@@ -42,6 +42,15 @@
 (setq proof-three-window-mode-policy 'hybrid)
 (setq proof-electric-terminator-enable nil) ; annoys me
 
+; ProofGeneral does abbreviation expansion (looks like auto-completion) of many
+; short words, which is extremely annoying in abbrev-mode.  Providing an empty
+; abbreviation table overrides this behavior.
+(defun erase-coq-abbrev-table ()
+    "Erase the Coq abbreviation table."
+    (setq coq-mode-abbrev-table '()))
+(erase-coq-abbrev-table)
+(add-hook 'coq-mode-hook #'erase-coq-abbrev-table)
+
 (setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12)
       doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 12)
       doom-big-font (font-spec :family "DejaVu Sans Mono" :size 12))
