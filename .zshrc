@@ -14,14 +14,20 @@ typeset -g -A key
 
 bindkey -e
 
-bindkey '^[[3~' delete-char
+# Linux keybindings
+bindkey '^[[3~'   delete-char
 bindkey '^[[1;3D' backward-word
 bindkey '^[[1;3C' forward-word
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[4~' end-of-line
-
+bindkey '^[[1~'   beginning-of-line
+bindkey '^[[4~'   end-of-line
 bindkey '\e[7~' beginning-of-line
 bindkey '\e[8~' end-of-line
+
+# MacOS keybindings
+bindkey '^[^[[A' beginning-of-line
+bindkey '^[^[[B' end-of-line
+bindkey '^[^[[C' forward-word
+bindkey '^[^[[D' backward-word
 
 #source $HOME/awesome-terminal-fonts/build/devicons-regular.sh
 #source $HOME/awesome-terminal-fonts/build/fontawesome-regular.sh
