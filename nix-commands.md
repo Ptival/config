@@ -28,3 +28,8 @@ Find a package specific to a language module:
   nix-env -f /home/ptival/nixpks -qaP -A haskellPackages
   nix-env -f /home/ptival/nixpks -qaP -A coqPackages_8_6
 
+To try and delete a store path (whether derivation or output):
+  nix-store --delete /nix/store/path/to/thing/thing{,.drv}
+
+To figure out why something can't be deleted (or what depends on it):
+  nix-store --query --roots /nix/store/path/to/thing/thing{,.drv}
