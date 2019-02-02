@@ -25,8 +25,8 @@ First, comment out non-important packages in configuration.nix, then:
 Reboot if dealing with something startup-related
 
 Find a package specific to a language module:
-  nix-env -f /home/ptival/nixpks -qaP -A haskellPackages
-  nix-env -f /home/ptival/nixpks -qaP -A coqPackages_8_6
+  nix-env -f "<nixpkgs>" -qaP -A haskellPackages
+  nix-env -f "<nixpkgs>" -qaP -A coqPackages_8_6
 
 To try and delete a store path (whether derivation or output):
   nix-store --delete /nix/store/path/to/thing/thing{,.drv}

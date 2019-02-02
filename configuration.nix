@@ -4,6 +4,16 @@
 
 { config, pkgs, ... }:
 
+let idrisWithMyPackages = with pkgs; idrisPackages.with-packages (with idrisPackages; [
+  base
+  pkgs.idrisPackages.builtins
+  contrib
+  derive
+  effects
+  prelude
+  profunctors
+]);
+in
 {
   imports =
     [
@@ -66,6 +76,7 @@
     #chromium
     colordiff
     coq
+    discord
     #evince
     epdfview                  # for pdf-tools in LaTeX-mode in emacs
     feh
@@ -80,7 +91,9 @@
     #haskellPackages.ghc-mod
     haskellPackages.xmobar
     htop
+    #idrisWithMyPackages
     imagemagick
+    kdeApplications.spectacle
     lolcat
     #m4                       # opam needs this sometimes
     mosh
@@ -90,7 +103,13 @@
     openssl
     playonlinux
     psmisc                    # killall command
+    python36Packages.ipykernel
+    python36Packages.jupyter
+    python36Packages.jupyter_core
+    python36Packages.notebook
     python36Packages.pygments
+    python36Packages.python
+    python36Packages.tensorflow
     rlwrap
     #rxvt_unicode
     slack
@@ -112,6 +131,7 @@
       babel
       babel-greek
       biblatex
+      bigfoot         # needed by cprotect for suffix
       blindtext
       booktabs
       boondox
@@ -125,6 +145,7 @@
       collection-fontsrecommended
       collection-pictures
       comment
+      cprotect
       currvita
       dejavu
       doublestroke
@@ -137,6 +158,7 @@
       filehook
       float
       fontaxes
+      fontawesome
       fontspec
       framed         # needed by minted
       fvextra        # needed by minted
@@ -148,6 +170,7 @@
       greektex
       ifplatform     # needed by minted
       inconsolata
+      inlinedef      # needed by forest
       latexmk
       libertine
       listings
@@ -168,7 +191,9 @@
       relsize
       sfmath
       soul
+      standalone
       stmaryrd
+      tcolorbox
       textcase
       titlesec
       tocloft
@@ -184,6 +209,7 @@
       ;
     })
     transmission-gtk
+    unity3d
     unzip # opam needs it
     vlc
     vscode

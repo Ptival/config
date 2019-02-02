@@ -2,9 +2,13 @@
 {
   imports =
     [
+      ./wifi/andis-dad-5g.nix
+      ./wifi/andis-mom.nix
       ./wifi/ariel.nix
+      ./wifi/augusta-sohini.nix
       ./wifi/better-buzz-pacific-beach.nix
       ./wifi/dimos.nix
+      ./wifi/goat-house.nix
       ./wifi/johns-appt-san-francisco.nix
       ./wifi/krakatoa.nix
       ./wifi/philz.nix
@@ -18,6 +22,7 @@
       ./wifi/young-hickory.nix
 
       # I don't think WPA2-E supports pre-encrypted, so key is in clear :$
+      ./wifi/private/eduroam.nix
       ./wifi/private/ucsd-protected.nix
     ];
 
@@ -36,6 +41,7 @@
     };
   };
 
+  hardware.bluetooth.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   services.xserver.videoDrivers = [ "opengl" ];
