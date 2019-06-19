@@ -17,7 +17,9 @@ nix:
   packages:
     - pkgconfig
     - zlib
-  # path: [nixpkgs=/Users/val/.nix-defexpr/channels/nixpkgs]
+  # Currently using a modified ghc844 derivation, so overriding the path
+  # path: [nixpkgs=/Users/val/nixpkgs]
+  path: [nixpkgs=/Users/val/.nix-defexpr/channels/nixpkgs]
   # Without this flag, stack will start ghci in a pure environment, whose
   # locale gets reset from the lovely UTF-8 to the sad ASCII. This makes
   # ghci unable to handle Unicode in input and output, and, as a result,
