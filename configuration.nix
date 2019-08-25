@@ -4,15 +4,20 @@
 
 { config, pkgs, ... }:
 
-let idrisWithMyPackages = with pkgs; idrisPackages.with-packages (with idrisPackages; [
-  base
-  pkgs.idrisPackages.builtins
-  contrib
-  derive
-  effects
-  prelude
-  profunctors
-]);
+let
+
+  idrisWithMyPackages = with pkgs; idrisPackages.with-packages (with idrisPackages; [
+    base
+    pkgs.idrisPackages.builtins
+    contrib
+    derive
+    effects
+    prelude
+    profunctors
+  ]);
+
+  myTexlive = import ./textlive.nix { inherit pkgs; };
+
 in
 {
   imports =
@@ -97,6 +102,7 @@ in
     lolcat
     #m4                       # opam needs this sometimes
     mosh
+    myTexlive
     nodejs-10_x
     #nodePackages.node2nix    # seems kinda useless at the moment
     okular
@@ -116,98 +122,6 @@ in
     spotify
     stack
     steam
-    (texlive.combine {
-      inherit (texlive)
-
-      #scheme-minimal # plain
-      #scheme-basic   # + latex
-      #scheme-small   # + xetex
-      scheme-medium  # + packages
-      #scheme-full    # + more packages
-
-      adjustbox
-      algorithm2e
-      anyfontsize
-      babel
-      babel-greek
-      biblatex
-      bigfoot         # needed by cprotect for suffix
-      blindtext
-      booktabs
-      boondox
-      bussproofs
-      caption
-      cbfonts
-      ccicons
-      cleveref
-      cmap
-      collectbox
-      collection-fontsrecommended
-      collection-pictures
-      comment
-      cprotect
-      currvita
-      dejavu
-      doublestroke
-      draftwatermark
-      enumitem
-      environ
-      etoolbox
-      euenc
-      everypage
-      filehook
-      float
-      fontaxes
-      fontawesome
-      fontspec
-      framed         # needed by minted
-      fvextra        # needed by minted
-      gfsartemisia
-      gfsbaskerville
-      gfsdidot
-      gfsneohellenic
-      greek-fontenc
-      greektex
-      ifplatform     # needed by minted
-      inconsolata
-      inlinedef      # needed by forest
-      latexmk
-      libertine
-      listings
-      logreq         # needed by biblatex
-      ltablex
-      makecell
-      mathpartir
-      mdframed
-      mdwtools
-      metafont
-      microtype
-      minted
-      ms
-      mweights
-      ncctools
-      needspace      # needed by mdframed
-      newtx
-      relsize
-      sfmath
-      soul
-      standalone
-      stmaryrd
-      tcolorbox
-      textcase
-      titlesec
-      tocloft
-      totpages
-      trimspaces
-      ucs
-      upquote
-      xcolor
-      xetex
-      #xetex-def
-      xpatch
-      xstring
-      ;
-    })
     transmission-gtk
     unity3d
     unzip # opam needs it
@@ -217,7 +131,6 @@ in
     winetricks
     xclip
     #zathura # tired of it, bugs in a weird way not displaying text sometimes
-
   ];
 
   fonts = {
