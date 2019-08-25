@@ -58,9 +58,21 @@
 (erase-coq-abbrev-table)
 (add-hook 'coq-mode-hook #'erase-coq-abbrev-table)
 
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12)
-      doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 12)
-      doom-big-font (font-spec :family "DejaVu Sans Mono" :size 12))
+(setq doom-font (font-spec :family "Iosevka SS05" :size 16)
+      doom-unicode-font (font-spec :family "Apple Color Emoji" :size 16)
+      doom-big-font (font-spec :family "Iosevka SS05" :size 16))
+
+;; default font
+; (set-face-attribute 'default nil :family "Iosevka SS05")
+; (set-fontset-font t 'unicode "DejaVu Sans Mono" nil 'prepend)
+
+; (setq doom-font (font-spec :family "Fira Code" :size 14)
+;       doom-unicode-font (font-spec :family "Fira Code" :size 14)
+;       doom-big-font (font-spec :family "Fira Code" :size 14))
+
+; (setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12)
+;       doom-unicode-font (font-spec :family "DejaVu Sans Mono" :size 12)
+;       doom-big-font (font-spec :family "DejaVu Sans Mono" :size 12))
 
 ; prevents Evil from doing auto-completion when pressing Esc
 ; (e.g. in ProofGeneral it's super annoying)
