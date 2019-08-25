@@ -10,7 +10,7 @@ alias gst='git status'
 alias gbv="git branch -a -vv"
 alias gco='git checkout'
 
-alias "nix-shell"="nix-shell --run zsh"
+#alias "nix-shell"="nix-shell --run zsh"
 
 alias wow="git status"
 alias such=git
