@@ -31,6 +31,13 @@
     [M-delete]      #'kill-line
     [M-kp-delete]   #'kill-line
     [M-v]           #'yank
+    ; Coq commands
+    [A-M-up]        #'proof-undo-last-successful-command
+    [A-M-down]      #'proof-assert-next-command-interactive
+    [A-M-right]     #'proof-goto-point
+    [A-C-up]        #'proof-undo-last-successful-command
+    [A-C-down]      #'proof-assert-next-command-interactive
+    [A-C-right]     #'proof-goto-point
     ))
 
 ;;; Code:
