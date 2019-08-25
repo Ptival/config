@@ -123,3 +123,55 @@
 (setq flycheck-idle-change-delay 5)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(defun my-haskell-compile-command ()
+  "Nix-aware Haskell compile command"
+  (let ((cabal-directory (haskell-cabal-find-dir)))
+    (format
+     "cd %s && echo Entering directory \\`$(pwd)\\' && if [ \"X$IN_NIX_SHELL\" == \"X\" ] ; then nix-shell --run 'cabal v2-build'; else cabal v2-build && cabal v2-test; fi"
+     cabal-directory)))
+
+(defun set-my-haskell-compile-command ()
+  "Sets compile-command to a nix-aware one"
+  (setq compile-command #'my-haskell-compile-command))
+
+(add-hook 'haskell-mode-hook #'set-my-haskell-compile-command)
+
+; (setq lsp-haskell-process-path-hie "hie-wrapper")
+
+(add-hook! 'flycheck-mode-hook
+  (message "Enabled flycheck-mode in %s" (current-buffer)))
+
+(add-hook! 'haskell-mode-hook
+  (message "Enabled haskell-mode in %s" (current-buffer)))
+
+(add-hook! 'dante-mode-hook
+  (message "Enabled dante-mode in %s" (current-buffer)))
+
+(add-hook 'coq-mode-hook
+          (lambda ()
+            (set (make-local-variable 'prettify-symbols-alist)
+                 '(("Admitted." . ?😱) ("admit." . ?😱)
+  ("Alpha" . ?Α) ("Beta" . ?Β) ("Gamma" . ?Γ)
+  ("Delta" . ?Δ) ("Epsilon" . ?Ε) ("Zeta" . ?Ζ)
+  ("Eta" . ?Η) ("Theta" . ?Θ) ("Iota" . ?Ι)
+  ("Kappa" . ?Κ) ("Lambda" . ?Λ) ("Mu" . ?Μ)
+  ("Nu" . ?Ν) ("Xi" . ?Ξ) ("Omicron" . ?Ο)
+  ("Pi" . ?Π) ("Rho" . ?Ρ) ("Sigma" . ?Σ)
+  ("Tau" . ?Τ) ("Upsilon" . ?Υ) ("Phi" . ?Φ)
+  ("Chi" . ?Χ) ("Psi" . ?Ψ) ("Omega" . ?Ω)
+  ("alpha" . ?α) ("beta" . ?β) ("gamma" . ?γ)
+  ("delta" . ?δ) ("epsilon" . ?ε) ("zeta" . ?ζ)
+  ("eta" . ?η) ("theta" . ?θ) ("iota" . ?ι)
+  ("kappa" . ?κ) ("lambda" . ?λ) ("mu" . ?μ)
+  ("nu" . ?ν) ("xi" . ?ξ) ("omicron" . ?ο)
+  ("pi" . ?π) ("rho" . ?ρ) ("sigma" . ?σ)
+  ("tau" . ?τ) ("upsilon" . ?υ) ("phi" . ?φ)
+  ("chi" . ?χ) ("psi" . ?ψ) ("omega" . ?ω)
+  ))))
+
+; (set-fontset-font t 'unicode (font-spec :name "Apple Color Emoji") nil 'append)
+
+; (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+; (set-fontset-font "fontset-default" 'unicode (font-spec :name "Apple Color Emoji") nil 'prepend)
