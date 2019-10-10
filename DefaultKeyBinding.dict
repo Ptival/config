@@ -1,57 +1,89 @@
 {
-	"§" = {
-		"g" = {
-			/* Greek letters:
-			 * Α α, Β β, Γ γ, Δ δ, Ε ε, Ζ ζ, Η η, Θ θ, Ι ι, Κ κ, Λ λ, Μ μ, Ν ν, Ξ ξ, Ο ο,
-			 * Π π, Ρ ρ, Σ σ/ς, Τ τ, Υ υ, Φ φ, Χ χ, Ψ ψ, and Ω ω
-			 * */
-			"a" = ("insertText:", "α"); // alpha
-			"b" = ("insertText:", "β"); // beta
-			"c" = ("insertText:", "γ"); // gamma
-			"d" = ("insertText:", "δ"); // delta
-			"e" = ("insertText:", "ε"); // epsilon
-			"z" = ("insertText:", "ζ"); // zeta
-			"h" = ("insertText:", "η"); // eta
-			"i" = ("insertText:", "ι"); // iota
-			"k" = ("insertText:", "κ"); // kappa
-			"l" = ("insertText:", "λ"); // lambda
-			"m" = ("insertText:", "μ"); // mu
-			"n" = ("insertText:", "ν"); // nu
-			"o" = ("insertText:", "ο"); // omicron
-			"p" = {
-				"h" = ("insertText:", "φ"); // phi
-				"i" = ("insertText:", "π"); // pi
-				"s" = ("insertText:", "ψ"); // psi
-			};
-			"r" = ("insertText:", "ρ"); // rho
-			"s" = ("insertText:", "σ"); // sigma
-			"t" = ("insertText:", "τ"); // tau
-			"u" = ("insertText:", "υ"); // upsilon
-			"w" = ("insertText:", "ω"); // omega
-			/* Uppercase */
-			"A" = ("insertText:", "Α"); // Alpha
-			"B" = ("insertText:", "Β"); // Beta
-			"C" = ("insertText:", "Γ"); // Gamma
-			"D" = ("insertText:", "Δ"); // Delta
-			"E" = ("insertText:", "Ε"); // Epsilon
-			"Z" = ("insertText:", "Ζ"); // Zeta
-			"H" = ("insertText:", "Η"); // Eta
-			"I" = ("insertText:", "Ι"); // Iota
-			"K" = ("insertText:", "Κ"); // Kappa
-			"L" = ("insertText:", "Λ"); // Lambda
-			"M" = ("insertText:", "Μ"); // Mu
-			"N" = ("insertText:", "Ν"); // Nu
-			"O" = ("insertText:", "Ο"); // Omicron
-			"P" = {
-				"H" = ("insertText:", "Φ"); // Phi
-				"I" = ("insertText:", "Π"); // Pi
-				"S" = ("insertText:", "Ψ"); // Psi
-			};
-			"R" = ("insertText:", "Ρ"); // Rho
-			"S" = ("insertText:", "Σ"); // Sigma
-			"T" = ("insertText:", "Τ"); // Tau
-			"U" = ("insertText:", "Υ"); // Upsilon
-			"W" = ("insertText:", "Ω"); // Omega
-		};
-	};
+  "§" = {
+
+    // apostrophe
+    "'" = {
+      "e" = ("insertText:", "é"); // e accent aigu
+    };
+
+    // backtick
+    "`" = {
+      "a" = ("insertText:", "à"); // a accent grave
+      "e" = ("insertText:", "è"); // e accent grave
+    };
+
+    // comma
+    "," = {
+      "c" = ("insertText:", "ç"); // c cédille
+    };
+
+    // dash
+    "-" = {
+      ">" = ("insertText:", "→"); // rightwards arrow
+    };
+
+    "g" = {
+      /* Greek letters:
+       * Α α, Β β, Γ γ, Δ δ, Ε ε, Ζ ζ, Η η, Θ θ, Ι ι, Κ κ, Λ λ, Μ μ, Ν ν, Ξ ξ, Ο ο,
+       * Π π, Ρ ρ, Σ σ/ς, Τ τ, Υ υ, Φ φ, Χ χ, Ψ ψ, and Ω ω
+       * */
+      "a" = ("insertText:", "α"); // alpha
+      "b" = ("insertText:", "β"); // beta
+      "c" = ("insertText:", "γ"); // gamma
+      "d" = ("insertText:", "δ"); // delta
+      "e" = ("insertText:", "ε"); // epsilon
+      "z" = ("insertText:", "ζ"); // zeta
+      "h" = ("insertText:", "η"); // eta
+      "i" = ("insertText:", "ι"); // iota
+      "k" = ("insertText:", "κ"); // kappa
+      "l" = ("insertText:", "λ"); // lambda
+      "m" = ("insertText:", "μ"); // mu
+      "n" = ("insertText:", "ν"); // nu
+      "o" = ("insertText:", "ο"); // omicron
+      "p" = {
+        "h" = ("insertText:", "φ"); // phi
+        "i" = ("insertText:", "π"); // pi
+        "s" = ("insertText:", "ψ"); // psi
+      };
+      "r" = ("insertText:", "ρ"); // rho
+      "s" = ("insertText:", "σ"); // sigma
+      "t" = ("insertText:", "τ"); // tau
+      "u" = ("insertText:", "υ"); // upsilon
+      "w" = ("insertText:", "ω"); // omega
+      /* Uppercase */
+      "A" = ("insertText:", "Α"); // Alpha
+      "B" = ("insertText:", "Β"); // Beta
+      "C" = ("insertText:", "Γ"); // Gamma
+      "D" = ("insertText:", "Δ"); // Delta
+      "E" = ("insertText:", "Ε"); // Epsilon
+      "Z" = ("insertText:", "Ζ"); // Zeta
+      "H" = ("insertText:", "Η"); // Eta
+      "I" = ("insertText:", "Ι"); // Iota
+      "K" = ("insertText:", "Κ"); // Kappa
+      "L" = ("insertText:", "Λ"); // Lambda
+      "M" = ("insertText:", "Μ"); // Mu
+      "N" = ("insertText:", "Ν"); // Nu
+      "O" = ("insertText:", "Ο"); // Omicron
+      "P" = {
+        "H" = ("insertText:", "Φ"); // Phi
+        "I" = ("insertText:", "Π"); // Pi
+        "S" = ("insertText:", "Ψ"); // Psi
+      };
+      "R" = ("insertText:", "Ρ"); // Rho
+      "S" = ("insertText:", "Σ"); // Sigma
+      "T" = ("insertText:", "Τ"); // Tau
+      "U" = ("insertText:", "Υ"); // Upsilon
+      "W" = ("insertText:", "Ω"); // Omega
+    };
+
+    // pipe
+    "|" = {
+      "-" = {
+        ">" = ("insertText:", "⟼"); // maps to
+        " " = ("insertText:", "⊢");   // turnstile
+      };
+    };
+
+  };
+
 }
