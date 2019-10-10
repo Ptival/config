@@ -4,8 +4,11 @@
 /global-project/
 /indices/
 /loaded-snapshot-cache/
+/pantry/
 /precompiled/
 /programs/
 /setup-exe-cache/
 /setup-exe-src/
 /snapshots/
+/stack.sqlite3
+/stack.sqlite3.pantry-write-lock
