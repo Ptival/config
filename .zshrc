@@ -49,7 +49,7 @@ POWERLEVEL9K_CUSTOM_NIXSHELL="echo ${name}"
 POWERLEVEL9K_CUSTOM_NIXSHELL_BACKGROUND="006"
 POWERLEVEL9K_TIME_BACKGROUND="010"
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
-plugins=(git)
+plugins=(git nix-shell)
 source $ZSH/oh-my-zsh.sh
 
 # Do not move next line further up, needs to be late
