@@ -4,6 +4,12 @@
 ; (x-focus-frame nil)
 (add-hook! 'window-setup-hook (x-focus-frame nil))
 
+; DOES NOT WORK
+;(add-hook! 'haskell-mode-hook
+;  (setq lsp-haskell-process-wrapper-function
+;        (lambda (argv)
+;          (append argv (list "-r" (lsp-haskell--get-root))))))
+
 (setq doom-theme 'doom-vibrant)
 
 (when (eq system-type 'darwin)
@@ -57,6 +63,11 @@
     (setq coq-mode-abbrev-table '()))
 (erase-coq-abbrev-table)
 (add-hook 'coq-mode-hook #'erase-coq-abbrev-table)
+; Disable the super annoying comment insertion behavior when pressing Enter
+; inside a Coq comment
+(setq-hook! 'coq-mode-hook comment-line-break-function nil)
+(setq-hook! 'coq-mode-hook coq-prefer-top-of-conclusion t)
+(setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
 (setq doom-font (font-spec :family "Iosevka SS05" :size 16)
       doom-unicode-font (font-spec :family "Apple Color Emoji" :size 16)
@@ -96,8 +107,9 @@
 (setq +ivy-buffer-icons t)
 
 ; this tells popups where to go, default tends to be bottom and small
-(set-popup-rule! "^\\*intero:" :side 'bottom :size 0.20)
-(set-popup-rule! "^\\*OCaml\\*$" :side 'bottom :size 0.3)
+(set-popup-rule! "^\\*intero:" :side 'bottom :size 0.4)
+(set-popup-rule! "^\\*OCaml\\*$" :side 'bottom :size 0.4)
+(set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.33 :select t)
 
 ; mouse pointer is more visible when red
 (set-mouse-color "red")

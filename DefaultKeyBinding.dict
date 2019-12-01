@@ -12,6 +12,11 @@
       "e" = ("insertText:", "è"); // e accent grave
     };
 
+    // caret
+    "\\^" = {
+      "e" = ("insertText:", "ê"); // e accent circonflexe
+    };
+
     // comma
     "," = {
       "c" = ("insertText:", "ç"); // c cédille
@@ -23,10 +28,8 @@
     };
 
     "g" = {
-      /* Greek letters:
-       * Α α, Β β, Γ γ, Δ δ, Ε ε, Ζ ζ, Η η, Θ θ, Ι ι, Κ κ, Λ λ, Μ μ, Ν ν, Ξ ξ, Ο ο,
-       * Π π, Ρ ρ, Σ σ/ς, Τ τ, Υ υ, Φ φ, Χ χ, Ψ ψ, and Ω ω
-       * */
+
+      // Lowercase Greek letters
       "a" = ("insertText:", "α"); // alpha
       "b" = ("insertText:", "β"); // beta
       "c" = ("insertText:", "γ"); // gamma
@@ -50,7 +53,8 @@
       "t" = ("insertText:", "τ"); // tau
       "u" = ("insertText:", "υ"); // upsilon
       "w" = ("insertText:", "ω"); // omega
-      /* Uppercase */
+
+      // Uppercase Greek letters
       "A" = ("insertText:", "Α"); // Alpha
       "B" = ("insertText:", "Β"); // Beta
       "C" = ("insertText:", "Γ"); // Gamma
@@ -74,6 +78,7 @@
       "T" = ("insertText:", "Τ"); // Tau
       "U" = ("insertText:", "Υ"); // Upsilon
       "W" = ("insertText:", "Ω"); // Omega
+
     };
 
     // pipe
@@ -82,6 +87,11 @@
         ">" = ("insertText:", "⟼"); // maps to
         " " = ("insertText:", "⊢");   // turnstile
       };
+    };
+
+    // tilde
+    "~" = {
+      "~" = ("insertText:", "≈"); // approx
     };
 
   };
