@@ -27,6 +27,9 @@
       ">" = ("insertText:", "→"); // rightwards arrow
     };
 
+    // down arrow
+    "\UF701" = ("insertText:", "↓"); // down arrow
+
     "g" = {
 
       // Lowercase Greek letters
@@ -89,10 +92,18 @@
       };
     };
 
+    "r" = {
+      "A" = ("insertText:", "∀"); // forall
+      "E" = ("insertText:", "∃"); // exists
+    };
+
     // tilde
     "~" = {
       "~" = ("insertText:", "≈"); // approx
     };
+
+    // up arrow
+    "\UF700" = ("insertText:", "↑"); // up arrow
 
   };
 
