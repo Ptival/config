@@ -182,28 +182,3 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(dante-methods (quote (new-build bare-ghci)))
- '(safe-local-variable-values
-   (quote
-    ((dante-target . "codescape-cli")
-     (dante-target . "codescape")
-     (dante-repl-command-line "nix-shell" "--run"
-                              (concat "cabal v2-repl "
-                                      (or dante-target
-                                          (dante-package-name)
-                                          "")
-                                      " --builddir=dist/dante"))
-     (dante-target . "server")
-     (haskell-align-imports-pad-after-name
-      (quote t))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

@@ -54,3 +54,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Do not move next line further up, needs to be late
 . ~/.common.rc.sh
+
+# Set up direnv
+eval "$(direnv hook zsh)"

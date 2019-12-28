@@ -1,5 +1,28 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+;;; lorri is installed globally, so it lives in /run/current-system/sw/bin
+;;; but this path is not in the default PATH passed to emacs. Adding it,
+;;; which requires setting both exec-path and PATH in process-environment.
+(add-to-list 'exec-path "/run/current-system/sw/bin")
+(setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin"))
+
+;;; For direnv and coq to play nicely, we must update `coq-prog-env` when the
+;;; direnv environment gets updated
+(defun update-coq-prog-env (&rest args)
+  (setq coq-prog-env process-environment))
+(add-hook! 'coq-mode-hook
+           (advice-add 'direnv-update-directory-environment :after #'update-coq-prog-env))
+;;; Sadly, exec-path gets overwritten at some point in the stack, so we
+;;; overwrite it again just before calling scomint-exec-1
+(defun add-nix-path (orig-func &rest args)
+  "Adds nix's PATH to exec-path for finding coqtop succesfully"
+  (let
+    (
+     (exec-path (split-string (getenv "PATH") ":"))
+     (process-environment coq-prog-env))
+    (apply orig-func args)))
+(advice-add 'scomint-exec-1 :around #'add-nix-path)
+
 ;;; This is so emacs takes focus when started, on OSX
 ; (x-focus-frame nil)
 (add-hook! 'window-setup-hook (x-focus-frame nil))
