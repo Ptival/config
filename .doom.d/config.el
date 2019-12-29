@@ -22,6 +22,7 @@
      (process-environment coq-prog-env))
     (apply orig-func args)))
 (advice-add 'scomint-exec-1 :around #'add-nix-path)
+(advice-add 'shell-command :around #'add-nix-path)
 
 ;;; This is so emacs takes focus when started, on OSX
 ; (x-focus-frame nil)
