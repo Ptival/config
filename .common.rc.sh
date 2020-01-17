@@ -9,13 +9,6 @@ alias make='make --warn-undefined-variables'
 alias gst='git status'
 alias gbv="git branch -a -vv"
 alias gco='git checkout'
-
 #alias "nix-shell"="nix-shell --run zsh"
-
-alias wow="git status"
-alias such=git
-alias very=git
-
 #export GTK_IM_MODULE=xim
-
 . /Users/val/.nix-profile/etc/profile.d/nix.sh
