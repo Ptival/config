@@ -6,9 +6,15 @@
 (add-to-list 'exec-path "/run/current-system/sw/bin")
 (setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin"))
 
+(add-hook! 'haskell-mode-hook
+  (setq lsp-haskell-process-args-hie (list "-d" "-l" "/tmp/hie.log" "-r" (haskell-cabal-find-dir))))
+
+(add-hook 'dante-mode-hook
+  '(lambda () (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))))
+
 ;;; For direnv and coq to play nicely, we must update `coq-prog-env` when the
 ;;; direnv environment gets updated
-(defun update-coq-prog-env (&rest args)
+(defun update-coq-prog-env (&rest _args)
   (setq coq-prog-env process-environment))
 (add-hook! 'coq-mode-hook
            (advice-add 'direnv-update-directory-environment :after #'update-coq-prog-env))
