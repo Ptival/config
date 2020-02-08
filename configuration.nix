@@ -5,12 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./emacs.nix
-      ./hardware-configuration.nix
-      ./machine-specific.nix
-    ];
+
+  console = {
+    keyMap = "us";
+  };
 
   environment.systemPackages = with pkgs; [
     binutils
@@ -32,6 +30,7 @@
     xfce.xfce4-icon-theme
     xfce.xfce4_power_manager_gtk3
     xfce.xfce4-screenshooter
+    zsh-powerlevel10k
 
     cabal2nix
     firefox
@@ -47,33 +46,44 @@
     #  includeUserConf = true;
     };
     fonts = with pkgs; [
-      corefonts
-      emacs-all-the-icons-fonts
-      dejavu_fonts
+      #corefonts
+      # emacs-all-the-icons-fonts
+      # dejavu_fonts
       #emojione # REMOVED: interferes with Noto
       #fira
-      fira-code
+      #fira-code
       #fira-code-symbols
-      fira-mono
-      #font-awesome-ttf
-      helvetica-neue-lt-std
+      #fira-mono
+      #font-awesome_4
+      # font-awesome_5
+      #helvetica-neue-lt-std
       #freefont_ttf
       #hasklig
       #input-fonts
-      (iosevka.override { design = [ "ss05" ]; family = "Iosevka SS05"; set = "ss05"; })
-      #nerdfonts
-      noto-fonts-emoji
+      (iosevka.override {
+        privateBuildPlan = {
+          design = [ "ss05" ];
+          family = "Iosevka SS05";
+        };
+        set = "ss05";
+      })
+      # nerdfonts
+      #noto-fonts-emoji
+      # powerline-fonts
       #symbola
-      tex-gyre.pagella
+      #tex-gyre.pagella
       #unifont
     ];
   };
 
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-  };
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  imports =
+    [
+      ./emacs.nix
+      ./hardware-configuration.nix
+      ./machine-specific.nix
+    ];
 
   nixpkgs = {
     config = {
@@ -87,7 +97,27 @@
   };
 
   programs = {
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+
+      interactiveShellInit = ''
+export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
+plugins=(git)                                 # oh-my-zsh: plugins to load
+source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
+bindkey -e                                    # zsh:       use emacs keybindings
+source ~/.common.rc.sh                        # zsh:       source aliases
+eval "$(direnv hook zsh)"                     # zsh:       use direnv
+      '';
+
+      ohMyZsh = {
+        enable = true;
+        plugins = [ "git" ];
+      };
+
+      promptInit = ''
+source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+       '';
+    };
   };
 
   services = {
@@ -101,6 +131,7 @@
       desktopManager.plasma5.enable = true;
 
       displayManager = {
+        defaultSession = "plasma5+xmonad";
         #gdm.enable = true;
         #lightdm.enable = true;
         sddm.enable = true;
@@ -112,6 +143,13 @@
           export GTK_IM_MODULE=xim
           export XCOMPOSEFILE = "/home/val/.XCompose"
         '';
+      };
+
+      windowManager = {
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
       };
 
     };

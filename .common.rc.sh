@@ -11,4 +11,4 @@ alias gbv="git branch -a -vv"
 alias gco='git checkout'
 #alias "nix-shell"="nix-shell --run zsh"
 #export GTK_IM_MODULE=xim
-. /Users/val/.nix-profile/etc/profile.d/nix.sh
+# . /Users/val/.nix-profile/etc/profile.d/nix.sh

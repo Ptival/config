@@ -67,13 +67,22 @@
     [M-delete]      #'kill-line
     [M-kp-delete]   #'kill-line
     [M-v]           #'yank
-    ; Coq commands
-    [A-M-up]        #'proof-undo-last-successful-command
-    [A-M-down]      #'proof-assert-next-command-interactive
-    [A-M-right]     #'proof-goto-point
-    [A-C-up]        #'proof-undo-last-successful-command
-    [A-C-down]      #'proof-assert-next-command-interactive
-    [A-C-right]     #'proof-goto-point
+    ; Coq commands (Mac or Kinesis?)
+    ; [A-M-up]        #'proof-undo-last-successful-command
+    ; [A-M-down]      #'proof-assert-next-command-interactive
+    ; [A-M-right]     #'proof-goto-point
+    ; Coq commands (Mac or Kinesis?)
+    ; [A-C-up]        #'proof-undo-last-successful-command
+    ; [A-C-down]      #'proof-assert-next-command-interactive
+    ; [A-C-right]     #'proof-goto-point
+    ))
+
+(when (eq system-type 'gnu/linux)
+  (define-key!
+    ; Coq commands (X1 Carbon)
+    [C-s-up]    #'proof-undo-last-successful-command
+    [C-s-down]  #'proof-assert-next-command-interactive
+    [C-s-right] #'proof-goto-point
     ))
 
 ;;; Code:
@@ -99,9 +108,12 @@
 (setq-hook! 'coq-mode-hook coq-prefer-top-of-conclusion t)
 (setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
-(setq doom-font (font-spec :family "Iosevka SS05" :size 16)
-      doom-unicode-font (font-spec :family "Apple Color Emoji" :size 16)
-      doom-big-font (font-spec :family "Iosevka SS05" :size 16))
+(setq doom-font (font-spec :family "Iosevka SS05" :size 22)
+      ; On Mac:
+      ; doom-unicode-font (font-spec :family "Apple Color Emoji" :size 22)
+      ; On NixOS:
+      doom-unicode-font (font-spec :family "Noto Color Emoji" :size 22)
+      doom-big-font (font-spec :family "Iosevka SS05" :size 22))
 
 ;; default font
 ; (set-face-attribute 'default nil :family "Iosevka SS05")

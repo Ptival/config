@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 {
-  imports =
-    [
-      # optional
-    ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -41,4 +37,5 @@
 
   # Required so the user can change wifi settings
   users.extraUsers.val.extraGroups = [ "lp" "networkmanager" ];
+
 }
