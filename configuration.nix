@@ -4,65 +4,26 @@
 
 { config, pkgs, ... }:
 
-let
-
-  idrisWithMyPackages = with pkgs; idrisPackages.with-packages (with idrisPackages; [
-    base
-    pkgs.idrisPackages.builtins
-    contrib
-    derive
-    effects
-    prelude
-    profunctors
-  ]);
-
-  myTexlive = import ./textlive.nix { inherit pkgs; };
-
-in
 {
   imports =
     [
-      ./emacs.nix # Adds ProofGeneral
-      ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./emacs.nix
+      ./hardware-configuration.nix
       ./machine-specific.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
-
-  # Select internationalisation properties.
-  i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-  };
-
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  programs = {
-    zsh.enable = true;
-  };
-
-  environment.variables = {
-    EDITOR = "vim";
-    SUDO_EDITOR = "vim";
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     binutils
+    direnv
     dmenu
     gcc
     gitAndTools.gitFull
     gnumake
-    libreoffice-still
+    # iterm2
     vim
     wget
-    wpa_supplicant
-    wpa_supplicant_gui
+    # wpa_supplicant
+    # wpa_supplicant_gui
     xfce.terminal
     xfce.xfce4-battery-plugin
     xfce.xfce4-cpugraph-plugin
@@ -72,86 +33,34 @@ in
     xfce.xfce4_power_manager_gtk3
     xfce.xfce4-screenshooter
 
-    aspell
-    aspellDicts.en
-    aspellDicts.fr
-    bashInteractive
-    baobab
     cabal2nix
-    #chromium
-    colordiff
-    coq
-    discord
-    #evince
-    epdfview                  # for pdf-tools in LaTeX-mode in emacs
-    feh
-    file
     firefox
-    google-chrome
-    #gitg
-    gimp
-    glxinfo
-    graphviz
-    gsettings_desktop_schemas # vscode crashes without this
-    #haskellPackages.ghc-mod
-    haskellPackages.xmobar
-    htop
-    #idrisWithMyPackages
-    imagemagick
-    kdeApplications.spectacle
-    lolcat
-    #m4                       # opam needs this sometimes
-    mosh
-    myTexlive
-    nodejs-10_x
-    #nodePackages.node2nix    # seems kinda useless at the moment
-    okular
-    openssl
-    playonlinux
-    psmisc                    # killall command
-    python36Packages.ipykernel
-    python36Packages.jupyter
-    python36Packages.jupyter_core
-    python36Packages.notebook
-    python36Packages.pygments
-    python36Packages.python
-    python36Packages.tensorflow
-    rlwrap
-    #rxvt_unicode
-    slack
+    lorri
+    ripgrep
     spotify
-    stack
-    steam
-    transmission-gtk
-    unity3d
-    unzip # opam needs it
-    vlc
-    vscode
-    wine
-    winetricks
-    xclip
-    #zathura # tired of it, bugs in a weird way not displaying text sometimes
   ];
 
   fonts = {
-    #fontconfig = {
+    fontconfig = {
+      defaultFonts.emoji = [ "Noto Color Emoji" ];
     #  enable = true;
     #  includeUserConf = true;
-    #};
+    };
     fonts = with pkgs; [
       corefonts
       emacs-all-the-icons-fonts
       dejavu_fonts
       #emojione # REMOVED: interferes with Noto
       #fira
-      #fira-code
+      fira-code
       #fira-code-symbols
-      #fira-mono
+      fira-mono
       #font-awesome-ttf
       helvetica-neue-lt-std
       #freefont_ttf
       #hasklig
       #input-fonts
+      (iosevka.override { design = [ "ss05" ]; family = "Iosevka SS05"; set = "ss05"; })
       #nerdfonts
       noto-fonts-emoji
       #symbola
@@ -160,107 +69,73 @@ in
     ];
   };
 
-  nix.nixPath = [
-    "nixpkgs=/home/ptival/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
-
-  nixpkgs.config = {
-    allowUnfree = true;
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_US.UTF-8";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.bash.enableCompletion = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.gutenprint pkgs.hplip ];
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    # Enable touchpad support.
-    libinput.enable = true;
-    # xkbOptions = "eurosign:e";
-  };
-
-  services.xserver.desktopManager = {
-    # gnome3.enable = true;
-    plasma5.enable = true; # kde5
-    # xfce.enable = true;
-    # xfce.enableXfwm = false;
-  };
-
-  services.xserver.displayManager = {
-    #gdm.enable = true;
-    #lightdm.enable = true;
-    sddm.enable = true;
-    sessionCommands = ''
-      setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
-      #xmodmap -e "keysym Super_L = Multi_key"
-      setxkbmap -option compose:ralt # RightAlt is a XCompose key
-      #setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
-      export GTK_IM_MODULE=xim
-      export XCOMPOSEFILE = "/home/ptival/.XCompose"
-    '';
-  };
-
-  services.xserver.windowManager = {
-    default = "xmonad";
-    xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: with haskellPackages; [
-        xmonad-contrib
-        xmonad-extras
-      ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+      };
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   isNormalUser = true;
-  #   uid = 1000;
-  # };
+  programs = {
+    zsh.enable = true;
+  };
+
+  services = {
+
+    lorri.enable = true;
+
+    xserver = {
+      enable = true;
+      layout = "us";
+
+      desktopManager.plasma5.enable = true;
+
+      displayManager = {
+        #gdm.enable = true;
+        #lightdm.enable = true;
+        sddm.enable = true;
+        sessionCommands = ''
+          setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
+          #xmodmap -e "keysym Super_L = Multi_key"
+          setxkbmap -option compose:ralt # RightAlt is a XCompose key
+          #setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
+          export GTK_IM_MODULE=xim
+          export XCOMPOSEFILE = "/home/val/.XCompose"
+        '';
+      };
+
+    };
+  };
 
   users = {
     mutableUsers = false;
-    extraUsers.ptival = {
+    extraUsers.val = {
       isNormalUser = true;
-      home = "/home/ptival";
+      home = "/home/val";
       description = "Valentin Robert";
-      extraGroups = [ "lp" "tty" "wheel" ];
+      # Extra groups may be added in machine-specific/<machine>.nix
+      # For machines that need wifi, add "networkmanager"
+      # For machines that need printing, add "lp"
+      extraGroups = [ "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
       shell = pkgs.zsh;
     };
   };
 
- system = {
-    copySystemConfiguration = true;
-    # This value determines the NixOS release with which your system is to be
-    # compatible, in order to avoid breaking some software such as database
-    # servers. You should change this only after NixOS release notes say you
-    # should.
-     stateVersion = "18.03"; # Did you read the comment?
-  };
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "19.09"; # Did you read the comment?
 
 }
