@@ -12,54 +12,28 @@
 
   environment.systemPackages = with pkgs; [
     binutils
+    cabal2nix
     direnv
-    dmenu
+    discord
+    firefox
     gcc
     gitAndTools.gitFull
     gnumake
-    # iterm2
-    vim
-    wget
-    # wpa_supplicant
-    # wpa_supplicant_gui
-    xfce.terminal
-    xfce.xfce4-battery-plugin
-    xfce.xfce4-cpugraph-plugin
-    xfce.xfce4-datetime-plugin
-    xfce.xfce4-hardware-monitor-plugin
-    xfce.xfce4-icon-theme
-    xfce.xfce4_power_manager_gtk3
-    xfce.xfce4-screenshooter
-    zsh-powerlevel10k
-
-    cabal2nix
-    firefox
     lorri
     ripgrep
     spotify
+    vim
+    wget
+    xfce.terminal
+    zsh-powerlevel10k
   ];
 
   fonts = {
     fontconfig = {
       defaultFonts.emoji = [ "Noto Color Emoji" ];
-    #  enable = true;
-    #  includeUserConf = true;
     };
     fonts = with pkgs; [
-      #corefonts
-      # emacs-all-the-icons-fonts
-      # dejavu_fonts
-      #emojione # REMOVED: interferes with Noto
-      #fira
-      #fira-code
-      #fira-code-symbols
-      #fira-mono
-      #font-awesome_4
-      # font-awesome_5
-      #helvetica-neue-lt-std
-      #freefont_ttf
-      #hasklig
-      #input-fonts
+      emacs-all-the-icons-fonts
       (iosevka.override {
         privateBuildPlan = {
           design = [ "ss05" ];
@@ -67,12 +41,6 @@
         };
         set = "ss05";
       })
-      # nerdfonts
-      #noto-fonts-emoji
-      # powerline-fonts
-      #symbola
-      #tex-gyre.pagella
-      #unifont
     ];
   };
 
@@ -132,9 +100,8 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       displayManager = {
         defaultSession = "plasma5+xmonad";
-        #gdm.enable = true;
-        #lightdm.enable = true;
         sddm.enable = true;
+        # TODO: separate this by machine
         sessionCommands = ''
           setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
           #xmodmap -e "keysym Super_L = Multi_key"

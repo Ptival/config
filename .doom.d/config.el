@@ -12,6 +12,17 @@
 (add-hook 'dante-mode-hook
   '(lambda () (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))))
 
+;; NOTE: Currently, dante does not handle cabal v1 correctly.
+;; cf. https://github.com/jyp/dante/issues/141
+;; The following snippet fixes the bare-cabal method.
+;; You will also want to put a `.dir-locals.el` file in every top Haskell
+;; directory, with contents like:
+;; ((nil . ((dante-method . bare-cabal)
+;;         (dante-target . "name-of-the-target-for-this-directory"))))
+(after! dante
+  (setq dante-methods-alist
+        `((bare-cabal ,(lambda (d) (directory-files d t "..cabal$")) ("cabal" "v1-repl" dante-target "--builddir=dist/dante")))))
+
 ;;; For direnv and coq to play nicely, we must update `coq-prog-env` when the
 ;;; direnv environment gets updated
 (defun update-coq-prog-env (&rest _args)
@@ -112,7 +123,7 @@
       ; On Mac:
       ; doom-unicode-font (font-spec :family "Apple Color Emoji" :size 22)
       ; On NixOS:
-      doom-unicode-font (font-spec :family "Noto Color Emoji" :size 22)
+      ; doom-unicode-font (font-spec :family "Noto Color Emoji" :size 22)
       doom-big-font (font-spec :family "Iosevka SS05" :size 22))
 
 ;; default font
