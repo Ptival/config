@@ -82,7 +82,7 @@ myConfig = kde4Config
   , layoutHook = myLayoutHook
   , manageHook = manageDocks <+> myManageHook
   , modMask    = mod4Mask
-  , terminal   = "xfce4-terminal"
+  , terminal   = "terminator"
   }
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
