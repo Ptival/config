@@ -21,10 +21,11 @@
     gnumake
     lorri
     ripgrep
+    slack
     spotify
+    terminator
     vim
     wget
-    xfce.terminal
     zsh-powerlevel10k
   ];
 
