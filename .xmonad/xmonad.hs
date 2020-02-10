@@ -16,6 +16,8 @@ import qualified XMonad.StackSet            as W
 
 myWorkspaces = ["1:dev", "2:web"] ++ map show [3..6] ++ ["7:spotify", "8:slack", "9:full"]
 
+-- NOTE: to find the className of a window, run `xprop` in a terminal
+-- then click on the window of interest
 myManageHook = composeAll
     [ className =? "Google-Chrome"  --> viewShift "2:web"
     , isDialog                      --> doCenterFloat
@@ -24,7 +26,7 @@ myManageHook = composeAll
     -- , className =? "kmix"           --> doFloat
     -- , className =? "plasma"         --> doFloat
     , isKDETrayWindow               --> doFloat
-    , className =? "plasmashell"    --> doCenterFloat
+    , className =? "plasmashell"    --> doFloat
     -- , className =? "Plasma"         --> doFloat
     -- , className =? "plasma-desktop" --> doFloat
     -- , className =? "Plasma-desktop" --> doFloat

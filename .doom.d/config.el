@@ -23,6 +23,8 @@
   (setq dante-methods-alist
         `((bare-cabal ,(lambda (d) (directory-files d t "..cabal$")) ("cabal" "v1-repl" dante-target "--builddir=dist/dante")))))
 
+;; I'm getting errors at start up about coq-prog-env not being defined, so...
+(setq coq-prog-env process-environment)
 ;;; For direnv and coq to play nicely, we must update `coq-prog-env` when the
 ;;; direnv environment gets updated
 (defun update-coq-prog-env (&rest _args)
@@ -119,12 +121,19 @@
 (setq-hook! 'coq-mode-hook coq-prefer-top-of-conclusion t)
 (setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
-(setq doom-font (font-spec :family "Iosevka SS05" :size 22)
+(setq
+      doom-font (font-spec :family "Iosevka SS05" :size 24)
+      ; doom-font (font-spec :family "Noto Emoji" :size 22)
       ; On Mac:
       ; doom-unicode-font (font-spec :family "Apple Color Emoji" :size 22)
       ; On NixOS:
-      ; doom-unicode-font (font-spec :family "Noto Color Emoji" :size 22)
-      doom-big-font (font-spec :family "Iosevka SS05" :size 22))
+      ; IMPORTANT: the following will *not* work in emacs <= 26
+      ; You need emacs >= 27 to support color emoji
+      ; In emacs <= 26, use "Noto Emoji" instead
+      ; Also, on MacOS, emoji support needs special care as it is disabled
+      ; by default due to Unix feud
+      doom-unicode-font (font-spec :family "Noto Color Emoji" :size 24)
+      doom-big-font (font-spec :family "Iosevka SS05" :size 24))
 
 ;; default font
 ; (set-face-attribute 'default nil :family "Iosevka SS05")
@@ -236,7 +245,10 @@
   ))))
 
 ; (set-fontset-font t 'unicode (font-spec :name "Apple Color Emoji") nil 'append)
-
 ; (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+; (set-fontset-font t 'unicode (font-spec :name "Noto Color Emoji") nil 'prepend)
+; (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'append)
+; (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend)
 
 ; (set-fontset-font "fontset-default" 'unicode (font-spec :name "Apple Color Emoji") nil 'prepend)

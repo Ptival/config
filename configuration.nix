@@ -15,6 +15,16 @@
     cabal2nix
     direnv
     discord
+    (
+      (emacsPackagesNgGen
+        (emacsGit.override {
+          inherit imagemagick;
+          withGTK3 = true;
+         })
+      ).emacsWithPackages (epkgs: [
+        emacsPackages.proofgeneral_HEAD
+      ])
+    )
     firefox
     gcc
     gitAndTools.gitFull
@@ -22,6 +32,7 @@
     lorri
     ripgrep
     slack
+    spectacle
     spotify
     terminator
     vim
@@ -34,6 +45,7 @@
       defaultFonts.emoji = [ "Noto Color Emoji" ];
     };
     fonts = with pkgs; [
+      dejavu_fonts
       emacs-all-the-icons-fonts
       (iosevka.override {
         privateBuildPlan = {
@@ -42,6 +54,7 @@
         };
         set = "ss05";
       })
+      noto-fonts-emoji
     ];
   };
 
@@ -49,7 +62,7 @@
 
   imports =
     [
-      ./emacs.nix
+      # ./emacs.nix
       ./hardware-configuration.nix
       ./machine-specific.nix
     ];
@@ -63,6 +76,11 @@
         };
       };
     };
+    overlays = [
+      (import (builtins.fetchTarball {
+        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      }))
+    ];
   };
 
   programs = {
