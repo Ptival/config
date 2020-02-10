@@ -55,6 +55,7 @@
         set = "ss05";
       })
       noto-fonts-emoji
+      nur.repos.ptival.meslo-nerd-powerlevel10k
     ];
   };
 
