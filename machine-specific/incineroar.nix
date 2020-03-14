@@ -20,7 +20,10 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-    pulseaudio.enable = true;
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
   };
 
   time.timeZone = "Europe/Paris";
@@ -28,7 +31,9 @@
   services = {
     printing.enable = true;
     xserver = {
-      libinput.enable = true; # touchpad support
+      # Actually libinput sucks at changing mouse wheel speed
+      # So hopefully not enabling it makes us use evdev?
+      # libinput.enable = true; # touchpad support
       videoDrivers = [ "opengl" ];
     };
   };

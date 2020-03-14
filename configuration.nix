@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+in
+
 {
 
   console = {
@@ -11,8 +15,14 @@
   };
 
   environment.systemPackages = with pkgs; [
+    adapta-kde-theme
+    (all-hies.selection { selector = p: { inherit (p) ghc865 ghc882; }; })
+    arc-kde-theme
     binutils
+    busybox # unzip and such
     cabal2nix
+    cachix
+    gitAndTools.delta
     direnv
     discord
     (
@@ -25,18 +35,48 @@
         emacsPackages.proofgeneral_HEAD
       ])
     )
+    fd # makes doom-emacs file search faster
     firefox
+    fzf-zsh
     gcc
     gitAndTools.gitFull
     gnumake
+    htop
+    ktimetracker
+    latte-dock
     lorri
+    materia-theme
     ripgrep
     slack
     spectacle
     spotify
     terminator
     vim
+    vscode
+    # NOTE: vscode-with-extensions is still very problematic with many
+    # extensions that try and alter the settings directory, which is read-only
+    # (vscode-with-extensions.override {
+    #   vscodeExtensions = with vscode-extensions; [
+    #     # Some extensions are already packaged
+    #     bbenoist.Nix
+    #   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
+    #     # Other extensions can be manually declared, e.g.
+    #     # {
+    #     #   name = "vsliveshare";
+    #     #   publisher = "MS-vsliveshare";
+    #     #   version = "1.0.1653";
+    #     #   sha256 = "0hasf85a7wil3npm8gk1yw2h0snh3m8784dlm6w631k1diji8ca9";
+    #     # }
+    #     # {
+    #     #   name = "vsliveshare-pack";
+    #     #   publisher = "ms-vsliveshare";
+    #     #   version = "0.3.4";
+    #     #   sha256 = "0svijjggycnw9iy7ziiixmcf83p45q0nzvhm0pvcm982hpi4dkra";
+    #     # }
+    #   ];
+    #   })
     wget
+    zoom-us
     zsh-powerlevel10k
   ];
 
@@ -63,9 +103,15 @@
 
   imports =
     [
+      /etc/nixos/cachix.nix
       # ./emacs.nix
       ./hardware-configuration.nix
       ./machine-specific.nix
+      # This is for VSCode LiveShare feature
+      "${builtins.fetchGit {
+        url = "https://github.com/msteen/nixos-vsliveshare.git";
+        ref = "refs/heads/master";
+      }}"
     ];
 
   nixpkgs = {
@@ -85,12 +131,17 @@
   };
 
   programs = {
+    vim.defaultEditor = true;
+
     zsh = {
+      autosuggestions.enable = true;
       enable = true;
 
       interactiveShellInit = ''
 export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
-plugins=(git)                                 # oh-my-zsh: plugins to load
+plugins=(                                     # oh-my-zsh: plugins to load
+  git
+)
 source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
 bindkey -e                                    # zsh:       use emacs keybindings
 source ~/.common.rc.sh                        # zsh:       source aliases
@@ -105,12 +156,23 @@ eval "$(direnv hook zsh)"                     # zsh:       use direnv
       promptInit = ''
 source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
        '';
+
+      syntaxHighlighting = {
+        enable = true;
+        highlighters = [ "main" "brackets" "root" ];
+      };
+
     };
   };
 
   services = {
 
     lorri.enable = true;
+
+    vsliveshare = {
+      enable = true;
+      extensionsDir = "/home/val/.vscode/extensions";
+    };
 
     xserver = {
       enable = true;
@@ -119,16 +181,34 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       desktopManager.plasma5.enable = true;
 
       displayManager = {
-        defaultSession = "plasma5+xmonad";
+        defaultSession = "plasma5";
+        # defaultSession = "plasma5+xmonad";
         sddm.enable = true;
         # TODO: separate this by machine
         sessionCommands = ''
-          setxkbmap -option ctrl:nocaps  # turn CapsLock into Ctrl
-          #xmodmap -e "keysym Super_L = Multi_key"
+
+          # turns CapsLock into Ctrl
+          setxkbmap -option ctrl:nocaps
+
+          # xmodmap -e "keysym Super_L = Multi_key"
+
+          # use the right Alt key as XCompose key
           setxkbmap -option compose:ralt # RightAlt is a XCompose key
+
+          # sadly some keyboards still send the Alt_R signal and the previous
+          # trick does not work, so this *really* turns the right alt key into
+          # the multi key for XCompose
+          xmodmap -e "keysym Alt_R = Multi_key"
+          xmodmap -e "keysym Caps_Lock = Control_L"
+
           #setxkbmap -option compose:prsc # for my Kinesis keyboard, no AltGr
+
+          # other options needed for XCompose to kick in
           export GTK_IM_MODULE=xim
           export XCOMPOSEFILE = "/home/val/.XCompose"
+          export XDG_CONFIG_HOME = "/home/val/.config"
+
+
         '';
       };
 
