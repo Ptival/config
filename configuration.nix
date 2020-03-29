@@ -39,6 +39,7 @@ in
     firefox
     fzf-zsh
     gcc
+    gimp
     gitAndTools.gitFull
     gnumake
     htop
@@ -46,6 +47,7 @@ in
     latte-dock
     lorri
     materia-theme
+    obs-studio
     ripgrep
     slack
     spectacle
@@ -59,14 +61,14 @@ in
     #   vscodeExtensions = with vscode-extensions; [
     #     # Some extensions are already packaged
     #     bbenoist.Nix
-    #   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
-    #     # Other extensions can be manually declared, e.g.
-    #     # {
-    #     #   name = "vsliveshare";
-    #     #   publisher = "MS-vsliveshare";
-    #     #   version = "1.0.1653";
-    #     #   sha256 = "0hasf85a7wil3npm8gk1yw2h0snh3m8784dlm6w631k1diji8ca9";
-    #     # }
+    #  ] ++ vscode-utils.extensionsFromVscodeMarketplace [
+    #    # Other extensions can be manually declared, e.g.
+    #    {
+    #      name = "vsliveshare";
+    #      publisher = "MS-vsliveshare";
+    #      version = "1.0.1653";
+    #      sha256 = "0hasf85a7wil3npm8gk1yw2h0snh3m8784dlm6w631k1diji8ca9";
+    #    }
     #     # {
     #     #   name = "vsliveshare-pack";
     #     #   publisher = "ms-vsliveshare";
@@ -74,7 +76,7 @@ in
     #     #   sha256 = "0svijjggycnw9iy7ziiixmcf83p45q0nzvhm0pvcm982hpi4dkra";
     #     # }
     #   ];
-    #   })
+    # })
     wget
     zoom-us
     zsh-powerlevel10k
@@ -125,7 +127,8 @@ in
     };
     overlays = [
       (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+        # Last update: March, 17th 2020
+        url = https://github.com/nix-community/emacs-overlay/archive/079d1a932754e5a15388cdeb85e94d8ae13577f8.tar.gz;
       }))
     ];
   };
@@ -167,7 +170,7 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
   services = {
 
-    lorri.enable = true;
+    # lorri.enable = true;
 
     vsliveshare = {
       enable = true;

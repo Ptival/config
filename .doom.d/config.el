@@ -1,5 +1,12 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+(setq doom-theme 'doom-tomorrow-night)
+(setq fancy-splash-image "/home/val/.doom.d/doom-small.png")
+
+;; TEMPORARY: testing haskell-language-server
+;; (setq lsp-haskell-process-path-hie "haskell-language-server")
+;; (setq lsp-haskell-process-args-hie '("--cwd" "lib"))
+
 ;;; lorri is installed globally, so it lives in /run/current-system/sw/bin
 ;;; but this path is not in the default PATH passed to emacs. Adding it,
 ;;; which requires setting both exec-path and PATH in process-environment.
@@ -68,7 +75,6 @@
 ;; ;        (lambda (argv)
 ;; ;          (append argv (list "-r" (lsp-haskell--get-root))))))
 
-;; (setq doom-theme 'doom-vibrant)
 
 ;; (when (eq system-type 'darwin)
 ;;   (setq mac-control-modifier 'control)
