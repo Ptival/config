@@ -18,6 +18,7 @@ in
     adapta-kde-theme
     (all-hies.selection { selector = p: { inherit (p) ghc865 ghc882; }; })
     arc-kde-theme
+    bat
     binutils
     busybox # unzip and such
     cabal2nix
@@ -30,12 +31,14 @@ in
         (emacsGit.override {
           inherit imagemagick;
           withGTK3 = true;
+          withXwidgets = true;
          })
       ).emacsWithPackages (epkgs: [
         emacsPackages.proofgeneral_HEAD
       ])
     )
     fd # makes doom-emacs file search faster
+    feh
     firefox
     fzf-zsh
     gcc
@@ -47,7 +50,9 @@ in
     latte-dock
     lorri
     materia-theme
+    niv
     obs-studio
+    openssl
     ripgrep
     slack
     spectacle
@@ -83,6 +88,7 @@ in
   ];
 
   fonts = {
+    enableDefaultFonts = true;
     fontconfig = {
       defaultFonts.emoji = [ "Noto Color Emoji" ];
     };
@@ -98,6 +104,7 @@ in
       })
       noto-fonts-emoji
       nur.repos.ptival.meslo-nerd-powerlevel10k
+      symbola
     ];
   };
 
@@ -149,6 +156,14 @@ source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
 bindkey -e                                    # zsh:       use emacs keybindings
 source ~/.common.rc.sh                        # zsh:       source aliases
 eval "$(direnv hook zsh)"                     # zsh:       use direnv
+
+# The following makes it so that <Shift-Tab> forces file completion regardless of context
+# It is useful because sometimes zsh will refuse to complete, for instance:
+# - for git commands, it won't complete ignored files
+# - for cabal, it will not complete any file!!!
+zle -C complete complete-word complete-files
+bindkey '^[[Z' complete
+complete-files () { compadd - $PREFIX* }
       '';
 
       ohMyZsh = {
@@ -216,10 +231,10 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       };
 
       windowManager = {
-        xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-        };
+        # xmonad = {
+        #   enable = true;
+        #   enableContribAndExtras = true;
+        # };
       };
 
     };

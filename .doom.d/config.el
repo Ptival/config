@@ -1,11 +1,44 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+;; Too slow on this computer to let flycheck go crazy at every keypress
+;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
+
+;; prevent haskell-ghc from wanting to run
+(add-hook! 'flycheck-mode-hook
+  (add-to-list 'flycheck-disabled-checkers 'haskell-ghc))
+
+;;;; lsp-ui settings ;;;;;
+(add-hook! 'lsp-ui-doc-mode-hook
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-alignment 'window)
+  ;(setq lsp-ui-doc-use-webkit t)
+  (setq lsp-ui-doc-max-height 14)
+  (setq lsp-ui-doc-max-width 100)
+  (setq lsp-ui-doc-position 'top))
+
 (setq doom-theme 'doom-tomorrow-night)
 (setq fancy-splash-image "/home/val/.doom.d/doom-small.png")
 
-;; TEMPORARY: testing haskell-language-server
-;; (setq lsp-haskell-process-path-hie "haskell-language-server")
-;; (setq lsp-haskell-process-args-hie '("--cwd" "lib"))
+;; Add hlint after intero
+;; (with-eval-after-load 'intero
+;;   (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+
+(require 'lsp)
+(require 'lsp-haskell)
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'lsp-ui-mode-hook #'lsp-ui-doc-mode)
+
+
+(use-package lsp-haskell
+ :ensure t
+ :config
+ (setq lsp-haskell-process-path-hie "hie-wrapper")
+ ;; (lsp-haskell-set-formatter-ormolu)
+ ;; TODO: once haskell-language-server becomes really good, this sets it up
+ ;; (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
+ ;; Comment/uncomment this line to see interactions between lsp client/server.
+ ;; (setq lsp-log-io t)
+ )
 
 ;;; lorri is installed globally, so it lives in /run/current-system/sw/bin
 ;;; but this path is not in the default PATH passed to emacs. Adding it,
@@ -13,6 +46,7 @@
 ; (add-to-list 'exec-path "/run/current-system/sw/bin")
 ; (setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin"))
 
+;; for haskell-ide-engine, incompatible with haskell-language-server
 ;; (add-hook! 'haskell-mode-hook
 ;;   (setq lsp-haskell-process-args-hie (list "-d" "-l" "/tmp/hie.log" "-r" (haskell-cabal-find-dir))))
 
@@ -26,9 +60,9 @@
 ;; directory, with contents like:
 ;; ((nil . ((dante-method . bare-cabal)
 ;;         (dante-target . "name-of-the-target-for-this-directory"))))
-(after! dante
-  (setq dante-methods-alist
-        `((bare-cabal ,(lambda (d) (directory-files d t "..cabal$")) ("cabal" "v1-repl" dante-target "--builddir=dist/dante")))))
+;; (after! dante
+;;   (setq dante-methods-alist
+;;         `((bare-cabal ,(lambda (d) (directory-files d t "..cabal$")) ("cabal" "v1-repl" dante-target "--builddir=dist/dante")))))
 
 ;; ;; I'm getting errors at start up about coq-prog-env not being defined, so...
 ;; (setq coq-prog-env process-environment)
@@ -55,7 +89,8 @@
     (apply orig-func args)))
 
 ;; If dante starts before the PATH is set up, it will fail to find cabal
-(advice-add 'dante-start :before #'direnv-update-environment)
+;; (advice-add 'dante-start :before #'direnv-update-environment)
+
 (add-hook 'post-command-hook #'direnv--maybe-update-environment)
 
 ; (advice-add 'scomint-exec-1 :around #'add-nix-path)
@@ -143,12 +178,14 @@
 ;; (setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
 (setq
- doom-font (font-spec :family "Iosevka SS05" :size 20)
- doom-big-font (font-spec :family "Iosevka SS05" :size 20))
+ doom-font (font-spec :family "Iosevka SS05" :size 18)
+ ;; doom-font (font-spec :family "Iosevka SS05" :size 24)
+ ;; not sure when this one gets used, so outrageous value to notice
+ doom-big-font (font-spec :family "Iosevka SS05" :size 100))
 (when (eq system-type 'gnu/linux)
-  (setq doom-unicode-font (font-spec :family "Noto Color Emoji" :size 20)))
+  (setq doom-unicode-font (font-spec :family "Symbola" :size 18)))
 (when (eq system-type 'darwin)
-  (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 20)))
+  (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 18)))
 
 ;; ; prevents Evil from doing auto-completion when pressing Esc
 ;; ; (e.g. in ProofGeneral it's super annoying)
@@ -191,9 +228,8 @@
 
 ;; Makes it so that the modeline looks shorter
 ;; like: ~/p/t/p/project/f/g/file
-(setq
- +modeline-file-path-with-project
- 'modeline-file-path-truncated-upto-project-root)
+(setq doom-modeline-buffer-file-name-style
+      'truncate-except-project)
 
 ;; (setq merlin-command "ocamlmerlin")
 

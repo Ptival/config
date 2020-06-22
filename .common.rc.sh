@@ -1,3 +1,4 @@
+alias cat="bat"
 alias cls="echo -ne '\033c'"
 alias ls="ls -h --color"
 alias ll="ls -l"
