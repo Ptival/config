@@ -34,7 +34,9 @@ in
           withXwidgets = true;
          })
       ).emacsWithPackages (epkgs: [
-        emacsPackages.proofgeneral_HEAD
+        # WARNING: do NOT use this in conjunction with doom-emacs
+        # or it will start mixing the global and local Elisp files!!!
+        # emacsPackages.proofgeneral_HEAD
       ])
     )
     fd # makes doom-emacs file search faster
@@ -254,6 +256,8 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       shell = pkgs.zsh;
     };
   };
+
+  virtualisation.virtualbox.host.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

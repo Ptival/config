@@ -1,7 +1,7 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
 ;; Too slow on this computer to let flycheck go crazy at every keypress
-;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
 
 ;; prevent haskell-ghc from wanting to run
 (add-hook! 'flycheck-mode-hook
