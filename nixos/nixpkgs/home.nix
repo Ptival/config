@@ -46,6 +46,7 @@ in
       htop              # Nicer top
       jq                # JSON viewer
       less              # Better than busybox's less
+      lorri
       nixfmt            # Formatter for nix code
       niv
       openssl
@@ -66,6 +67,19 @@ in
 
     zsh = {
       enable = true;
+      initExtra = ''
+. /home/val/.nix-profile/etc/profile.d/nix.sh
+cd ~
+eval "$(direnv hook zsh)"
+${builtins.readFile ../dotfiles/p10k.zsh}
+source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+        ];
+      };
     };
 
   };
