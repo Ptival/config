@@ -16,17 +16,6 @@ let
 
   userName = "val";
 
-  doom-emacs = pkgs.callPackage (fetchNiv sources.nix-doom-emacs) {
-    doomPrivateDir = ./dotfiles/doom.d;
-    emacsPackages = (pkgs.emacsPackagesNgGen
-      (pkgs.emacsGit.override {
-        inherit (pkgs) imagemagick;
-        withGTK3 = true;
-        withXwidgets = true;
-      }));
-    extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
-  };
-
 in
 {
 
@@ -34,40 +23,22 @@ in
     keyMap = "us";
   };
 
+  # Here I put packages that are relevant to a full NixOS installation,
+  # where I want some GUI applications not provided by some other host.
+  #
+  # For general programming applications that are also relevant to
+  # non-NixOS machines, I put those in ../nixpkgs/home.nix
   environment.systemPackages = with pkgs; [
-    adapta-kde-theme
+    adapta-kde-theme  # KDE theme
     baobab            # Disk space usage viewer
-    bat               # Nicer cat
-    binutils
-    cabal2nix
-    cachix
-    direnv
     discord
-    doom-emacs
-    fd                # Makes doom-emacs file search faster
     feh               # Lightweight image viewer
     firefox
-    fzf-zsh # Fuzzy line-finder for zsh
     gimp
-    git
-    gitAndTools.delta # Nicer pager
-    gnumake
-    htop              # Nicer top
-    jq                # Jquery viewer
-    less              # Better than busybox's less
-    nixfmt            # Code formatter for nix
-    niv
-    openssl
-    ripgrep           # Nicer grep
     slack
-    spectacle
+    spectacle         # For taking screen captures
     spotify
     terminator        # Nice terminal
-    # (import ./texlive.nix {})
-    wget
-    yq                # Yaml viewer
-    wget
-    zsh-powerlevel10k
   ];
 
   fonts = {
@@ -93,21 +64,7 @@ in
 
   # Use the nixpkgs set by nixpkgs here
   home-manager.useGlobalPkgs = true;
-  home-manager.users.${userName} =
-    { config, lib, pkgs, ... }:
-    {
-
-      home = {
-        packages = with pkgs; [
-        ];
-      };
-
-      # NOTE: this does not exist when `useGlobalPkgs` is set
-      # nixpkgs.config = {
-      #   allowUnfree = true;
-      # };
-
-    };
+  home-manager.users.${userName} = callPackage ../nixpkgs/home.nix {};
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -143,44 +100,44 @@ in
   programs = {
     vim.defaultEditor = true;
 
-    zsh = {
-      autosuggestions.enable = true;
-      enable = true;
+#     zsh = {
+#       autosuggestions.enable = true;
+#       enable = true;
 
-      interactiveShellInit = ''
-export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
-plugins=(                                     # oh-my-zsh: plugins to load
-  git
-                             )
-source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
-bindkey -e                                    # zsh:       use emacs keybindings
-source ~/.common.rc.sh                        # zsh:       source aliases
-eval "$(direnv hook zsh)"                     # zsh:       use direnv
+#       interactiveShellInit = ''
+# export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
+# plugins=(                                     # oh-my-zsh: plugins to load
+#   git
+# )
+# source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
+# bindkey -e                                    # zsh:       use emacs keybindings
+# source ~/.common.rc.sh                        # zsh:       source aliases
+# eval "$(direnv hook zsh)"                     # zsh:       use direnv
 
-# The following makes it so that <Shift-Tab> forces file completion regardless of context
-# It is useful because sometimes zsh will refuse to complete, for instance:
-# - for git commands, it won't complete ignored files
-# - for cabal, it will not complete any file!!!
-zle -C complete complete-word complete-files
-bindkey '^[[Z' complete
-complete-files () { compadd - $PREFIX* }
-      '';
+# # The following makes it so that <Shift-Tab> forces file completion regardless of context
+# # It is useful because sometimes zsh will refuse to complete, for instance:
+# # - for git commands, it won't complete ignored files
+# # - for cabal, it will not complete any file!!!
+# zle -C complete complete-word complete-files
+# bindkey '^[[Z' complete
+# complete-files () { compadd - $PREFIX* }
+#       '';
 
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-      };
+#       ohMyZsh = {
+#         enable = true;
+#         plugins = [ "git" ];
+#       };
 
-      promptInit = ''
-source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-       '';
+#       promptInit = ''
+# source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+#        '';
 
-      syntaxHighlighting = {
-        enable = true;
-        highlighters = [ "main" "brackets" "root" ];
-      };
+#       syntaxHighlighting = {
+#         enable = true;
+#         highlighters = [ "main" "brackets" "root" ];
+#       };
 
-    };
+#     };
   };
 
   services = {
@@ -200,11 +157,9 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       displayManager = {
         defaultSession = "plasma5";
-        # defaultSession = "plasma5+xmonad";
         sddm.enable = true;
         # TODO: separate this by machine
         sessionCommands = ''
-
           # turns CapsLock into Ctrl
           setxkbmap -option ctrl:nocaps
 
@@ -225,8 +180,6 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
           export GTK_IM_MODULE=xim
           export XCOMPOSEFILE = "/home/${userName}/.XCompose"
           export XDG_CONFIG_HOME = "/home/${userName}/.config"
-
-
         '';
       };
 
