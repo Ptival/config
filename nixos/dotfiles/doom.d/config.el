@@ -1,5 +1,15 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+(setq
+ doom-font (font-spec :family "Iosevka SS09" :size 20)
+ ;; doom-font (font-spec :family "Iosevka SS09" :size 24)
+ ;; not sure when this one gets used, so outrageous value to notice
+ doom-big-font (font-spec :family "Iosevka SS09" :size 100))
+(when (eq system-type 'gnu/linux)
+  (setq doom-unicode-font (font-spec :family "Symbola" :size 20)))
+(when (eq system-type 'darwin)
+  (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 20)))
+
 ;; Too slow on this computer to let flycheck go crazy at every keypress
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
 
@@ -32,8 +42,9 @@
 (use-package lsp-haskell
  :ensure t
  :config
+ ;; (setq lsp-haskell-process-path-hie "hie")
  (setq lsp-haskell-process-path-hie "hie-wrapper")
- ;; (lsp-haskell-set-formatter-ormolu)
+ (lsp-haskell-set-formatter-ormolu)
  ;; TODO: once haskell-language-server becomes really good, this sets it up
  ;; (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
  ;; Comment/uncomment this line to see interactions between lsp client/server.
@@ -177,16 +188,6 @@
 ;; (setq-hook! 'coq-mode-hook coq-prefer-top-of-conclusion t)
 ;; (setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
-(setq
- doom-font (font-spec :family "Iosevka SS05" :size 18)
- ;; doom-font (font-spec :family "Iosevka SS05" :size 24)
- ;; not sure when this one gets used, so outrageous value to notice
- doom-big-font (font-spec :family "Iosevka SS05" :size 100))
-(when (eq system-type 'gnu/linux)
-  (setq doom-unicode-font (font-spec :family "Symbola" :size 18)))
-(when (eq system-type 'darwin)
-  (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 18)))
-
 ;; ; prevents Evil from doing auto-completion when pressing Esc
 ;; ; (e.g. in ProofGeneral it's super annoying)
 ;; (setq evil-want-abbrev-expand-on-insert-exit nil)
@@ -259,3 +260,25 @@
       ("tau" . ?τ) ("upsilon" . ?υ) ("phi" . ?φ)
       ("chi" . ?χ) ("psi" . ?ψ) ("omega" . ?ω)
       ))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   '((dante-target . "codescape-cli")
+     (dante-target . "server")
+     (dante-repl-command-line "nix-shell" "--run"
+                              (concat "cabal v2-repl "
+                                      (or dante-target
+                                          (dante-package-name)
+                                          "")
+                                      " --builddir=dist/dante"))
+     (dante-target . "codescape")
+     (haskell-align-imports-pad-after-name 't))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

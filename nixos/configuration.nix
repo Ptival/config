@@ -1,13 +1,33 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 let
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-in
 
+  sources = import ./nix/sources.nix {};
+  fetchNiv = niv: fetchTarball { inherit (niv) url sha256; };
+
+  pkgs = import (fetchNiv sources.nixpkgs) {
+    config = {
+      allowUnfree = true;
+    };
+    overlays = [
+      (import (fetchNiv sources.emacs-overlay))
+    ];
+  };
+  homeManager = fetchNiv sources.home-manager;
+  nur = pkgs.callPackage (fetchNiv sources.NUR) {};
+
+  userName = "val";
+
+  doom-emacs = pkgs.callPackage (fetchNiv sources.nix-doom-emacs) {
+    doomPrivateDir = ./dotfiles/doom.d;
+    emacsPackages = (pkgs.emacsPackagesNgGen
+      (pkgs.emacsGit.override {
+        inherit (pkgs) imagemagick;
+        withGTK3 = true;
+        withXwidgets = true;
+      }));
+    extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
+  };
+
+in
 {
 
   console = {
@@ -16,76 +36,37 @@ in
 
   environment.systemPackages = with pkgs; [
     adapta-kde-theme
-    (all-hies.selection { selector = p: { inherit (p) ghc865 ghc882; }; })
-    arc-kde-theme
-    bat
+    baobab            # Disk space usage viewer
+    bat               # Nicer cat
     binutils
-    busybox # unzip and such
     cabal2nix
     cachix
-    gitAndTools.delta
     direnv
     discord
-    (
-      (emacsPackagesNgGen
-        (emacsGit.override {
-          inherit imagemagick;
-          withGTK3 = true;
-          withXwidgets = true;
-         })
-      ).emacsWithPackages (epkgs: [
-        # WARNING: do NOT use this in conjunction with doom-emacs
-        # or it will start mixing the global and local Elisp files!!!
-        # emacsPackages.proofgeneral_HEAD
-      ])
-    )
-    fd # makes doom-emacs file search faster
-    feh
+    doom-emacs
+    fd                # Makes doom-emacs file search faster
+    feh               # Lightweight image viewer
     firefox
-    fzf-zsh
-    gcc
+    fzf-zsh # Fuzzy line-finder for zsh
     gimp
-    gitAndTools.gitFull
+    git
+    gitAndTools.delta # Nicer pager
     gnumake
-    htop
-    ktimetracker
-    latte-dock
-    lorri
-    materia-theme
+    htop              # Nicer top
+    jq                # Jquery viewer
+    less              # Better than busybox's less
+    nixfmt            # Code formatter for nix
     niv
-    obs-studio
     openssl
-    ripgrep
+    ripgrep           # Nicer grep
     slack
     spectacle
     spotify
-    terminator
-    vim
-    vscode
-    # NOTE: vscode-with-extensions is still very problematic with many
-    # extensions that try and alter the settings directory, which is read-only
-    # (vscode-with-extensions.override {
-    #   vscodeExtensions = with vscode-extensions; [
-    #     # Some extensions are already packaged
-    #     bbenoist.Nix
-    #  ] ++ vscode-utils.extensionsFromVscodeMarketplace [
-    #    # Other extensions can be manually declared, e.g.
-    #    {
-    #      name = "vsliveshare";
-    #      publisher = "MS-vsliveshare";
-    #      version = "1.0.1653";
-    #      sha256 = "0hasf85a7wil3npm8gk1yw2h0snh3m8784dlm6w631k1diji8ca9";
-    #    }
-    #     # {
-    #     #   name = "vsliveshare-pack";
-    #     #   publisher = "ms-vsliveshare";
-    #     #   version = "0.3.4";
-    #     #   sha256 = "0svijjggycnw9iy7ziiixmcf83p45q0nzvhm0pvcm982hpi4dkra";
-    #     # }
-    #   ];
-    # })
+    terminator        # Nice terminal
+    # (import ./texlive.nix {})
     wget
-    zoom-us
+    yq                # Yaml viewer
+    wget
     zsh-powerlevel10k
   ];
 
@@ -99,47 +80,64 @@ in
       emacs-all-the-icons-fonts
       (iosevka.override {
         privateBuildPlan = {
-          design = [ "ss05" ];
-          family = "Iosevka SS05";
+          design = [ "ss09" ];
+          family = "Iosevka SS09";
         };
-        set = "ss05";
+        set = "ss09";
       })
       noto-fonts-emoji
       nur.repos.ptival.meslo-nerd-powerlevel10k
-      symbola
+      # symbola
     ];
   };
+
+  # Use the nixpkgs set by nixpkgs here
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.${userName} =
+    { config, lib, pkgs, ... }:
+    {
+
+      home = {
+        packages = with pkgs; [
+        ];
+      };
+
+      # NOTE: this does not exist when `useGlobalPkgs` is set
+      # nixpkgs.config = {
+      #   allowUnfree = true;
+      # };
+
+    };
 
   i18n.defaultLocale = "en_US.UTF-8";
 
   imports =
     [
-      /etc/nixos/cachix.nix
+      "${homeManager}/nixos"
+      ./cachix.nix
       # ./emacs.nix
       ./hardware-configuration.nix
       ./machine-specific.nix
       # This is for VSCode LiveShare feature
-      "${builtins.fetchGit {
-        url = "https://github.com/msteen/nixos-vsliveshare.git";
-        ref = "refs/heads/master";
-      }}"
+      # "${builtins.fetchGit {
+      #   url = "https://github.com/msteen/nixos-vsliveshare.git";
+      #   ref = "refs/heads/master";
+      # }}"
     ];
 
   nixpkgs = {
-    config = {
-      allowUnfree = true;
-      packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-          inherit pkgs;
-        };
-      };
-    };
+
+    # config = {
+    #   allowUnfree = true;
+    # };
+
     overlays = [
-      (import (builtins.fetchTarball {
-        # Last update: March, 17th 2020
-        url = https://github.com/nix-community/emacs-overlay/archive/079d1a932754e5a15388cdeb85e94d8ae13577f8.tar.gz;
-      }))
+      # NOTE: If you want overlays to already be active in this file, you should put
+      # them up there where `pkgs` is defined.
     ];
+
+    inherit pkgs;
+
   };
 
   programs = {
@@ -153,7 +151,7 @@ in
 export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
 plugins=(                                     # oh-my-zsh: plugins to load
   git
-)
+                             )
 source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
 bindkey -e                                    # zsh:       use emacs keybindings
 source ~/.common.rc.sh                        # zsh:       source aliases
@@ -187,12 +185,12 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
   services = {
 
-    # lorri.enable = true;
+    lorri.enable = true;
 
-    vsliveshare = {
-      enable = true;
-      extensionsDir = "/home/val/.vscode/extensions";
-    };
+    # vsliveshare = {
+    #   enable = true;
+    #   extensionsDir = "/home/val/.vscode/extensions";
+    # };
 
     xserver = {
       enable = true;
@@ -225,8 +223,8 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
           # other options needed for XCompose to kick in
           export GTK_IM_MODULE=xim
-          export XCOMPOSEFILE = "/home/val/.XCompose"
-          export XDG_CONFIG_HOME = "/home/val/.config"
+          export XCOMPOSEFILE = "/home/${userName}/.XCompose"
+          export XDG_CONFIG_HOME = "/home/${userName}/.config"
 
 
         '';
@@ -244,19 +242,20 @@ source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
   users = {
     mutableUsers = false;
-    extraUsers.val = {
+    extraUsers.${userName} = {
       isNormalUser = true;
-      home = "/home/val";
+      home = "/home/${userName}";
       description = "Valentin Robert";
       # Extra groups may be added in machine-specific/<machine>.nix
       # For machines that need wifi, add "networkmanager"
       # For machines that need printing, add "lp"
-      extraGroups = [ "tty" "wheel" ];
+      extraGroups = [ "docker" "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
       shell = pkgs.zsh;
     };
   };
 
+  virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
 
   # This value determines the NixOS release with which your system is to be
