@@ -1,27 +1,34 @@
 # Setup (August 2020)
 
-The `nixpkgs` directory should be symbolically linked in the users `~/.config`:
+The current setup tries to share the `home.nix` across different machines, some
+running NixOS, some running some other OS while using nix as a package manager.
+As such, `home.nix` contains all those packages that are relevant to all
+machines, while `configuration.nix` contains packages that are necessary on
+NixOS, such as GUI applications that you'd expect from your OS.
 
+Ideally I would not want to nest the `nixpkgs` directory inside the `nixos`
+directory.  However, due to symbolically linking `nixos` in `/etc`, the
+resolution of relative paths like `../nixpkgs/home.nix` would try and find its
+target at `/etc/nixpkgs/home.nix`, which is not what we want.
+
+On a NixOS machine, it suffices to symbolically link:
+
+```
+/etc/nixos -> /home/<user>/config/nixos`
+```
+
+and run the usual `sudo nixos-rebuild switch`.
+
+On a machine using nix as a package manager, it suffices to symbolically link:
+
+```
 `/home/<user>/.config/nixpkgs -> /home/<user>/config/nixpkgs`
+```
 
-Additionally, on NixOS, the `nixos` directory should be symbolically linked in
-`/etc`:
-
-This should be enough to
-
-`/etc/nixos -> /home/<user>/config/nixos`
-
-This should be enough to run:
-
-`sudo nixos-rebuild switch`
-
-which should build NixOS and install it, as well as provide home-manager, and
-then run:
-
-`home-manager switch`
-
-which should build all the user packages and install them and work its symlink
-magic.
+and run the usual `home-manager switch`.  Note that this must be bootstrapped
+with an existing `home-manager` (say by using `nix-env -i home-manager` or
+`nix-shell -p home-manager`), but from then on, it installs its own copy of
+`home-manager` so that it is no longer required.
 
 # Details
 

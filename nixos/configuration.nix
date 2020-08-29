@@ -7,9 +7,6 @@ let
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      (import (fetchNiv sources.emacs-overlay))
-    ];
   };
   homeManager = fetchNiv sources.home-manager;
   nur = pkgs.callPackage (fetchNiv sources.NUR) {};
@@ -64,7 +61,7 @@ in
 
   # Use the nixpkgs set by nixpkgs here
   home-manager.useGlobalPkgs = true;
-  home-manager.users.${userName} = callPackage ../nixpkgs/home.nix {};
+  home-manager.users.${userName} = import ./nixpkgs/home.nix;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -72,7 +69,6 @@ in
     [
       "${homeManager}/nixos"
       ./cachix.nix
-      # ./emacs.nix
       ./hardware-configuration.nix
       ./machine-specific.nix
       # This is for VSCode LiveShare feature
