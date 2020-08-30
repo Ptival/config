@@ -4,6 +4,7 @@ let
 
   sources = import ./nix/sources.nix {};
   fetchNiv = niv: fetchTarball { inherit (niv) url sha256; };
+  nur = pkgs.callPackage (fetchNiv sources.NUR) {};
 
   pkgs = import (fetchNiv sources.nixpkgs) {
       config = {
@@ -25,9 +26,22 @@ let
     extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
   };
 
+  iosevkass09 = pkgs.iosevka.override {
+    privateBuildPlan = {
+      design = [ "ss09" ];
+      family = "Iosevka SS09";
+      weights = [ "regular" ];
+    };
+    set = "ss09";
+  };
+
+  # mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
+
 in
 
 {
+
+  fonts.fontconfig.enable = true;
 
   home = {
     packages = with pkgs; [
@@ -37,15 +51,18 @@ in
       cachix
       doom-emacs
       fd                # Makes file search faster in doom-emacs
+      fontconfig
       fzf-zsh           # Fuzzy line-finder for zsh
       git
       gitAndTools.delta # Nicer pager
       gnumake
       home-manager
       htop              # Nicer top
+      iosevkass09
       jq                # JSON viewer
       less              # Better than busybox's less
       lorri
+      # mesloNerdP10k
       nixfmt            # Formatter for nix code
       niv
       openssl
