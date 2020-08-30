@@ -35,7 +35,6 @@ in
       binutils
       cabal2nix
       cachix
-      direnv
       doom-emacs
       fd                # Makes file search faster in doom-emacs
       fzf-zsh           # Fuzzy line-finder for zsh
@@ -65,10 +64,18 @@ in
 
   programs = {
 
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     zsh = {
       enable = true;
       initExtra = ''
-. /home/val/.nix-profile/etc/profile.d/nix.sh
+# This needs to be sourced using nix, but not on NixOS
+if [[ -f /home/val/.nix-profile/etc/profile.d/nix.sh ]]; then
+  . /home/val/.nix-profile/etc/profile.d/nix.sh
+fi
 cd ~
 eval "$(direnv hook zsh)"
 ${builtins.readFile ../dotfiles/p10k.zsh}
