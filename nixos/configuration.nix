@@ -38,27 +38,6 @@ in
     terminator        # Nice terminal
   ];
 
-  fonts = {
-    enableDefaultFonts = true;
-    fontconfig = {
-      defaultFonts.emoji = [ "Noto Color Emoji" ];
-    };
-    fonts = with pkgs; [
-      dejavu_fonts
-      emacs-all-the-icons-fonts
-      (iosevka.override {
-        privateBuildPlan = {
-          design = [ "ss09" ];
-          family = "Iosevka SS09";
-        };
-        set = "ss09";
-      })
-      noto-fonts-emoji
-      nur.repos.ptival.meslo-nerd-powerlevel10k
-      # symbola
-    ];
-  };
-
   # Use the nixpkgs set by nixpkgs here
   home-manager.useGlobalPkgs = true;
   home-manager.users.${userName} = import ./nixpkgs/home.nix;

@@ -41,7 +41,8 @@ in
 
 {
 
-  fonts.fontconfig.enable = true;
+  # Does not work on NixOS with useGlobalPkgs
+  # fonts.fontconfig.enable = true;
 
   home = {
     packages = with pkgs; [
@@ -49,7 +50,9 @@ in
       binutils
       cabal2nix
       cachix
+      dejavu_fonts
       doom-emacs
+      emacs-all-the-icons-fonts
       fd                # Makes file search faster in doom-emacs
       fontconfig
       fzf-zsh           # Fuzzy line-finder for zsh
@@ -63,6 +66,7 @@ in
       less              # Better than busybox's less
       lorri
       # mesloNerdP10k
+      noto-fonts-emoji
       nixfmt            # Formatter for nix code
       niv
       openssl
