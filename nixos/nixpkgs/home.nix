@@ -30,12 +30,11 @@ let
     privateBuildPlan = {
       design = [ "ss09" ];
       family = "Iosevka SS09";
-      weights = [ "regular" ];
     };
     set = "ss09";
   };
 
-  # mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
+  mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
 
 in
 
@@ -65,7 +64,7 @@ in
       jq                # JSON viewer
       less              # Better than busybox's less
       lorri
-      # mesloNerdP10k
+      mesloNerdP10k
       noto-fonts-emoji
       nixfmt            # Formatter for nix code
       niv
