@@ -56,6 +56,7 @@ in
       fontconfig
       fzf-zsh           # Fuzzy line-finder for zsh
       git
+      gitg
       gitAndTools.delta # Nicer pager
       gnumake
       home-manager
