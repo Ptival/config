@@ -11,18 +11,6 @@
         "url": "https://github.com/nix-community/NUR/archive/8ae898ed7bdaa7fb8fc83393c4fb302ff4d59147.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "home-manager": {
-        "branch": "master",
-        "description": "Manage a user environment using Nix",
-        "homepage": "https://rycee.gitlab.io/home-manager/",
-        "owner": "rycee",
-        "repo": "home-manager",
-        "rev": "28eb093a1e6999d52e60811008b4bfc7e20cc591",
-        "sha256": "0nfpby733q96vnmp2cbz25bnp3d7vkgmramn4hs1sn5xavhb1mbp",
-        "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/28eb093a1e6999d52e60811008b4bfc7e20cc591.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -41,10 +29,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7cfafd014f88e154de2592e2c2a48aeacd740eb3",
-        "sha256": "04kacgfxdvkq0qvkf2vxij0smmksbaf14n7r0jgbbrvqbih789jx",
+        "rev": "504f993df9a5ca63317fe9c859df19daad30aa14",
+        "sha256": "19innk4v45xq62q6n5h0alhfbb3v7yxpdd1r7sglgjn8sr3ylwmn",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/7cfafd014f88e154de2592e2c2a48aeacd740eb3.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/504f993df9a5ca63317fe9c859df19daad30aa14.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

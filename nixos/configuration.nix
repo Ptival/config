@@ -76,45 +76,6 @@ in
 
   programs = {
     vim.defaultEditor = true;
-
-#     zsh = {
-#       autosuggestions.enable = true;
-#       enable = true;
-
-#       interactiveShellInit = ''
-# export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/ # oh-my-zsh: use nix store version
-# plugins=(                                     # oh-my-zsh: plugins to load
-#   git
-# )
-# source $ZSH/oh-my-zsh.sh                      # oh-my-zsh: load
-# bindkey -e                                    # zsh:       use emacs keybindings
-# source ~/.common.rc.sh                        # zsh:       source aliases
-# eval "$(direnv hook zsh)"                     # zsh:       use direnv
-
-# # The following makes it so that <Shift-Tab> forces file completion regardless of context
-# # It is useful because sometimes zsh will refuse to complete, for instance:
-# # - for git commands, it won't complete ignored files
-# # - for cabal, it will not complete any file!!!
-# zle -C complete complete-word complete-files
-# bindkey '^[[Z' complete
-# complete-files () { compadd - $PREFIX* }
-#       '';
-
-#       ohMyZsh = {
-#         enable = true;
-#         plugins = [ "git" ];
-#       };
-
-#       promptInit = ''
-# source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-#        '';
-
-#       syntaxHighlighting = {
-#         enable = true;
-#         highlighters = [ "main" "brackets" "root" ];
-#       };
-
-#     };
   };
 
   services = {
@@ -181,7 +142,7 @@ in
       # For machines that need printing, add "lp"
       extraGroups = [ "docker" "tty" "wheel" ];
       hashedPassword = "$6$ISRUIiRHTmnpeO5P$CC462xIJS05eltVpeo7rZ2nIFK4Xy1XpNtc72jKKYLTqi7B8O1v2ufcr7mwxfletpd03tAXapp2WpENC5L3ib0";
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
     };
   };
 

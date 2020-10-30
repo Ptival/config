@@ -11,6 +11,18 @@
         "url": "https://github.com/nix-community/NUR/archive/70b1bc827dec30891e9d38f9c658caf4e0c9fb0a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "done": {
+        "branch": "master",
+        "description": "A fish-shell package to automatically receive notifications when long processes finish.",
+        "homepage": "",
+        "owner": "franciscolourenco",
+        "repo": "done",
+        "rev": "3409c4a7b5363c786981761f12184112eccead70",
+        "sha256": "1fn4q2clm0n9agb9f2vx1zj3g785kfjyyfdr2w3zzmsjaa8kcxqr",
+        "type": "tarball",
+        "url": "https://github.com/franciscolourenco/done/archive/3409c4a7b5363c786981761f12184112eccead70.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
@@ -21,6 +33,54 @@
         "sha256": "1qd5dbwl6bxrp2b2kyrh1irplaza4rnbvib9amngf3720yrsqhn4",
         "type": "tarball",
         "url": "https://github.com/nix-community/emacs-overlay/archive/49a1b0997ae25d7057aa563d0b9f178afb2293ae.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "fish-abbreviation-tips": {
+        "branch": "master",
+        "description": "💡 Help you remembering your abbreviations",
+        "homepage": "",
+        "owner": "Gazorby",
+        "repo": "fish-abbreviation-tips",
+        "rev": "d6eeb11601f8aff9cc598b101c31352e5776acd3",
+        "sha256": "1zyb41csjfbm4fzdbrjjp2wv87ax12ga02l6cqjnr196jmlrf1lp",
+        "type": "tarball",
+        "url": "https://github.com/Gazorby/fish-abbreviation-tips/archive/d6eeb11601f8aff9cc598b101c31352e5776acd3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "fzf": {
+        "branch": "master",
+        "description": "Ef-🐟-ient fish keybindings for fzf",
+        "homepage": "",
+        "owner": "jethrokuan",
+        "repo": "fzf",
+        "rev": "c2895ba0a83543f6aa29086989d0b735c7943067",
+        "sha256": "1ydx0gv4mdnik8d4ymyckz9zkmiikq4xi0h4agca3sng87skwmw8",
+        "type": "tarball",
+        "url": "https://github.com/jethrokuan/fzf/archive/c2895ba0a83543f6aa29086989d0b735c7943067.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "home-manager": {
+        "branch": "release-20.09",
+        "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
+        "homepage": "https://nix-community.github.io/home-manager/",
+        "owner": "rycee",
+        "repo": "home-manager",
+        "rev": "abaebf3b346c4bef500c5bd2fdebbed109261a0c",
+        "sha256": "1gcv2ni4nsicpmi4ain568msvgxch8cj04fxf6qgvhdklmh2y84k",
+        "type": "tarball",
+        "url": "https://github.com/rycee/home-manager/archive/abaebf3b346c4bef500c5bd2fdebbed109261a0c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "mono": {
+        "branch": "master",
+        "description": "No bells and whistles, true minimal prompt for the fish shell",
+        "homepage": null,
+        "owner": "fishpkg",
+        "repo": "mono",
+        "rev": "3312b7953869e9e3eaa898990b588295b15c1238",
+        "sha256": "18rf19j5dxx7sclrnmb86ip1qnarw9j8sdylllrl9pm5dlsadd03",
+        "type": "tarball",
+        "url": "https://github.com/fishpkg/mono/archive/3312b7953869e9e3eaa898990b588295b15c1238.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -48,15 +108,87 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "release-20.03",
+        "branch": "release-20.09",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f9c449328840fe949c035f275b6c6d8fec077280",
-        "sha256": "042k7fjvn71db0fs2sjkdz00fv1085abqg8hspclm1f7hirzdwsy",
+        "rev": "b60ebd7bd28495087a52812e0ad5a6665ac3d0b9",
+        "sha256": "0kxxki1pzxxlzypa5knkc9xhwaj1jxk7irvv3k1k860hs95xqwah",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/f9c449328840fe949c035f275b6c6d8fec077280.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/b60ebd7bd28495087a52812e0ad5a6665ac3d0b9.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "plugin-bang-bang": {
+        "branch": "master",
+        "description": "Bash style history substitution for Oh My Fish",
+        "homepage": null,
+        "owner": "oh-my-fish",
+        "repo": "plugin-bang-bang",
+        "rev": "d45ae216969fa5c3eac0b6248119e8a1da56fe89",
+        "sha256": "0jpcs8fpw9a69ai6mwhgikw77j03fhnixcl21yx1b5p65333pddc",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/plugin-bang-bang/archive/d45ae216969fa5c3eac0b6248119e8a1da56fe89.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "plugin-fasd": {
+        "branch": "master",
+        "description": "fasd plugin for Oh My Fish",
+        "homepage": null,
+        "owner": "oh-my-fish",
+        "repo": "plugin-fasd",
+        "rev": "38a5b6b6011106092009549e52249c6d6f501fba",
+        "sha256": "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/plugin-fasd/archive/38a5b6b6011106092009549e52249c6d6f501fba.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "plugin-foreign-env": {
+        "branch": "master",
+        "description": "Run foreign bash scripts and capture exported environment variables",
+        "homepage": "",
+        "owner": "oh-my-fish",
+        "repo": "plugin-foreign-env",
+        "rev": "dddd9213272a0ab848d474d0cbde12ad034e65bc",
+        "sha256": "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/plugin-foreign-env/archive/dddd9213272a0ab848d474d0cbde12ad034e65bc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "theme-agnoster": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "oh-my-fish",
+        "repo": "theme-agnoster",
+        "rev": "3f69efb77be4bb116d78e2ebf295836ca73097ca",
+        "sha256": "0cs4hrsnbqxvxv741vd1apydl727cki5zphc6x7pppw5xs0k2359",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/theme-agnoster/archive/3f69efb77be4bb116d78e2ebf295836ca73097ca.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "theme-bobthefish": {
+        "branch": "master",
+        "description": "A Powerline-style, Git-aware fish theme optimized for awesome.",
+        "homepage": "",
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "rev": "57d172882f61a4d896ed584cc7e7bf1bd13a08ea",
+        "sha256": "04j9rzyf9va77jgm8pbjzs4mmzpy311j99gnggq09y5vc9zhv3pc",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/theme-bobthefish/archive/57d172882f61a4d896ed584cc7e7bf1bd13a08ea.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "theme-coffeeandcode": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "oh-my-fish",
+        "repo": "theme-coffeeandcode",
+        "rev": "a6bf57410851f0c198a386c03d5154837d615799",
+        "sha256": "0kxb1lcm5dgzgg8zgbbgqa6q0y29zs2dsnmwz5w8lbc7qzwmnksa",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/theme-coffeeandcode/archive/a6bf57410851f0c198a386c03d5154837d615799.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
