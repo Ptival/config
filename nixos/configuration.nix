@@ -20,8 +20,6 @@ in
     keyMap = "us";
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
-
   # Here I put packages that are relevant to a full NixOS installation,
   # where I want some GUI applications not provided by some other host.
   #
