@@ -1,0 +1,169 @@
+cradle:
+  multi:
+
+    - path: "./dependencies/cryptol/docs"
+      config:
+        cradle:
+          none:
+
+    - path: "./dependencies/llvm-pretty/examples"
+      config:
+        cradle:
+          none:
+
+    - path: "."
+      config:
+        cradle:
+          cabal:
+
+            - path: "./crucible/src"
+              component: "lib:crucible"
+            - path: "./crucible/test/absint"
+              component: "test:absint-tests"
+            - path: "./crucible/test/helpers"
+              component: "test:helper-tests"
+
+            - path: "./crucible-go/src"
+              component: "lib:crucible-go"
+            - path: "./crucible-go/tool"
+              component: "exe:crux-go"
+
+            - path: "./crucible-jvm/src"
+              component: "lib:crucible-jvm"
+            - path: "./crucible-jvm/tool"
+              component: "exe:crucible-jvm"
+
+            - path: "./crucible-llvm/src"
+              component: "lib:crucible-llvm"
+
+            - path: "./crucible-mc/exe"
+              component: "exe:crucible-mc"
+
+            - path: "./crucible-saw/src"
+              component: "lib:crucible-saw"
+
+            - path: "./crucible-server/src"
+              component: "lib:crucible-server"
+
+            - path: "./crucible-syntax/src"
+              component: "lib:crucible-syntax"
+
+            - path: "./crux/src"
+              component: "lib:crux"
+
+            - path: "./crux-llvm/src"
+              component: "lib:crux-llvm"
+            - path: "./crux-llvm/exe"
+              component: "exe:crux-llvm"
+            - path: "./crux-llvm/test"
+              component: "test:crux-llvm-test"
+            - path: "./crux-llvm/svcomp"
+              component: "exe:crux-llvm-svcomp"
+
+            - path: "./crux-mir/src"
+              component: "lib:crux-mir"
+            - path: "./crux-mir/exe"
+              component: "exe:crux-mir"
+
+            - path: "./dependencies/abcBridge/src"
+              component: "lib:abcBridge"
+            - path: "./dependencies/abcBridge/tests"
+              component: "test:abc-test"
+
+            - path: "./dependencies/aig/src"
+              component: "lib:aig"
+
+            - path: "./dependencies/blt/src"
+              component: "lib:blt"
+
+            - path: "./dependencies/cryptol/bench"
+              component: "benchmark:cryptol-bench"
+            - path: "./dependencies/cryptol/cryptol"
+              component: "exe:cryptol"
+            - path: "./dependencies/cryptol/src"
+              component: "lib:cryptol"
+            - path: "./dependencies/cryptol/utils"
+              component: "exe:cryptol-html"
+
+            - path: "./dependencies/cryptol-verifier/css"
+              component: "exe:css"
+            - path: "./dependencies/cryptol-verifier/test"
+              component: "test:cryptol-verifier-tc-test"
+            - path: "./dependencies/cryptol-verifier/src"
+              component: "lib:cryptol-verifier"
+
+            - path: "./dependencies/golang/src"
+              component: "lib:golang"
+
+            - path: "./dependencies/jvm-parser/src"
+              component: "lib:jvm-parser"
+
+            - path: "./dependencies/hpb/hpb"
+              component: "exe:hpb"
+            - path: "./dependencies/hpb/src"
+              component: "lib:hpb"
+
+            - path: "./dependencies/llvm-pretty/src"
+              component: "lib:llvm-pretty"
+
+            - path: "./dependencies/llvm-pretty-bc-parser/src"
+              component: "lib:llvm-pretty-bc-parser"
+            - path: "./dependencies/llvm-pretty-bc-parser/fuzzing"
+              component: "exe:fuzz-llvm-disasm"
+            - path: "./dependencies/llvm-pretty-bc-parser/llvm-disasm"
+              component: "exe:llvm-disasm"
+            - path: "./dependencies/llvm-pretty-bc-parser/disasm-test"
+              component: "test:disasm-test"
+            - path: "./dependencies/llvm-pretty-bc-parser/regression-test"
+              component: "test:regression-test"
+            - path: "./dependencies/llvm-pretty-bc-parser/unit-test"
+              component: "test:unit-test"
+
+            - path: "./dependencies/saw-core/saw-core/src"
+              component: "lib:saw-core"
+            - path: "./dependencies/saw-core/saw-core/tools"
+              component: "exe:extcore-info"
+            - path: "./dependencies/saw-core/saw-core/tests/src"
+              component: "test:test-sawcore"
+
+            - path: "./dependencies/saw-core/rme"
+              component: "lib:rme"
+
+            - path: "./dependencies/saw-core/saw-core-aig/src"
+              component: "lib:saw-core-aig"
+
+            - path: "./dependencies/saw-core/saw-core-sbv/src"
+              component: "lib:saw-core-sbv"
+
+            - path: "./dependencies/saw-core/saw-core-what4/src"
+              component: "lib:saw-core-what4"
+
+            - path: "./dependencies/saw-core/cryptol-saw-core/css"
+              component: "exe:css"
+            - path: "./dependencies/saw-core/cryptol-saw-core/src"
+              component: "lib:cryptol-saw-core"
+
+            - path: "./dependencies/what4/what4/doc/QuickStart.hs"
+              component: "exe:quickstart"
+            - path: "./dependencies/what4/what4/src"
+              component: "lib:what4"
+            - path: "./dependencies/what4/what4/test/AdapterTest.hs"
+              component: "test:adapter-test"
+            - path: "./dependencies/what4/what4/test/ExprBuilderSMTLib2.hs"
+              component: "test:expr-builder-smtlib2"
+            - path: "./dependencies/what4/what4/test/ExprsTest.hs"
+              component: "test:exprs_tests"
+            - path: "./dependencies/what4/what4/test/IteExprs.hs"
+              component: "test:iteexprs_tests"
+            - path: "./dependencies/what4/what4/test/OnlineSolverTest.hs"
+              component: "test:online-solver-test"
+            - path: "./dependencies/what4/what4/test/HH"
+              component: "test:bvdomain_tests_hh"
+            - path: "./dependencies/what4/what4/test/QC"
+              component: "test:bvdomain_tests"
+
+            - path: "./dependencies/what4/what4-abc/src"
+              component: "lib:what4-abc"
+
+            - path: "./dependencies/what4/what4-blt/src"
+              component: "lib:what4-blt"

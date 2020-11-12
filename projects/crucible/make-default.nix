@@ -9,7 +9,7 @@
 { src }:
 let
 
-  name = "saw-script";
+  name = "crucible";
   compiler-nix-name = "ghc883";
   niv = source: fetchTarball { inherit (sources.${source}) url sha256; };
 
@@ -24,7 +24,7 @@ let
   pkgs = import haskellNix.sources.nixpkgs-2003 (haskellNix.nixpkgsArgs // {
     overlays = haskellNix.nixpkgsArgs.overlays ++ [
       (self: super: {
-        abc = self.callPackage ./nix/abc {};
+        abc = self.callPackage ./abc {};
         golang = throw "golang";
       })
     ];
@@ -59,7 +59,20 @@ let
     }];
   };
 
-  saw-script-set = pkgs.haskell-nix.cabalProject {
+  implicit-hie-set = pkgs.haskell-nix.cabalProject {
+    src = pkgs.fetchFromGitHub {
+      name = "implicit-hie";
+      inherit (sources.implicit-hie) owner repo rev sha256;
+    };
+    # lookupSha256 = { location, tag, ... } : {
+    #   "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" = "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
+    #   "https://github.com/bubba/hie-bios.git"."cec139a1c3da1632d9a59271acc70156413017e7" = "1iqk55jga4naghmh8zak9q7ssxawk820vw8932dhympb767dfkha";
+    # }."${location}"."${tag}";
+    inherit compiler-nix-name; # index-state; # checkMaterialization;
+    plan-sha256 = "0828xria5skvgnnxnnxlw78l95w2a5cdsjp0hc49rwxfc853v342";
+  };
+
+  crucible-set = pkgs.haskell-nix.cabalProject {
 
     inherit compiler-nix-name;
 
@@ -76,7 +89,7 @@ let
           packages = {
             fourmolu = default "fourmolu" "0.1.0.0";
             happy = default "happy" "1.19.12";
-            # implicit-hie = default "implicit-hie" "0.1.2.0";
+            implicit-hie = default "implicit-hie" "0.1.2.0";
             shake = default "shake" "0.18.4";
           };
         })
@@ -88,31 +101,48 @@ in
 
 {
 
-  shell = saw-script-set.shellFor {
+  shell = crucible-set.shellFor {
 
     buildInputs = [
+      crucible-set.crux-llvm.components.exes.crux-llvm
       hls-set.haskell-language-server.components.exes.haskell-language-server
+      implicit-hie-set.implicit-hie.components.exes.gen-hie
+      pkgs.abc
       pkgs.clang
       pkgs.llvm
       pkgs.yices
       pkgs.z3
-      saw-script-set.cryptol.components.exes.cryptol
-      saw-script-set.saw-script.components.exes.saw
     ];
 
     packages = p: [
-      p.abcBridge
-      # p.crucible-go
+      # p.abcBridge
+      # p.aig
+      # p.blt
       p.crucible
-      # p.crucible-jvm
+      p.crucible-go
+      p.crucible-jvm
       p.crucible-llvm
-      # p.crucible-mc
+      p.crucible-mc
       p.crucible-saw
-      # p.crucible-server
-      # p.crucible-syntax
+      p.crucible-server
+      p.crucible-syntax
       p.crux
-      # p.cryptol
-      p.saw-script
+      p.crux-llvm
+      p.crux-mir
+      p.cryptol
+      # p.golang
+      # p.hpb
+      p.jvm-parser
+      p.llvm-pretty
+      p.llvm-pretty-bc-parser
+      # p.rme
+      p.saw-core
+      p.saw-core-aig
+      p.saw-core-sbv
+      p.saw-core-what4
+      p.what4
+      p.what4-abc
+      # p.what4-blt
     ];
 
     tools = {
@@ -121,6 +151,7 @@ in
         version = "3.2.0.0";
       };
       # happy = "1.19.12";
+      hie-bios = "0.7.0";
       hlint = "2.2.11";
       hpack = "0.34.2";
       ormolu = "0.1.2.0";
