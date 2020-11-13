@@ -1,6 +1,7 @@
 let
 
   sources = import ./nix/sources.nix {};
+  home-manager-sources = import ./nixpkgs/nix/sources.nix {};
   fetchNiv = niv: fetchTarball { inherit (niv) url sha256; };
 
   pkgs = import (fetchNiv sources.nixpkgs) {
@@ -8,7 +9,7 @@ let
       allowUnfree = true;
     };
   };
-  homeManager = fetchNiv sources.home-manager;
+  homeManager = fetchNiv home-manager-sources.home-manager;
   nur = pkgs.callPackage (fetchNiv sources.NUR) {};
 
   userName = "val";
@@ -89,6 +90,8 @@ in
 
     lorri.enable = true;
 
+    # nextcloud.package = pkgs.nextcloud18;
+
     # vsliveshare = {
     #   enable = true;
     #   extensionsDir = "/home/val/.vscode/extensions";
@@ -153,8 +156,8 @@ in
     };
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.docker.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
