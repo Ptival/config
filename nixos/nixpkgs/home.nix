@@ -45,6 +45,8 @@ in
   # Does not work on NixOS with useGlobalPkgs
   # fonts.fontconfig.enable = true;
 
+  manual.manpages.enable = false;
+
   home = {
 
     packages = with pkgs; [
@@ -53,16 +55,14 @@ in
       cabal2nix
       cachix
       dejavu_fonts
-      doom-emacs
-      emacs-all-the-icons-fonts
+      # doom-emacs
+      # emacs-all-the-icons-fonts
       fasd
       fd                # Makes file search faster in doom-emacs
       fontconfig
-      fzf
+      # fzf
       # fzf-zsh           # Fuzzy line-finder for zsh
-      git
-      gitg
-      gitAndTools.delta # Nicer pager
+      # gitg
       gnumake
       htop              # Nicer top
       iosevkass09
@@ -77,6 +77,7 @@ in
       openssl
       # (import ./texlive.nix {})
       ripgrep           # Better grep
+      vscode
       wget
       yq                # YAML viewer
       # zsh-powerlevel10k
@@ -102,6 +103,8 @@ in
       interactiveShellInit = ''
       # Windows terminal wants to start us in C:/Users/<User>/...
       cd ~
+      fenv source ~/.nix-profile/etc/profile.d/nix.sh
+      # direnv hook fish | source
       '';
 
       plugins = [
@@ -140,10 +143,10 @@ in
              src = niv sources.plugin-foreign-env;
         }
 
-        {
-          name = "fish-prompt-mono";
-          src = niv sources.mono;
-        }
+        # {
+        #   name = "hydro";
+        #   src = niv sources.hydro;
+        # }
 
         {
           name = "fzf";
@@ -166,9 +169,22 @@ in
 
     };
 
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    git = {
+      enable = true;
+      # delta = {
+      #   enable = true;
+      # };
+    };
+
+
     home-manager = {
       enable = true;
-      path = https://github.com/rycee/home-manager/archive/release-20.03.tar.gz;
+      # path = https://github.com/rycee/home-manager/archive/release-20.03.tar.gz;
     };
 
   };
