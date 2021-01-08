@@ -63,6 +63,7 @@ in
       # fzf
       # fzf-zsh           # Fuzzy line-finder for zsh
       # gitg
+      gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
       gnumake
       htop              # Nicer top
       iosevkass09
@@ -126,10 +127,10 @@ in
           src = niv sources.done;
         }
 
-        {
-          name = "fasd";
-          src = niv sources.plugin-fasd;
-        }
+        # {
+        #   name = "fasd";
+        #   src = niv sources.plugin-fasd;
+        # }
 
         # needs fish >= 3.1.0
         # {
@@ -176,9 +177,10 @@ in
 
     git = {
       enable = true;
-      # delta = {
-      #   enable = true;
-      # };
+      delta = {
+        enable = true;
+      };
+      userName = "Valentin Robert";
     };
 
 
