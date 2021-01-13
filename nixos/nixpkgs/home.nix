@@ -78,7 +78,7 @@ in
       openssl
       # (import ./texlive.nix {})
       ripgrep           # Better grep
-      vscode
+      # vscode # NOT NEEDED on Windows machines with WSL2
       wget
       yq                # YAML viewer
       # zsh-powerlevel10k
@@ -122,10 +122,10 @@ in
         }
 
         # receive notification when long process is done
-        {
-          name = "done";
-          src = niv sources.done;
-        }
+        # {
+        #   name = "done";
+        #   src = niv sources.done;
+        # }
 
         # {
         #   name = "fasd";
@@ -149,10 +149,10 @@ in
         #   src = niv sources.hydro;
         # }
 
-        {
-          name = "fzf";
-          src = niv sources.fzf;
-        }
+        # {
+        #   name = "fzf";
+        #   src = niv sources.fzf;
+        # }
 
         # makes !! be the last command used as in bash
         {
