@@ -10,7 +10,7 @@
 let
 
   name = "saw-script";
-  compiler-nix-name = "ghc8102";
+  compiler-nix-name = "ghc884";
   fetchNiv = niv: fetchTarball { inherit (sources.${niv}) url sha256; };
 
   sources = import ./nix/sources.nix { };
@@ -19,9 +19,8 @@ let
   };
 
   pkgs = import haskellNix.sources.nixpkgs-2003 (haskellNix.nixpkgsArgs // {
-    overlays = haskellNix.nixpkgsArgs.overlays ++ [ (self: super: {
-      abc = self.callPackage ./nix/abc {};
-    }) ];
+    overlays = haskellNix.nixpkgsArgs.overlays
+      ++ [ (self: super: { abc = self.callPackage ./nix/abc { }; }) ];
   });
 
   # hls-set = pkgs.haskell-nix.cabalProject {
@@ -33,14 +32,16 @@ let
   #     fetchSubmodules = true;
   #   };
   #   # src = fetchNiv "haskell-language-server";
-  #   lookupSha256 = { location, tag, ... } : {
-  #     "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" = "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
-  #   }."${location}"."${tag}";
+  #   lookupSha256 = { location, tag, ... }:
+  #     {
+  #       "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" =
+  #         "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
+  #     }."${location}"."${tag}";
   #   inherit compiler-nix-name; # index-state; # checkMaterialization;
   #   # Plan issues with the benchmarks, can try removing later
   #   configureArgs = "--disable-benchmarks";
   #   # Invalidate and update if you change the version
-  #   plan-sha256 = "0ga7a2d22hbxvhx4363g0iyss4x5kaamkxh7bhmcki6azsha92vz";
+  #   plan-sha256 = "1vyriqi905kl2yrx1xg04cy11wfm9nq1wswny7xm1cwv03gyj6y8";
   #   modules = [{
   #     # Tests don't pass for some reason, but this is a somewhat random revision.
   #     packages.haskell-language-server.doCheck = false;
@@ -62,12 +63,29 @@ in set.${name}.components.library // {
 
   shell = set.shellFor {
 
+    buildInputs = [
+      # hls-set.haskell-language-server.components.exes.haskell-language-server
+      pkgs.clang
+      pkgs.llvm
+      pkgs.yices
+      pkgs.z3
+      set.cryptol.components.exes.cryptol
+      set.saw-script.components.exes.saw
+    ];
+
     packages = ps:
-      with ps;
-      [
-        ps.crucible
-        ps.cryptol
+      with ps; [
+        # ps.abcBridge
+        # ps.crucible
+        # ps.crux
+        # ps.cryptol
+        # ps.flexdis86
+        # ps.jvm-verifier
+        # ps.llvm-pretty
+        # ps.parameterized-utils
+        # ps.saw-core
         ps.${name}
+        # ps.what4
       ];
 
     withHoogle = true;
