@@ -59,13 +59,6 @@ in
       # emacs-all-the-icons-fonts
       fasd
       fd                # Makes file search faster in doom-emacs
-      fish
-      fishPlugins.foreign-env
-      (fishPlugins.buildFishPlugin {
-        pname = "bobthefish";
-        version = "TODO";
-        src = fetchTarball { inherit (sources.theme-bobthefish) url sha256; };
-      })
       fontconfig
       fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
