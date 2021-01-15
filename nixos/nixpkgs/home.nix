@@ -15,16 +15,16 @@ let
       ];
     };
 
-  doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
-    doomPrivateDir = ../dotfiles/doom.d;
-    emacsPackages = (pkgs.emacsPackagesNgGen
-      (pkgs.emacsGit.override {
-        inherit (pkgs) imagemagick;
-        withGTK3 = true;
-        withXwidgets = true;
-      }));
-    extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
-  };
+  # doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
+  #   doomPrivateDir = ../dotfiles/doom.d;
+  #   emacsPackages = (pkgs.emacsPackagesNgGen
+  #     (pkgs.emacsGit.override {
+  #       inherit (pkgs) imagemagick;
+  #       withGTK3 = true;
+  #       withXwidgets = true;
+  #     }));
+  #   extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
+  # };
 
   # myHomeManager = import (niv sources.home-manager) {};
 
@@ -59,19 +59,23 @@ in
       # emacs-all-the-icons-fonts
       fasd
       fd                # Makes file search faster in doom-emacs
+      fish
+      fishPlugins.foreign-env
+      (fishPlugins.buildFishPlugin {
+        pname = "bobthefish";
+        version = "TODO";
+        src = fetchTarball { inherit (sources.theme-bobthefish) url sha256; };
+      })
       fontconfig
-      # fzf
-      # fzf-zsh           # Fuzzy line-finder for zsh
-      # gitg
+      fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
       gnumake
       htop              # Nicer top
-      iosevkass09
+      # iosevkass09
       jq                # JSON viewer
       less              # Better than busybox's less
       lorri
       mesloNerdP10k
-      # myHomeManager
       noto-fonts-emoji
       nixfmt            # Formatter for nix code
       pkgs.niv
@@ -81,7 +85,6 @@ in
       # vscode # NOT NEEDED on Windows machines with WSL2
       wget
       yq                # YAML viewer
-      # zsh-powerlevel10k
     ];
   };
 
@@ -100,12 +103,11 @@ in
 
     fish = {
       enable = true;
+      # package = pkgs.fish;
 
       interactiveShellInit = ''
       # Windows terminal wants to start us in C:/Users/<User>/...
       cd ~
-      fenv source ~/.nix-profile/etc/profile.d/nix.sh
-      # direnv hook fish | source
       '';
 
       plugins = [
@@ -121,27 +123,21 @@ in
           src = niv sources.theme-bobthefish;
         }
 
-        # receive notification when long process is done
-        # {
-        #   name = "done";
-        #   src = niv sources.done;
-        # }
+        {
+          name = "nix-env.fish";
+          src = niv sources."nix-env.fish";
+        }
 
+        # Disabled while I figure out why it complains...
         # {
         #   name = "fasd";
         #   src = niv sources.plugin-fasd;
         # }
 
         # needs fish >= 3.1.0
-        # {
-        #   name = "fish-abbreviation-tips";
-        #   src = niv sources.fish-abbreviation-tips;
-        # }
-
-        # needed to source bash
         {
-             name="foreign-env";
-             src = niv sources.plugin-foreign-env;
+          name = "fish-abbreviation-tips";
+          src = niv sources.fish-abbreviation-tips;
         }
 
         # {
@@ -149,10 +145,10 @@ in
         #   src = niv sources.hydro;
         # }
 
-        # {
-        #   name = "fzf";
-        #   src = niv sources.fzf;
-        # }
+        {
+          name = "fzf";
+          src = niv sources.fzf;
+        }
 
         # makes !! be the last command used as in bash
         {
@@ -170,11 +166,6 @@ in
 
     };
 
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
     git = {
       enable = true;
       delta = {
@@ -183,10 +174,9 @@ in
       userName = "Valentin Robert";
     };
 
-
     home-manager = {
       enable = true;
-      # path = https://github.com/rycee/home-manager/archive/release-20.03.tar.gz;
+      path = https://github.com/rycee/home-manager/archive/master.tar.gz;
     };
 
   };
