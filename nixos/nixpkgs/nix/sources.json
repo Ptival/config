@@ -155,6 +155,18 @@
         "url": "https://github.com/oh-my-fish/plugin-fasd/archive/38a5b6b6011106092009549e52249c6d6f501fba.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "plugin-foreign-env": {
+        "branch": "master",
+        "description": "Run foreign bash scripts and capture exported environment variables",
+        "homepage": "",
+        "owner": "oh-my-fish",
+        "repo": "plugin-foreign-env",
+        "rev": "dddd9213272a0ab848d474d0cbde12ad034e65bc",
+        "sha256": "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs",
+        "type": "tarball",
+        "url": "https://github.com/oh-my-fish/plugin-foreign-env/archive/dddd9213272a0ab848d474d0cbde12ad034e65bc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "theme-agnoster": {
         "branch": "master",
         "description": null,

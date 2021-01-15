@@ -149,6 +149,11 @@ in
           src = niv sources.plugin-bang-bang;
         }
 
+        {
+          name = "plugin-foreign-env";
+          src = niv sources.plugin-foreign-env;
+        }
+
       ];
 
       shellAbbrs = {
