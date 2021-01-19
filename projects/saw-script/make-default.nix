@@ -101,7 +101,7 @@ in set.${name}.components.library // {
 
     # Prevents cabal from choosing alternate plans, so that
     # *all* dependencies are provided by Nix.
-    exactDeps = true;
+    # exactDeps = true;
 
   };
 
