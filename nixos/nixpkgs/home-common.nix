@@ -1,19 +1,11 @@
-# { config, lib, pkgs, ... }:
+{ configuration }:
 
 let
 
-  sources = import ./nix/sources.nix {};
-  niv = source: fetchTarball { inherit (source) url sha256; };
-  nur = pkgs.callPackage (niv sources.NUR) {};
-
-  pkgs = import (niv sources.nixpkgs) {
-      config = {
-        allowUnfree = true;
-      };
-      overlays = [
-        (import (niv sources.emacs-overlay))
-      ];
-    };
+  niv = configuration.niv;
+  nur = configuration.nur;
+  pkgs = configuration.pkgs;
+  sources = configuration.sources;
 
   # doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
   #   doomPrivateDir = ../dotfiles/doom.d;
@@ -64,7 +56,7 @@ in
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
       gnumake
       htop              # Nicer top
-      # iosevkass09
+      iosevkass09
       jq                # JSON viewer
       less              # Better than busybox's less
       lorri
@@ -75,7 +67,7 @@ in
       openssl
       # (import ./texlive.nix {})
       ripgrep           # Better grep
-      # vscode # NOT NEEDED on Windows machines with WSL2
+      vscode # NOT NEEDED on Windows machines with WSL2
       wget
       yq                # YAML viewer
     ];
