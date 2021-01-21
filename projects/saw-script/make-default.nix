@@ -65,6 +65,7 @@ in set.${name}.components.library // {
 
     buildInputs = [
       # hls-set.haskell-language-server.components.exes.haskell-language-server
+      pkgs.abc
       pkgs.clang
       pkgs.llvm
       pkgs.yices

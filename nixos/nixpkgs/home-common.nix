@@ -54,6 +54,7 @@ in
       fontconfig
       fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
+      github-cli
       gnumake
       htop              # Nicer top
       iosevkass09
