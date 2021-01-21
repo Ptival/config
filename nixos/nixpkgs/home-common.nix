@@ -68,7 +68,7 @@ in
       openssl
       # (import ./texlive.nix {})
       ripgrep           # Better grep
-      vscode # NOT NEEDED on Windows machines with WSL2
+      # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       wget
       yq                # YAML viewer
     ];
