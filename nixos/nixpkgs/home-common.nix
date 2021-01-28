@@ -162,6 +162,7 @@ in
       delta = {
         enable = true;
       };
+      package = pkgs.gitAndTools.gitFull;
       userName = "Valentin Robert";
     };
 
