@@ -23,30 +23,30 @@ let
       ++ [ (self: super: { abc = self.callPackage ./nix/abc { }; }) ];
   });
 
-  # hls-set = pkgs.haskell-nix.cabalProject {
-  #   src = pkgs.fetchFromGitHub {
-  #     name = "haskell-language-server";
-  #     inherit (sources.haskell-language-server) owner repo rev;
-  #     # Need to override the hash due to lack of niv submodule support
-  #     sha256 = "0vkh5ff6l5wr4450xmbki3cfhlwf041fjaalnwmj7zskd72s9p7p";
-  #     fetchSubmodules = true;
-  #   };
-  #   # src = fetchNiv "haskell-language-server";
-  #   lookupSha256 = { location, tag, ... }:
-  #     {
-  #       "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" =
-  #         "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
-  #     }."${location}"."${tag}";
-  #   inherit compiler-nix-name; # index-state; # checkMaterialization;
-  #   # Plan issues with the benchmarks, can try removing later
-  #   configureArgs = "--disable-benchmarks";
-  #   # Invalidate and update if you change the version
-  #   plan-sha256 = "1vyriqi905kl2yrx1xg04cy11wfm9nq1wswny7xm1cwv03gyj6y8";
-  #   modules = [{
-  #     # Tests don't pass for some reason, but this is a somewhat random revision.
-  #     packages.haskell-language-server.doCheck = false;
-  #   }];
-  # };
+  hls-set = pkgs.haskell-nix.cabalProject {
+    src = pkgs.fetchFromGitHub {
+      name = "haskell-language-server";
+      inherit (sources.haskell-language-server) owner repo rev;
+      # Need to override the hash due to lack of niv submodule support
+      sha256 = "0p6fqs07lajbi2g1wf4w3j5lvwknnk58n12vlg48cs4iz25gp588";
+      fetchSubmodules = true;
+    };
+    # src = fetchNiv "haskell-language-server";
+    lookupSha256 = { location, tag, ... }:
+      {
+        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" =
+          "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
+      }."${location}"."${tag}";
+    inherit compiler-nix-name; # index-state; # checkMaterialization;
+    # Plan issues with the benchmarks, can try removing later
+    configureArgs = "--disable-benchmarks";
+    # Invalidate and update if you change the version
+    plan-sha256 = "03h35lhz1ngmz0lifp9g7lchp4dy7qlqj87rc9dsivdi4g1hlcqq";
+    modules = [{
+      # Tests don't pass for some reason, but this is a somewhat random revision.
+      packages.haskell-language-server.doCheck = false;
+    }];
+  };
 
   set = pkgs.haskell-nix.cabalProject {
 
@@ -59,12 +59,12 @@ let
 
   };
 
-in set.${name}.components.library // {
+in set // {
 
   shell = set.shellFor {
 
     buildInputs = [
-      # hls-set.haskell-language-server.components.exes.haskell-language-server
+      hls-set.haskell-language-server.components.exes.haskell-language-server
       pkgs.abc
       pkgs.clang
       pkgs.llvm

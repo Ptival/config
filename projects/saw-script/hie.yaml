@@ -12,6 +12,10 @@ cradle:
       config:
         cradle:
           none:
+    - path: "./deps/saw-core-coq"
+      config:
+        cradle:
+          none:
     - path: "."
       config:
         cradle:
@@ -76,7 +80,7 @@ cradle:
               component: "cryptol-saw-core"
             - path: "./deps/saw-core/rme"
               component: "rme"
-            - path: "./deps/saw-core/coq"
+            - path: "./deps/saw-core/saw-core-coq"
               component: "saw-core-coq"
             - path: "./deps/saw-core/saw-core"
               component: "saw-core"
