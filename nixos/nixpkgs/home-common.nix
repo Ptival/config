@@ -159,9 +159,9 @@ in
 
     git = {
       enable = true;
-      delta = {
-        enable = true;
-      };
+      # delta = {
+      #   enable = true;
+      # };
       package = pkgs.gitAndTools.gitFull;
       userName = "Valentin Robert";
     };
