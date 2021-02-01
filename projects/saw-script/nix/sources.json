@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "input-output-hk",
         "repo": "hackage.nix",
-        "rev": "677670f0054c78359e98de1107d1867fd47aa12a",
-        "sha256": "0w6qp87r8c18ss8wwmvsrp5kv0nvwc1v910mgpfnbnf3glz0ph9q",
+        "rev": "7796c019978766d8c785d6469ca818c87411414a",
+        "sha256": "1ssspxrdq6jj056qkghdv7mak1q2za6x25h4fd9dfs9i91v92jlk",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/hackage.nix/archive/677670f0054c78359e98de1107d1867fd47aa12a.tar.gz",
+        "url": "https://github.com/input-output-hk/hackage.nix/archive/7796c019978766d8c785d6469ca818c87411414a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-language-server": {
@@ -29,10 +29,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "eb0b336c721b32a03502ce12526fe4d7d17559b2",
-        "sha256": "1zhm3y8rrp42g4vf6xmcakw6b05w9wqgdmm9f1bgp2hw42lfqii4",
+        "rev": "b4e3a936787249ceb7fca704ae93d536bac46062",
+        "sha256": "1w6l5y6fci2v7xbvkaxs21mr629la2q5v182jdl9wlz29ff08558",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/eb0b336c721b32a03502ce12526fe4d7d17559b2.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/b4e3a936787249ceb7fca704ae93d536bac46062.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -41,22 +41,22 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "18b7314c13a6d0e82113a15c14e7a5f54286327d",
-        "sha256": "0b2xb99nn7ddysvgzncwa4vglv0j6c0l4bgxz9hl4i3gmrlq3r59",
+        "rev": "3cd7914b2c4cff48927e11c216dadfab7d903fe5",
+        "sha256": "1agq4nvbhrylf2s77kb4xhh9k7xcwdwggq764k4jgsbs70py8cw3",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/18b7314c13a6d0e82113a15c14e7a5f54286327d.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/3cd7914b2c4cff48927e11c216dadfab7d903fe5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixos-unstable",
+        "branch": "staging",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
-        "repo": "nixpkgs-channels",
-        "rev": "84d74ae9c9cbed73274b8e4e00be14688ffc93fe",
-        "sha256": "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v",
+        "repo": "nixpkgs",
+        "rev": "7044cd0c9d20eafe4edf64ea5a3b9b45f55e8589",
+        "sha256": "06g5gy0f9d0w946kjcq9bqqlpbx009rq9092wsmk6pg6y79srvdb",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/7044cd0c9d20eafe4edf64ea5a3b9b45f55e8589.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
