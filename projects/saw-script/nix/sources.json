@@ -1,4 +1,16 @@
 {
+    "abc": {
+        "branch": "master",
+        "description": "ABC: System for Sequential Logic Synthesis and Formal Verification",
+        "homepage": "",
+        "owner": "GaloisInc",
+        "repo": "abc",
+        "rev": "24407e13db4b8ca16c3996049b2d33ec3722de39",
+        "sha256": "1rckji7nk81n6v1yajz7daqwipxacv7zlafknvmbiwji30j47sq5",
+        "type": "tarball",
+        "url": "https://github.com/GaloisInc/abc/archive/24407e13db4b8ca16c3996049b2d33ec3722de39.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "hackage.nix": {
         "branch": "master",
         "description": "Automatically generated Nix expressions for Hackage",
@@ -35,6 +47,18 @@
         "url": "https://github.com/input-output-hk/haskell.nix/archive/b4e3a936787249ceb7fca704ae93d536bac46062.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "macos11-haskell-workaround": {
+        "branch": "main",
+        "description": "Make Haskell work on macOS again!",
+        "homepage": null,
+        "owner": "Ptival",
+        "repo": "macos11-haskell-workaround",
+        "rev": "0052c23f6ea6afa79bad2b9bb256dbdf9415b511",
+        "sha256": "0j37b0p8f1if1s94m3nhd9pw50hdk5vh90jmp340d2vvvjkp6zmc",
+        "type": "tarball",
+        "url": "https://github.com/Ptival/macos11-haskell-workaround/archive/0052c23f6ea6afa79bad2b9bb256dbdf9415b511.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -48,15 +72,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "staging",
+        "branch": "staging-next",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7044cd0c9d20eafe4edf64ea5a3b9b45f55e8589",
-        "sha256": "06g5gy0f9d0w946kjcq9bqqlpbx009rq9092wsmk6pg6y79srvdb",
+        "rev": "b02f606084b7756c6bdb3c908f0a9897b6109740",
+        "sha256": "0p0vlz5h2az9qs7xngm3nqxg7maszd1ig7bkh7pqkwcl3fpv7f1v",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/7044cd0c9d20eafe4edf64ea5a3b9b45f55e8589.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/b02f606084b7756c6bdb3c908f0a9897b6109740.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

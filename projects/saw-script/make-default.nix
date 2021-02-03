@@ -18,9 +18,14 @@ let
     sourceOverrides = { hackage = import (fetchNiv "hackage.nix"); };
   };
 
-  pkgs = import haskellNix.sources.nixpkgs-2003 (haskellNix.nixpkgsArgs // {
+  pkgs = import sources.nixpkgs (haskellNix.nixpkgsArgs // {
+  # pkgs = import haskellNix.sources.nixpkgs-2003 (haskellNix.nixpkgsArgs // {
     overlays = haskellNix.nixpkgsArgs.overlays
-      ++ [ (self: super: { abc = self.callPackage ./nix/abc { }; }) ];
+      ++ [
+        # NOTE: abc-verifier in nixpkgs does not package its lib and include, just the exe
+        # (self: super: { abc = self.abc-verifier; })
+        (self: super: { abc = self.callPackage ./nix/abc { }; })
+      ];
   });
 
   hls-set = pkgs.haskell-nix.cabalProject {
@@ -57,6 +62,24 @@ let
       # subDir = "";
     };
 
+    modules =
+      let
+        workaround = pkgs.callPackage ./nix/macos11-haskell-workaround {};
+        preConfigureWorkaround = ''
+          export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
+        '';
+      in
+      [
+        {
+          # packages.abcBridge.components.library.build-tools = [
+          #   pkgs.abc-verifier
+          # ];
+          packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
+          packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
+          packages.saw-script.components.library.preConfigure = preConfigureWorkaround;
+        }
+      ];
+
   };
 
 in set // {
@@ -65,7 +88,6 @@ in set // {
 
     buildInputs = [
       hls-set.haskell-language-server.components.exes.haskell-language-server
-      pkgs.abc
       pkgs.clang
       pkgs.llvm
       pkgs.yices
@@ -97,8 +119,6 @@ in set // {
       hpack = "0.34.2";
       ormolu = "0.1.2.0";
     };
-
-    # buildInputs = with pkgs.haskellPackages; [ ghcid pkgs.binutils ];
 
     # Prevents cabal from choosing alternate plans, so that
     # *all* dependencies are provided by Nix.
