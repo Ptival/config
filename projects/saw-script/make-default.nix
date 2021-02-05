@@ -10,7 +10,7 @@
 let
 
   name = "saw-script";
-  compiler-nix-name = "ghc884";
+  compiler-nix-name = "ghc8103";
   fetchNiv = niv: fetchTarball { inherit (sources.${niv}) url sha256; };
 
   sources = import ./nix/sources.nix { };
@@ -19,7 +19,7 @@ let
   };
 
   pkgs = import sources.nixpkgs (haskellNix.nixpkgsArgs // {
-  # pkgs = import haskellNix.sources.nixpkgs-2003 (haskellNix.nixpkgsArgs // {
+  # pkgs = import haskellNix.sources.nixpkgs-2009 (haskellNix.nixpkgsArgs // {
     overlays = haskellNix.nixpkgsArgs.overlays
       ++ [
         # NOTE: abc-verifier in nixpkgs does not package its lib and include, just the exe
@@ -46,7 +46,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "1k9i6w6n2wbxqmpdw8ii7ln1vy5h9px1wdnpgv33fxvbnphpb7kb";
+    plan-sha256 = "0zr6wjnnkpqajxr5mp0ipa38r0b8hkbprgb9gbjdrl1i88bixwmr";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
@@ -96,17 +96,19 @@ in set // {
       set.saw-script.components.exes.saw
     ];
 
+    DYLD_INSERT_LIBRARIES="${pkgs.callPackage ./nix/macos11-haskell-workaround {}}/macos11ghcwa.dylib";
+
     packages = ps:
       with ps; [
-        # ps.abcBridge
-        # ps.crucible
-        # ps.crux
-        # ps.cryptol
+        ps.abcBridge
+        ps.crucible
+        ps.crux
+        ps.cryptol
         # ps.flexdis86
         # ps.jvm-verifier
         # ps.llvm-pretty
-        # ps.parameterized-utils
-        # ps.saw-core
+        ps.parameterized-utils
+        ps.saw-core
         ps.${name}
         # ps.what4
       ];
