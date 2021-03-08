@@ -8,6 +8,7 @@
 
     // backtick
     "`" = {
+      "A" = ("insertText:", "À"); // a accent grave
       "a" = ("insertText:", "à"); // a accent grave
       "e" = ("insertText:", "è"); // e accent grave
     };
@@ -15,6 +16,7 @@
     // caret
     "\\^" = {
       "e" = ("insertText:", "ê"); // e accent circonflexe
+      "o" = ("insertText:", "ô"); // o accent circonflexe
     };
 
     // comma
