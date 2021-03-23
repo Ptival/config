@@ -17,22 +17,22 @@
         "homepage": "",
         "owner": "input-output-hk",
         "repo": "hackage.nix",
-        "rev": "b0f6ebce466ac2103793f1ddaa4cf70c5616e4dd",
-        "sha256": "1r3ls3qfc71ypiqby5w7xid9rzpaq84p68ync1qy37iryj95pa6l",
+        "rev": "0ac850abb162ac42b6c035e976734567d48cc888",
+        "sha256": "11ry7ipp7m4pjhj2jx8y942hfkaq5s2j93av6hix21hjj5xpy90d",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/hackage.nix/archive/b0f6ebce466ac2103793f1ddaa4cf70c5616e4dd.tar.gz",
+        "url": "https://github.com/input-output-hk/hackage.nix/archive/0ac850abb162ac42b6c035e976734567d48cc888.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-language-server": {
-        "branch": "0.9.0",
+        "branch": "1.0.0",
         "description": "Integration point for ghcide and haskell-ide-engine. One IDE to rule them all.",
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "46d2a3dc7ef49ba57b2706022af1801149ab3f2b",
-        "sha256": "18g0d7zac9xwywmp57dcrjnvms70f2mawviswskix78cv0iv4sk5",
+        "rev": "4cd1cf934638881e52b3eba9f70157a4b799c0e9",
+        "sha256": "0p0rhhc6pldzan85qp3nhc54zwabah8r3dvxdzw49i32dvy4xxgs",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-language-server/archive/46d2a3dc7ef49ba57b2706022af1801149ab3f2b.tar.gz",
+        "url": "https://github.com/haskell/haskell-language-server/archive/4cd1cf934638881e52b3eba9f70157a4b799c0e9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell.nix": {
@@ -41,10 +41,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "aad46b9a5bf0aacef94ee960cb3361bea306830a",
-        "sha256": "0vbzw469wxsqgl09mbdsd4dm09kngj8qqnc7v0sjcp3dsmfrir0g",
+        "rev": "3f9e7d746895aa9811867a85a3790ba1e3da2798",
+        "sha256": "03knwpcraq6j5l89k672gxw5a9swwaiqj1hdzhhiklrqjcjii79g",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/aad46b9a5bf0aacef94ee960cb3361bea306830a.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/3f9e7d746895aa9811867a85a3790ba1e3da2798.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "macos11-haskell-workaround": {
@@ -65,22 +65,22 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "3cd7914b2c4cff48927e11c216dadfab7d903fe5",
-        "sha256": "1agq4nvbhrylf2s77kb4xhh9k7xcwdwggq764k4jgsbs70py8cw3",
+        "rev": "af958e8057f345ee1aca714c1247ef3ba1c15f5e",
+        "sha256": "1qjavxabbrsh73yck5dcq8jggvh3r2jkbr6b5nlz5d9yrqm9255n",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/3cd7914b2c4cff48927e11c216dadfab7d903fe5.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "staging-next",
+        "branch": "babf9d6100c3e5dcdbbbe8850de99d3fe2b3cf86",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f29b00fcb45cd086899c607f5db39b67f8dcb238",
-        "sha256": "1n7g2zb3msb26p72i3g3z752rbrcrjj2idaqmrxjnsrrbpi8an1g",
+        "rev": "babf9d6100c3e5dcdbbbe8850de99d3fe2b3cf86",
+        "sha256": "0bvqcmxw3dld7in7f3r9ncwxi2dqpsdq8nmsd8ww181ry8zkxlrw",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/f29b00fcb45cd086899c607f5db39b67f8dcb238.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/babf9d6100c3e5dcdbbbe8850de99d3fe2b3cf86.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -11,6 +11,7 @@
       "A" = ("insertText:", "À"); // a accent grave
       "a" = ("insertText:", "à"); // a accent grave
       "e" = ("insertText:", "è"); // e accent grave
+      "u" = ("insertText:", "ù"); // u accent grave
     };
 
     // caret

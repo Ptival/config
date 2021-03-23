@@ -18,7 +18,8 @@ let
     sourceOverrides = { hackage = import (fetchNiv "hackage.nix"); };
   };
 
-  pkgs = import sources.nixpkgs (haskellNix.nixpkgsArgs // {
+  pkgs = import haskellNix.sources.nixpkgs-unstable (haskellNix.nixpkgsArgs // {
+  # pkgs = import sources.nixpkgs (haskellNix.nixpkgsArgs // {
   # pkgs = import haskellNix.sources.nixpkgs-2009 (haskellNix.nixpkgsArgs // {
     overlays = haskellNix.nixpkgsArgs.overlays
       ++ [
@@ -33,7 +34,7 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "18g0d7zac9xwywmp57dcrjnvms70f2mawviswskix78cv0iv4sk5";
+      sha256 = "0p0rhhc6pldzan85qp3nhc54zwabah8r3dvxdzw49i32dvy4xxgs";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
@@ -48,7 +49,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "1amd018md8i7lm253wi311vszg14f2icafw85id456jdimzl5sp9";
+    plan-sha256 = "1arb1fxsz5240lbp3hjp090qg2qp32z1p4xhcash991lcqmjr40d";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
@@ -78,6 +79,9 @@ let
           # ];
           packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
           packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
+          # Can't find the right way to disable tests entirely
+          # packages.saw-remote-api.doCheck = false;
+          # packages.saw-remote-api.components.tests.test-saw-remote-api.doCheck = false;
           packages.saw-script.components.library.preConfigure = preConfigureWorkaround;
         }
       ];

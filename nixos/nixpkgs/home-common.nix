@@ -42,6 +42,7 @@ in
   home = {
 
     packages = with pkgs; [
+      any-nix-shell
       bat               # Nicer cat
       binutils
       cabal2nix
@@ -56,6 +57,14 @@ in
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
       github-cli
       gnumake
+
+      # It is nice to always have some Haskell packages available for
+      # bootstrapping project, even if the projects bring their own copy of
+      # such tools.
+      haskellPackages.cabal-install
+      haskellPackages.hpack
+      haskellPackages.ghc
+
       htop              # Nicer top
       iosevkass09
       jq                # JSON viewer
@@ -91,9 +100,13 @@ in
       enable = true;
       # package = pkgs.fish;
 
+      # Added towards the end of ~/.config/fish/config.fish
       interactiveShellInit = ''
       # Windows terminal wants to start us in C:/Users/<User>/...
-      cd ~
+      # cd ~
+      # Need to find something else, because this breaks stuff like vscode debugging
+
+      any-nix-shell fish --info-right | source
       '';
 
       plugins = [
@@ -169,6 +182,22 @@ in
     home-manager = {
       enable = true;
       path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+    };
+
+    vim = {
+      enable = true;
+      extraConfig = ''
+        colorscheme delek
+        " filetype plugin indent on      " ?
+        set autoindent                 " Indent based on previous line indentation
+        " set backspace=indent,eol,start " ?
+        set expandtab                  " Pressing <TAB> inserts spaces according to 'shiftwidth' and 'softtabstop'
+        set number                     " Display line numbers
+        set softtabstop=2
+        set shiftwidth=2
+        set smartindent                " Helps autoindent make smarter, language-based choices
+        " syntax on
+      '';
     };
 
   };

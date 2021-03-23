@@ -42,6 +42,8 @@ cradle:
               component: "crucible-llvm"
             - path: "./deps/crucible/crucible-saw"
               component: "crucible-saw"
+            - path: "./deps/crucible/crux-llvm"
+              component: "crux-llvm"
             - path: "./deps/crucible/crux"
               component: "crux"
             - path: "./deps/cryptol"
