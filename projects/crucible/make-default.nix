@@ -60,10 +60,21 @@ let
 
     inherit compiler-nix-name;
 
-    src = pkgs.haskell-nix.cleanSourceHaskell {
-      inherit name src;
-      # subDir = "";
-    };
+    src =
+      let
+        mySourceFilter = name: type:
+          let baseName = baseNameOf (toString name);
+          in pkgs.haskell-nix.haskellSourceFilter name type && !(
+            # this trips haskell.nix as it contains files named package.yaml
+            baseName == "node_modules"
+            # || other conditions...
+          );
+      in
+      pkgs.lib.cleanSourceWith {
+        filter = mySourceFilter;
+        inherit name;
+        src = pkgs.lib.cleanSource src;
+      };
 
     pkg-def-extras = [(hackage: {
       packages = {
