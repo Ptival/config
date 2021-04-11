@@ -122,6 +122,7 @@ in set // {
         ps.abcBridge
         ps.crucible
         ps.crux
+        ps.crux-llvm
         # ps.flexdis86
         # ps.jvm-verifier
         # ps.llvm-pretty

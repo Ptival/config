@@ -7,15 +7,23 @@ let
   pkgs = configuration.pkgs;
   sources = configuration.sources;
 
+  # Disabled until this is fixed:
+  # https://github.com/nix-community/emacs-overlay/issues/124
+
   # doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
   #   doomPrivateDir = ../dotfiles/doom.d;
-  #   emacsPackages = (pkgs.emacsPackagesNgGen
-  #     (pkgs.emacsGit.override {
-  #       inherit (pkgs) imagemagick;
-  #       withGTK3 = true;
-  #       withXwidgets = true;
-  #     }));
-  #   extraPackages = epkgs: [ pkgs.emacsPackages.proofgeneral_HEAD ];
+  #   # emacsPackages = (pkgs.emacsPackagesNgGen
+  #   #   (pkgs.emacsGit.override {
+  #   #     # inherit (pkgs) imagemagick;
+  #   #     # withGTK3 = true;
+  #   #     # withXwidgets = true;
+  #   #   }));
+  #   extraPackages = epkgs: [
+  #     pkgs.emacsPackages.proofgeneral_HEAD
+  #   ];
+  #   dependencyOverrides = {
+  #     "auctex" = throw "TODO";
+  #   };
   # };
 
   # myHomeManager = import (niv sources.home-manager) {};
@@ -41,6 +49,10 @@ in
 
   home = {
 
+    # file.".emacs.d/init.el".text = ''
+    #   (load "default.el")
+    # '';
+
     packages = with pkgs; [
       any-nix-shell
       bat               # Nicer cat
@@ -49,7 +61,8 @@ in
       cachix
       dejavu_fonts
       # doom-emacs
-      # emacs-all-the-icons-fonts
+      emacs
+      emacs-all-the-icons-fonts
       fasd
       fd                # Makes file search faster in doom-emacs
       fontconfig
@@ -73,6 +86,7 @@ in
       mesloNerdP10k
       noto-fonts-emoji
       nixfmt            # Formatter for nix code
+      nixpkgs-fmt       # Other formatter?
       pkgs.niv
       openssl
       # (import ./texlive.nix {})
