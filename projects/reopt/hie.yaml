@@ -23,13 +23,6 @@ cradle:
             - path: "./crucible/test/helpers"
               component: "test:helper-tests"
 
-            - path: "./crucible-concurrency/src"
-              component: "lib:crucible-concurrency"
-            - path: "./crucible-concurrency/crucibles"
-              component: "exe:cruces"
-            - path: "./crucible-concurrency/test"
-              component: "test:crucible-concurrency-golden-tests"
-
             - path: "./crucible-go/src"
               component: "lib:crucible-go"
             - path: "./crucible-go/tool"
@@ -45,8 +38,6 @@ cradle:
 
             - path: "./crucible-mc/exe"
               component: "exe:crucible-mc"
-            - path: "./crucible-mc/src"
-              component: "lib:crucible-mc"
 
             - path: "./crucible-saw/src"
               component: "lib:crucible-saw"
@@ -73,15 +64,6 @@ cradle:
               component: "lib:crux-mir"
             - path: "./crux-mir/exe"
               component: "exe:crux-mir"
-            - path: "./crux-mir/test"
-              component: "test:test"
-
-            - path: "./uc-crux-llvm/src"
-              component: "lib:uc-crux-llvm"
-            - path: "./uc-crux-llvm/exe"
-              component: "exe:uc-crux-llvm"
-            - path: "./uc-crux-llvm/test"
-              component: "test:uc-crux-llvm-test"
 
             - path: "./dependencies/abcBridge/src"
               component: "lib:abcBridge"
@@ -120,9 +102,6 @@ cradle:
               component: "exe:hpb"
             - path: "./dependencies/hpb/src"
               component: "lib:hpb"
-
-            - path: "./dependencies/language-sally/src"
-              component: "lib:language-sally"
 
             - path: "./dependencies/llvm-pretty/src"
               component: "lib:llvm-pretty"
@@ -188,8 +167,3 @@ cradle:
 
             - path: "./dependencies/what4/what4-blt/src"
               component: "lib:what4-blt"
-
-            - path: "./dependencies/what4/what4-transition-system/src"
-              component: "lib:what4-transition-system"
-            - path: "./dependencies/what4/what4-transition-system/test"
-              component: "test:transition-system-tests"

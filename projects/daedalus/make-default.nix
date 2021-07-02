@@ -9,7 +9,7 @@
 { src }:
 let
 
-  name = "saw-script";
+  name = "daedalus";
   compiler-nix-name = "ghc8104";
   fetchNiv = niv: fetchTarball { inherit (sources.${niv}) url sha256; };
 
@@ -62,16 +62,27 @@ let
 
     inherit compiler-nix-name;
 
-    src = pkgs.haskell-nix.cleanSourceHaskell {
-      inherit name src;
-      # subDir = "";
-    };
+    src =
+      let
+        mySourceFilter = name: type:
+          let baseName = baseNameOf (toString name);
+          in pkgs.haskell-nix.haskellSourceFilter name type && !(
+            # this trips haskell.nix as it contains files named package.yaml
+            baseName == "node_modules"
+            # || other conditions...
+          );
+      in
+      pkgs.lib.cleanSourceWith {
+        filter = mySourceFilter;
+        inherit name;
+        src = pkgs.lib.cleanSource src;
+      };
 
-    lookupSha256 = { location, tag, ... }:
-      {
-        "https://github.com/eddywestbrook/hobbits.git"."e5918895396b6bcee2fc39f6bd0d77a90a52ba5f" =
-          "0qh1b3z6n7afgsd1zzsy8crrx00p7k31yy3jhckmzmpfpiknkl8m";
-      }."${location}"."${tag}";
+    pkg-def-extras = [(hackage: {
+      packages = {
+        # containers = hackage.containers."0.5.11.0".revisions.default;
+      };
+    })];
 
     modules =
       let
@@ -81,15 +92,12 @@ let
       in
       [
         {
-          # packages.abcBridge.components.library.build-tools = [
-          #   pkgs.abc-verifier
-          # ];
-          packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
-          packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
-          # Can't find the right way to disable tests entirely
-          # packages.saw-remote-api.doCheck = false;
-          # packages.saw-remote-api.components.tests.test-saw-remote-api.doCheck = false;
-          packages.saw-script.components.library.preConfigure = preConfigureWorkaround;
+          packages.abcBridge.components.library.build-tools = [
+            pkgs.abc-verifier
+          ];
+          # packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
+          # packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
+          packages.wasm.components.library.preConfigure = preConfigureWorkaround;
         }
       ];
 
@@ -99,39 +107,33 @@ in set // {
 
   shell = set.shellFor {
 
+    inherit name;
+
     buildInputs = [
+      hls-set.ghcide.components.exes.ghcide
       hls-set.haskell-language-server.components.exes.haskell-language-server
-      pkgs.clang
-      pkgs.llvm
-      pkgs.yices
-      pkgs.z3
-      set.cryptol.components.exes.cryptol
-      set.saw-script.components.exes.saw
+      # pkgs.boost # for crucible-wasm?
+      # pkgs.clang
+      # pkgs.glpk # for BLT
+      # # pkgs.haskellPackages.cabal-fmt
+      # pkgs.llvm
+      # pkgs.ntl # for BLT
+      # pkgs.yices
+      # pkgs.z3
     ];
 
     DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";
 
-    name = "saw-script";
-
     packages = ps:
       with ps; [
-        # ps.abcBridge
-        ps.crucible
-        ps.crux
-        ps.cryptol
-        # ps.flexdis86
-        # ps.jvm-verifier
-        # ps.llvm-pretty
-        ps.parameterized-utils
-        ps.saw-core
-        ps.${name}
-        # ps.what4
+        ps.daedalus-language-server
       ];
 
     withHoogle = true;
 
     tools = {
       cabal = "3.2.0.0";
+      cabal-fmt = "0.1.5.1";
       hlint = "2.2.11";
       hpack = "0.34.2";
       ormolu = "0.1.2.0";

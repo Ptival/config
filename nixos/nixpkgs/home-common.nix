@@ -61,13 +61,14 @@ in
       cachix
       dejavu_fonts
       # doom-emacs
-      emacs
-      emacs-all-the-icons-fonts
+      # emacs
+      # emacs-all-the-icons-fonts
       fasd
       fd                # Makes file search faster in doom-emacs
       fontconfig
       fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
+      gitAndTools.git-delete-merged-branches
       github-cli
       gnumake
 

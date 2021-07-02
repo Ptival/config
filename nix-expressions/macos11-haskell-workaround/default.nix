@@ -1,14 +1,10 @@
-{ clang, pkgs, stdenv }:
-
-let
-  sources = import ../sources.nix {};
-in
-
+{ clang, pkgs, source, stdenv }:
 stdenv.mkDerivation rec {
-  name = "macos11-haskell-workaround-${version}";
-  version = sources.macos11-haskell-workaround.rev;
 
-  src = sources.macos11-haskell-workaround;
+  name = "macos11-haskell-workaround-${version}";
+  version = source.rev;
+
+  src = source;
 
   buildPhase = ''
     clang -target x86_64-darwin -dynamiclib macos11ghcwa.c -o macos11ghcwa.dylib

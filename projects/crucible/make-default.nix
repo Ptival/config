@@ -10,7 +10,7 @@
 let
 
   name = "crucible";
-  compiler-nix-name = "ghc8103";
+  compiler-nix-name = "ghc8104";
   fetchNiv = niv: fetchTarball { inherit (sources.${niv}) url sha256; };
 
   sources = import ./nix/sources.nix { };
@@ -25,7 +25,7 @@ let
       ++ [
         # NOTE: abc-verifier in nixpkgs does not package its lib and include, just the exe
         # (self: super: { abc = self.abc-verifier; })
-        (self: super: { abc = self.callPackage ./nix/abc { }; })
+        (self: super: { abc = self.callPackage ../../nix-expressions/abc { source = sources.abc; }; })
       ];
   });
 
@@ -34,26 +34,28 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "0p0rhhc6pldzan85qp3nhc54zwabah8r3dvxdzw49i32dvy4xxgs";
+      sha256 = "0gpbk0si0gvk5bahdig90mwcvzyq7kbxnszxnyjc5xnvb3y5pnmw";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
     lookupSha256 = { location, tag, ... }:
       {
-        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" =
-          "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
-        "https://github.com/alanz/ghc-exactprint.git"."6748e24da18a6cea985d20cc3e1e7920cb743795" =
-          "18r41290xnlizgdwkvz16s7v8k2znc7h215sb1snw6ga8lbv60rb";
+        "https://github.com/hsyl20/ghc-api-compat"."8fee87eac97a538dbe81ff1ab18cff10f2f9fa15" =
+          "16bibb7f3s2sxdvdy2mq6w1nj1lc8zhms54lwmj17ijhvjys29vg";
       }."${location}"."${tag}";
     inherit compiler-nix-name; # index-state; # checkMaterialization;
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "1arb1fxsz5240lbp3hjp090qg2qp32z1p4xhcash991lcqmjr40d";
+    plan-sha256 = "00bbr66bzjzb81g15l70xmd110axllxakh6dp1b6p5s334qa95ww";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
     }];
+  };
+
+  workaround = pkgs.callPackage ./macos11-haskell-workaround {
+    source = sources.macos11-haskell-workaround;
   };
 
   set = pkgs.haskell-nix.cabalProject {
@@ -84,19 +86,18 @@ let
 
     modules =
       let
-        workaround = pkgs.callPackage ./nix/macos11-haskell-workaround {};
         preConfigureWorkaround = ''
           export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
         '';
       in
       [
         {
-          # packages.abcBridge.components.library.build-tools = [
-          #   pkgs.abc-verifier
-          # ];
+          packages.abcBridge.components.library.build-tools = [
+            pkgs.abc-verifier
+          ];
           # packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
           # packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
-          # packages.saw-script.components.library.preConfigure = preConfigureWorkaround;
+          packages.wasm.components.library.preConfigure = preConfigureWorkaround;
         }
       ];
 
@@ -106,29 +107,42 @@ in set // {
 
   shell = set.shellFor {
 
+    inherit name;
+
     buildInputs = [
       hls-set.ghcide.components.exes.ghcide
       hls-set.haskell-language-server.components.exes.haskell-language-server
+      pkgs.boost # for crucible-wasm?
       pkgs.clang
+      pkgs.glpk # for BLT
+      # pkgs.haskellPackages.cabal-fmt
       pkgs.llvm
+      pkgs.ntl # for BLT
       pkgs.yices
       pkgs.z3
     ];
 
-    DYLD_INSERT_LIBRARIES="${pkgs.callPackage ./nix/macos11-haskell-workaround {}}/macos11ghcwa.dylib";
+    DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";
 
     packages = ps:
       with ps; [
-        ps.abcBridge
+        ps.abcBridge # keep this for ABC library
         ps.crucible
+        ps.crucible-concurrency
+        ps.crucible-go
+        ps.crucible-jvm
+        ps.crucible-llvm
+        ps.crucible-wasm
+        ps.crucible-syntax
         ps.crux
         ps.crux-llvm
+        ps.crux-mir
         # ps.flexdis86
         # ps.jvm-verifier
         # ps.llvm-pretty
-        ps.parameterized-utils
+        # ps.parameterized-utils
         # ps.saw-core
-        ps.${name}
+        ps.uc-crux-llvm
         # ps.what4
       ];
 
@@ -136,6 +150,7 @@ in set // {
 
     tools = {
       cabal = "3.2.0.0";
+      cabal-fmt = "0.1.5.1";
       hlint = "2.2.11";
       hpack = "0.34.2";
       ormolu = "0.1.2.0";

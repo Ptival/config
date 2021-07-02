@@ -1,15 +1,10 @@
-{ cmake, pkgs, readline, stdenv }:
-
-let
-  sources = import ../sources.nix {};
-in
-
+{ cmake, pkgs, readline, source, stdenv }:
 stdenv.mkDerivation rec {
   name = "abc-${version}";
-  version = sources.abc.rev;
+  version = source.rev;
 
   # if we ever want to use upstream: check abc-verifier in nixpkgs for recent mirror
-  src = sources.abc;
+  src = source;
 
   # n.b. the following are documented, but libabc.so is not a valid make target:
   # ABC_USE_PIC=1 libabc.so
