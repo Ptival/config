@@ -92,12 +92,20 @@ let
       in
       [
         {
-          packages.abcBridge.components.library.build-tools = [
-            pkgs.abc-verifier
-          ];
-          # packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
-          # packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
-          packages.wasm.components.library.preConfigure = preConfigureWorkaround;
+
+          packages.pdf-cos.components.library.preBuild = ''
+            cp --remove-destination ${src}/jpeg/JpegBasics.ddl ./spec/JpegBasics.ddl
+          '';
+
+          packages.pdf-driver.components.library.preBuild = ''
+            cp --remove-destination ${src}/pdf-cos/spec/JpegBasics.ddl ./spec/JpegBasics.ddl
+            cp --remove-destination ${src}/pdf-cos/spec/PdfDecl.ddl    ./spec/PdfDecl.ddl
+            cp --remove-destination ${src}/pdf-cos/spec/PdfValue.ddl   ./spec/PdfValue.ddl
+            cp --remove-destination ${src}/pdf-cos/spec/PdfXRef.ddl    ./spec/PdfXref.ddl
+            cp --remove-destination ${src}/pdf-cos/spec/Stdlib.ddl     ./spec/Stdlib.ddl
+            ls -lah spec
+          '';
+
         }
       ];
 
@@ -112,14 +120,7 @@ in set // {
     buildInputs = [
       hls-set.ghcide.components.exes.ghcide
       hls-set.haskell-language-server.components.exes.haskell-language-server
-      # pkgs.boost # for crucible-wasm?
-      # pkgs.clang
-      # pkgs.glpk # for BLT
-      # # pkgs.haskellPackages.cabal-fmt
-      # pkgs.llvm
-      # pkgs.ntl # for BLT
-      # pkgs.yices
-      # pkgs.z3
+      pkgs.nodejs_latest
     ];
 
     DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";

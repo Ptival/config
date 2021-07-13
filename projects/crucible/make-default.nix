@@ -118,6 +118,7 @@ in set // {
       # pkgs.haskellPackages.cabal-fmt
       pkgs.llvm
       pkgs.ntl # for BLT
+      pkgs.websocat # for websocket debugging
       pkgs.yices
       pkgs.z3
     ];
@@ -143,7 +144,7 @@ in set // {
         # ps.parameterized-utils
         # ps.saw-core
         ps.uc-crux-llvm
-        # ps.what4
+        ps.what4
       ];
 
     withHoogle = true;
