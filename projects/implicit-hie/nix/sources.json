@@ -1,0 +1,98 @@
+{
+    "abc": {
+        "branch": "master",
+        "description": "ABC: System for Sequential Logic Synthesis and Formal Verification",
+        "homepage": "",
+        "owner": "GaloisInc",
+        "repo": "abc",
+        "rev": "24407e13db4b8ca16c3996049b2d33ec3722de39",
+        "sha256": "1rckji7nk81n6v1yajz7daqwipxacv7zlafknvmbiwji30j47sq5",
+        "type": "tarball",
+        "url": "https://github.com/GaloisInc/abc/archive/24407e13db4b8ca16c3996049b2d33ec3722de39.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "berkeley-softfloat-3": {
+        "branch": "master",
+        "description": "SoftFloat release 3",
+        "homepage": "http://www.jhauser.us/arithmetic/SoftFloat.html",
+        "owner": "ucb-bar",
+        "repo": "berkeley-softfloat-3",
+        "rev": "b64af41c3276f97f0e181920400ee056b9c88037",
+        "sha256": "0h2lz7m3mnyccs0sbqg087hgd2csbpd990mqwn1wjlx3x73nkyb1",
+        "type": "tarball",
+        "url": "https://github.com/ucb-bar/berkeley-softfloat-3/archive/b64af41c3276f97f0e181920400ee056b9c88037.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "hackage.nix": {
+        "branch": "master",
+        "description": "Automatically generated Nix expressions for Hackage",
+        "homepage": "",
+        "owner": "input-output-hk",
+        "repo": "hackage.nix",
+        "rev": "dc9ad9f34597f6947517db30211b3a2de7770aaf",
+        "sha256": "0ik37g7931kpk5kz5hnf6c1yn3b3pabq6a0hyr1w33qg1rshdw8n",
+        "type": "tarball",
+        "url": "https://github.com/input-output-hk/hackage.nix/archive/dc9ad9f34597f6947517db30211b3a2de7770aaf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "haskell-language-server": {
+        "branch": "1.2.0",
+        "description": "Integration point for ghcide and haskell-ide-engine. One IDE to rule them all.",
+        "homepage": "",
+        "owner": "haskell",
+        "repo": "haskell-language-server",
+        "rev": "be2071e985cb417f984ab00a1aad76dee02d6d0b",
+        "sha256": "0gpbk0si0gvk5bahdig90mwcvzyq7kbxnszxnyjc5xnvb3y5pnmw",
+        "type": "tarball",
+        "url": "https://github.com/haskell/haskell-language-server/archive/be2071e985cb417f984ab00a1aad76dee02d6d0b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "haskell.nix": {
+        "branch": "master",
+        "description": "Alternative Haskell Infrastructure for Nixpkgs",
+        "homepage": "https://input-output-hk.github.io/haskell.nix",
+        "owner": "input-output-hk",
+        "repo": "haskell.nix",
+        "rev": "90184a79f96c877a71dd33cb6d590ee62317ed82",
+        "sha256": "0k8x6dy3z1va3vjsx6403a0hay322xk3p62by3sw2rpadyx9r7w1",
+        "type": "tarball",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/90184a79f96c877a71dd33cb6d590ee62317ed82.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "macos11-haskell-workaround": {
+        "branch": "main",
+        "description": "Make Haskell work on macOS again!",
+        "homepage": null,
+        "owner": "Ptival",
+        "repo": "macos11-haskell-workaround",
+        "rev": "0052c23f6ea6afa79bad2b9bb256dbdf9415b511",
+        "sha256": "0j37b0p8f1if1s94m3nhd9pw50hdk5vh90jmp340d2vvvjkp6zmc",
+        "type": "tarball",
+        "url": "https://github.com/Ptival/macos11-haskell-workaround/archive/0052c23f6ea6afa79bad2b9bb256dbdf9415b511.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
+        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixpkgs-unstable",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "51bb9f3e9ab6161a3bf7746e20b955712cef618b",
+        "sha256": "1bqla14c80ani27c7901rnl37kiiqrvyixs6ifvm48p5y6xbv1p7",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/51bb9f3e9ab6161a3bf7746e20b955712cef618b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

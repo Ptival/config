@@ -34,22 +34,20 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "0kviq3kinm3i0qm4r26rdnlkwbs1s3r1rqiqdry517rgkgnjpcp5";
+      sha256 = "0gpbk0si0gvk5bahdig90mwcvzyq7kbxnszxnyjc5xnvb3y5pnmw";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
     lookupSha256 = { location, tag, ... }:
       {
-        "https://github.com/bubba/brittany.git"."c59655f10d5ad295c2481537fc8abf0a297d9d1c" =
-          "1rkk09f8750qykrmkqfqbh44dbx1p8aq1caznxxlw8zqfvx39cxl";
-        "https://github.com/alanz/ghc-exactprint.git"."6748e24da18a6cea985d20cc3e1e7920cb743795" =
-          "18r41290xnlizgdwkvz16s7v8k2znc7h215sb1snw6ga8lbv60rb";
+        "https://github.com/hsyl20/ghc-api-compat"."8fee87eac97a538dbe81ff1ab18cff10f2f9fa15" =
+          "16bibb7f3s2sxdvdy2mq6w1nj1lc8zhms54lwmj17ijhvjys29vg";
       }."${location}"."${tag}";
     inherit compiler-nix-name; # index-state; # checkMaterialization;
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "0hjk22sxa0i3ix8mprkzl00q1v938hkzh63ml0dc5a4kybh8jqxq";
+    plan-sha256 = "00bbr66bzjzb81g15l70xmd110axllxakh6dp1b6p5s334qa95ww";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;

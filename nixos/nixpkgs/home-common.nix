@@ -93,6 +93,7 @@ in
       # (import ./texlive.nix {})
       ripgrep           # Better grep
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
+      vimpager
       wget
       yq                # YAML viewer
     ];

@@ -1,117 +1,24 @@
-# You can sym-link to this file in the actual project directory.
-# You can then create a `default.nix` with contents:
-#
-#   import ./make-default.nix { src = ./.; }
-#
-# You can also create a `shell.nix` with contents:
-#
-#   (import ./.).shell
 { src }:
+
 let
 
-  name = "crucible";
-  compiler-nix-name = "ghc8104";
-  fetchNiv = niv: fetchTarball { inherit (sources.${niv}) url sha256; };
-
-  sources = import ./nix/sources.nix { };
-  haskellNix = import (fetchNiv "haskell.nix") {
-    sourceOverrides = { hackage = import (fetchNiv "hackage.nix"); };
-  };
-
-  pkgs = import haskellNix.sources.nixpkgs-unstable (haskellNix.nixpkgsArgs // {
-  # pkgs = import sources.nixpkgs (haskellNix.nixpkgsArgs // {
-  # pkgs = import haskellNix.sources.nixpkgs-2009 (haskellNix.nixpkgsArgs // {
-    overlays = haskellNix.nixpkgsArgs.overlays
-      ++ [
-        # NOTE: abc-verifier in nixpkgs does not package its lib and include, just the exe
-        # (self: super: { abc = self.abc-verifier; })
-        (self: super: { abc = self.callPackage ../../nix-expressions/abc { source = sources.abc; }; })
-      ];
-  });
-
-  hls-set = pkgs.haskell-nix.cabalProject {
-    src = pkgs.fetchFromGitHub {
-      name = "haskell-language-server";
-      inherit (sources.haskell-language-server) owner repo rev;
-      # Need to override the hash due to lack of niv submodule support
-      sha256 = "0gpbk0si0gvk5bahdig90mwcvzyq7kbxnszxnyjc5xnvb3y5pnmw";
-      fetchSubmodules = true;
+  buildWorkaround = { pkgs, sources, ... }:
+    pkgs.callPackage ./macos11-haskell-workaround {
+      source = sources.macos11-haskell-workaround;
     };
-    # src = fetchNiv "haskell-language-server";
-    lookupSha256 = { location, tag, ... }:
-      {
-        "https://github.com/hsyl20/ghc-api-compat"."8fee87eac97a538dbe81ff1ab18cff10f2f9fa15" =
-          "16bibb7f3s2sxdvdy2mq6w1nj1lc8zhms54lwmj17ijhvjys29vg";
-      }."${location}"."${tag}";
-    inherit compiler-nix-name; # index-state; # checkMaterialization;
-    # Plan issues with the benchmarks, can try removing later
-    configureArgs = "--disable-benchmarks";
-    # Invalidate and update if you change the version
-    plan-sha256 = "00bbr66bzjzb81g15l70xmd110axllxakh6dp1b6p5s334qa95ww";
-    modules = [{
-      # Tests don't pass for some reason, but this is a somewhat random revision.
-      packages.haskell-language-server.doCheck = false;
-    }];
-  };
 
-  workaround = pkgs.callPackage ./macos11-haskell-workaround {
-    source = sources.macos11-haskell-workaround;
-  };
+in
 
-  set = pkgs.haskell-nix.cabalProject {
+import ../haskell-scaffolding.nix (rec {
 
-    inherit compiler-nix-name;
+  compiler-nix-name = "ghc8104";
+  name = "crucible";
+  inherit src;
 
-    src =
-      let
-        mySourceFilter = name: type:
-          let baseName = baseNameOf (toString name);
-          in pkgs.haskell-nix.haskellSourceFilter name type && !(
-            # this trips haskell.nix as it contains files named package.yaml
-            baseName == "node_modules"
-            # || other conditions...
-          );
-      in
-      pkgs.lib.cleanSourceWith {
-        filter = mySourceFilter;
-        inherit name;
-        src = pkgs.lib.cleanSource src;
-      };
+  # DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";
 
-    pkg-def-extras = [(hackage: {
-      packages = {
-        # containers = hackage.containers."0.5.11.0".revisions.default;
-      };
-    })];
-
-    modules =
-      let
-        preConfigureWorkaround = ''
-          export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
-        '';
-      in
-      [
-        {
-          packages.abcBridge.components.library.build-tools = [
-            pkgs.abc-verifier
-          ];
-          # packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
-          # packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
-          packages.wasm.components.library.preConfigure = preConfigureWorkaround;
-        }
-      ];
-
-  };
-
-in set // {
-
-  shell = set.shellFor {
-
-    inherit name;
-
-    buildInputs = [
-      hls-set.ghcide.components.exes.ghcide
-      hls-set.haskell-language-server.components.exes.haskell-language-server
+  buildInputs = { pkgs, ... }:
+    [
       pkgs.boost # for crucible-wasm?
       pkgs.clang
       pkgs.glpk # for BLT
@@ -123,44 +30,60 @@ in set // {
       pkgs.z3
     ];
 
-    DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";
+  modules = info@{ pkgs, ... }:
+    let
+      workaround = buildWorkaround info;
+      preConfigureWorkaround = ''
+        export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
+      '';
+    in
+    [
+      {
+        packages.abcBridge.components.library.build-tools = [
+          pkgs.abc-verifier
+        ];
+        # packages.cryptol-saw-core.components.library.preConfigure = preConfigureWorkaround;
+        # packages.saw-core-coq.components.library.preConfigure = preConfigureWorkaround;
+        packages.wasm.components.library.preConfigure = preConfigureWorkaround;
+      }
+    ];
 
-    packages = ps:
-      with ps; [
-        ps.abcBridge # keep this for ABC library
-        ps.crucible
-        ps.crucible-concurrency
-        ps.crucible-go
-        ps.crucible-jvm
-        ps.crucible-llvm
-        ps.crucible-wasm
-        ps.crucible-syntax
-        ps.crux
-        ps.crux-llvm
-        ps.crux-mir
-        # ps.flexdis86
-        # ps.jvm-verifier
-        # ps.llvm-pretty
-        # ps.parameterized-utils
-        # ps.saw-core
-        ps.uc-crux-llvm
-        ps.what4
-      ];
+  overlays = { sources }:
+    [
+      # NOTE: abc-verifier in nixpkgs does not package its lib and include, just the exe
+      # (self: super: { abc = self.abc-verifier; })
+      (self: super: { abc = self.callPackage ../../nix-expressions/abc { source = sources.abc; }; })
+    ];
 
-    withHoogle = true;
+  packages = pkgs:
+    [
+      pkgs.abcBridge # keep this for ABC library
+      pkgs.crucible
+      pkgs.crucible-concurrency
+      pkgs.crucible-go
+      pkgs.crucible-jvm
+      pkgs.crucible-llvm
+      pkgs.crucible-wasm
+      pkgs.crucible-syntax
+      pkgs.crux
+      pkgs.crux-llvm
+      pkgs.crux-mir
+      # pkgs.flexdis86
+      # pkgs.jvm-verifier
+      # pkgs.llvm-pretty
+      # pkgs.parameterized-utils
+      # pkgs.saw-core
+      pkgs.uc-crux-llvm
+      pkgs.what4
+    ];
 
-    tools = {
-      cabal = "3.2.0.0";
-      cabal-fmt = "0.1.5.1";
-      hlint = "2.2.11";
-      hpack = "0.34.2";
-      ormolu = "0.1.2.0";
-    };
+  sourceFilter = { pkgs, ... }: name: type:
+    let baseName = baseNameOf (toString name);
+    in
+    pkgs.haskell-nix.haskellSourceFilter name type && !(
+      # this trips haskell.nix as it contains files named package.yaml
+      baseName == "node_modules"
+      # || other conditions...
+    );
 
-    # Prevents cabal from choosing alternate plans, so that
-    # *all* dependencies are provided by Nix.
-    # exactDeps = true;
-
-  };
-
-}
+})
