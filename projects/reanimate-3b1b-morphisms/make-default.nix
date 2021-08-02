@@ -6,6 +6,12 @@ import ../haskell-scaffolding.nix (rec {
   name = "reanimate-3b1b-morphisms";
   inherit src;
 
+  overlays = info: [
+    (self: super: {
+      m = self.openlibm;
+    })
+  ];
+
   packages = pkgs:
     [
       pkgs.${name}

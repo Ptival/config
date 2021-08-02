@@ -1,6 +1,6 @@
 { buildInputs ? ({ ... }: [ ])
 , compiler-nix-name
-, lookupSha256 ? ({ ... }: { })
+, lookupSha256 ? ({ ... }: null)
 , modules ? ({ ... }: [ ])
 , name
 , overlays ? ({ sources }: [ ])
