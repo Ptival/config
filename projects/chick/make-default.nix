@@ -2,7 +2,6 @@
 
 import ../haskell-scaffolding.nix (rec {
 
-  compiler-nix-name = "ghc8104";
   name = "chick";
   inherit src;
   subDir = "backend";

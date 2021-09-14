@@ -66,6 +66,8 @@ cradle:
               component: "exe:crux-llvm"
             - path: "./crux-llvm/for-ide"
               component: "exe:crux-llvm-for-ide"
+            - path: "./crux-llvm/for-ide/typescript-of-crux-llvm"
+              component: "exe:typescript-of-crux-llvm"
             - path: "./crux-llvm/test"
               component: "test:crux-llvm-test"
             - path: "./crux-llvm/svcomp"

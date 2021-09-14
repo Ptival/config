@@ -1,17 +1,7 @@
 { src }:
 
-let
-
-  buildWorkaround = { pkgs, sources, ... }:
-    pkgs.callPackage ./macos11-haskell-workaround {
-      source = sources.macos11-haskell-workaround;
-    };
-
-in
-
 import ../haskell-scaffolding.nix (rec {
 
-  compiler-nix-name = "ghc8104";
   name = "crucible";
   inherit src;
 
@@ -30,11 +20,10 @@ import ../haskell-scaffolding.nix (rec {
       pkgs.z3
     ];
 
-  modules = info@{ pkgs, ... }:
+  modules = info@{ macOSWorkaround, pkgs, ... }:
     let
-      workaround = buildWorkaround info;
       preConfigureWorkaround = ''
-        export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
+        export DYLD_INSERT_LIBRARIES=${macOSWorkaround}/macos11ghcwa.dylib
       '';
     in
     [
@@ -77,13 +66,6 @@ import ../haskell-scaffolding.nix (rec {
       pkgs.what4
     ];
 
-  sourceFilter = { pkgs, ... }: name: type:
-    let baseName = baseNameOf (toString name);
-    in
-    pkgs.haskell-nix.haskellSourceFilter name type && !(
-      # this trips haskell.nix as it contains files named package.yaml
-      baseName == "node_modules"
-      # || other conditions...
-    );
+  sourceFilter = { filters, ... }: filters.nodeModulesFilter;
 
 })

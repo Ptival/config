@@ -1,17 +1,7 @@
 { src }:
 
-let
-
-  buildWorkaround = { pkgs, sources, ... }:
-    pkgs.callPackage ./macos11-haskell-workaround {
-      source = sources.macos11-haskell-workaround;
-    };
-
-in
-
 import ../haskell-scaffolding.nix (rec {
 
-  compiler-nix-name = "ghc8104";
   name = "saw-script";
   inherit src;
 
@@ -24,7 +14,6 @@ import ../haskell-scaffolding.nix (rec {
       set.cryptol.components.exes.cryptol
       set.saw-script.components.exes.saw
     ];
-
 
   overlays = { sources }:
     [
@@ -39,11 +28,10 @@ import ../haskell-scaffolding.nix (rec {
         "0qh1b3z6n7afgsd1zzsy8crrx00p7k31yy3jhckmzmpfpiknkl8m";
     }."${location}"."${tag}";
 
-  modules = info@{ pkgs, ... }:
+  modules = info@{ macOSWorkaround, pkgs, ... }:
     let
-      workaround = buildWorkaround info;
       preConfigureWorkaround = ''
-        export DYLD_INSERT_LIBRARIES=${workaround}/macos11ghcwa.dylib
+        export DYLD_INSERT_LIBRARIES=${macOSWorkaround}/macos11ghcwa.dylib
       '';
     in
     [

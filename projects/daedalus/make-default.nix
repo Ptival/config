@@ -2,7 +2,6 @@
 
 import ../haskell-scaffolding.nix (rec {
 
-  compiler-nix-name = "ghc8104";
   name = "daedalus";
   inherit src;
 
@@ -10,6 +9,13 @@ import ../haskell-scaffolding.nix (rec {
     [
       pkgs.nodejs_latest
     ];
+
+  lookupSha256 = { location, tag, ... }:
+    {
+      "https://github.com/haskell/lsp" = {
+        "6af22068b22051a6e8c9964bc179f8f02ee3bf77" = "0zz1nvabnsn41xc2w9ym7hbgxf610x9wcmiv7hmwm7djqqpwmfib";
+      };
+    }."${location}"."${tag}";
 
   modules = { ... }:
     [
@@ -34,5 +40,7 @@ import ../haskell-scaffolding.nix (rec {
     [
       pkgs.daedalus-language-server
     ];
+
+  sourceFilter = { filters, ... }: filters.nodeModulesFilter;
 
 })

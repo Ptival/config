@@ -1,30 +1,36 @@
 { src }:
 
+let
+
+  pickLLVM = { pkgs, ... }: pkgs.llvmPackages_12;
+
+in
+
 import ../haskell-scaffolding.nix (rec {
 
-  compiler-nix-name = "ghc8104";
   name = "reopt";
   inherit src;
 
-  sourceFilter = { pkgs, ... }: name: type:
-    let baseName = baseNameOf (toString name);
+  buildInputs = { pkgs, ... }:
+    let
+      llvmPackages = pickLLVM pkgs;
     in
-    pkgs.haskell-nix.haskellSourceFilter name type && !(
-      # this trips haskell.nix as it contains files named package.yaml
-      baseName == "node_modules"
-      # || other conditions...
-    );
-
-  buildInputs = { pkgs, ... }: [
-    pkgs.clang
-    pkgs.llvm
-    pkgs.yices
-    pkgs.z3
-  ];
+    [
+      llvmPackages.clang
+      pkgs.elan
+      (pkgs.enableDebugging pkgs.gdb)
+      llvmPackages.libstdcxxClang
+      pkgs.lean
+      llvmPackages.llvm
+      pkgs.yices
+      pkgs.z3
+    ];
 
   packages = pkgs:
     [
       pkgs.${name}
     ];
+
+  sourceFilter = { filters, ... }: filters.nodeModulesFilter;
 
 })

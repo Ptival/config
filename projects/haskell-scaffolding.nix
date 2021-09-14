@@ -1,10 +1,12 @@
 { buildInputs ? ({ ... }: [ ])
-, compiler-nix-name
+, compiler-nix-name ? "ghc8105"
 , lookupSha256 ? ({ ... }: null)
 , modules ? ({ ... }: [ ])
 , name
 , overlays ? ({ sources }: [ ])
-, packages ? (pkgs: [ ])
+, packages ? (pkgs: [ pkgs.${name} ])
+, propagatedBuildInputs ? ({ ... }: [ ])
+, shellHook ? ({ ... }: "")
 , sourceFilter ? ({ ... }: name: type: true)
 , src
 , subDir ? ""
@@ -20,12 +22,33 @@ let
     sourceOverrides = { hackage = import (fetchNiv "hackage.nix"); };
   };
 
+  # pkgs = import haskellNix.sources.nixpkgs-2105 (haskellNix.nixpkgsArgs // {
   pkgs = import haskellNix.sources.nixpkgs-unstable (haskellNix.nixpkgsArgs // {
     overlays = haskellNix.nixpkgsArgs.overlays ++ overlays { inherit sources; };
   });
 
+  macOSWorkaround =
+    pkgs.callPackage ./macos11-haskell-workaround.nix {
+      source = sources.macos11-haskell-workaround;
+    };
+
+  # A bunch of useful source filters packages may want to use
+  filters =
+    {
+      nodeModulesFilter = name: type:
+        let baseName = baseNameOf (toString name);
+        in
+        pkgs.haskell-nix.haskellSourceFilter name type && !(
+          # this trips haskell.nix as it contains files named package.yaml
+          baseName == "node_modules"
+          # || other conditions...
+        );
+    };
+
   # Put here any info you want to pass to callbacks
   info = {
+    inherit filters;
+    inherit macOSWorkaround;
     inherit pkgs;
     inherit set;
     inherit sources;
@@ -36,12 +59,14 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "0gpbk0si0gvk5bahdig90mwcvzyq7kbxnszxnyjc5xnvb3y5pnmw";
+      sha256 = "1c5dayxvw00k4vfsfxg955ww32mcfx46124x386nabqzjz7d2cs6";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
     lookupSha256 = { location, tag, ... }:
       {
+        "https://github.com/haskell/lsp.git"."ef59c28b41ed4c5775f0ab0c1e985839359cec96" =
+          "1whcgw4hhn2aplrpy9w8q6rafwy7znnp0rczgr6py15fqyw2fwb5";
         "https://github.com/hsyl20/ghc-api-compat"."8fee87eac97a538dbe81ff1ab18cff10f2f9fa15" =
           "16bibb7f3s2sxdvdy2mq6w1nj1lc8zhms54lwmj17ijhvjys29vg";
       }."${location}"."${tag}";
@@ -49,7 +74,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "00bbr66bzjzb81g15l70xmd110axllxakh6dp1b6p5s334qa95ww";
+    plan-sha256 = "0n45759s8mg55snj6fpzz8zchakc382mpdrkg5vszh2n9q4kif31";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
@@ -83,14 +108,22 @@ set // {
       hls-set.haskell-language-server.components.exes.haskell-language-server
     ];
 
+    DYLD_INSERT_LIBRARIES="${macOSWorkaround}/macos11ghcwa.dylib";
+
     inherit name;
+
+    propagatedBuildInputs = propagatedBuildInputs info;
+
     inherit packages;
+
+    shellHook = shellHook info;
 
     tools = {
       cabal = "3.2.0.0";
-      hlint = "2.2.11";
-      hpack = "0.34.2";
-      ormolu = "0.1.2.0";
+      cabal-fmt = "latest";
+      hlint = "latest";
+      # hpack = "0.34.2";
+      ormolu = "latest";
     };
 
     withHoogle = true;

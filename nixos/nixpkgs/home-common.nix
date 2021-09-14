@@ -54,6 +54,9 @@ in
     # '';
 
     packages = with pkgs; [
+    (pkgs.writeScriptBin "nixFlakes" ''
+      exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$@"
+    '')
       any-nix-shell
       bat               # Nicer cat
       binutils
@@ -72,12 +75,13 @@ in
       github-cli
       gnumake
 
+      # EDIT: Actually it creates problems to have ghc/cabal available! :-D
       # It is nice to always have some Haskell packages available for
       # bootstrapping project, even if the projects bring their own copy of
       # such tools.
-      haskellPackages.cabal-install
-      haskellPackages.hpack
-      haskellPackages.ghc
+      # haskellPackages.cabal-install
+      # haskellPackages.hpack
+      # haskellPackages.ghc
 
       htop              # Nicer top
       iosevkass09
@@ -90,10 +94,11 @@ in
       nixpkgs-fmt       # Other formatter?
       pkgs.niv
       openssl
-      # (import ./texlive.nix {})
+      (import ./texlive.nix {})
       ripgrep           # Better grep
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       vimpager
+      websocat
       wget
       yq                # YAML viewer
     ];
@@ -110,6 +115,10 @@ in
       enable = true;
       enableFishIntegration = true;
       # enableZshIntegration = true;
+      nix-direnv = {
+        enable = true;
+        enableFlakes = true;
+      };
     };
 
     fish = {
