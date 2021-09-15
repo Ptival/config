@@ -3,6 +3,14 @@ let
   configuration = import ./configuration.nix;
   pkgs = configuration.pkgs;
 
+  iosevkass09 = pkgs.iosevka.override {
+    privateBuildPlan = {
+      design = [ "ss09" ];
+      family = "Iosevka SS09";
+    };
+    set = "ss09";
+  };
+
   vscode-insiders = ((pkgs.vscode.override { isInsiders = true; }).overrideAttrs
     (_: rec {
       pname = "vscode-insiders";
@@ -26,7 +34,12 @@ in {
 
   imports = [ (import ./home-common.nix { inherit configuration; }) ];
 
-  home = { packages = [ pkgs.vscode ]; };
-  # home = { packages = [ vscode-insiders ]; };
+  home = {
+    packages = [
+      pkgs.vscode
+      # vscode-insiders
+      iosevkass09
+    ];
+  };
 
 }

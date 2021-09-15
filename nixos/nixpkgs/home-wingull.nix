@@ -3,14 +3,20 @@ let
   configuration = import ./configuration.nix;
   pkgs = configuration.pkgs;
 
-in
+in {
 
-{
   imports = [ (import ./home-common.nix { inherit configuration; }) ];
 
   home = {
+
     packages = [
+      # extra packages
     ];
+
   };
+
+  programs.fish.interactiveShellInit = ''
+    cd ~
+  '';
 
 }

@@ -28,19 +28,9 @@ let
 
   # myHomeManager = import (niv sources.home-manager) {};
 
-  iosevkass09 = pkgs.iosevka.override {
-    privateBuildPlan = {
-      design = [ "ss09" ];
-      family = "Iosevka SS09";
-    };
-    set = "ss09";
-  };
-
   mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
 
-in
-
-{
+in {
 
   # Does not work on NixOS with useGlobalPkgs
   # fonts.fontconfig.enable = true;
@@ -54,11 +44,12 @@ in
     # '';
 
     packages = with pkgs; [
-    (pkgs.writeScriptBin "nixFlakes" ''
-      exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$@"
-    '')
+      (pkgs.writeScriptBin "nixFlakes" ''
+        #! /usr/bin/env fish
+        exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$argv"
+      '')
       any-nix-shell
-      bat               # Nicer cat
+      bat # Nicer cat
       binutils
       cabal2nix
       cachix
@@ -67,7 +58,7 @@ in
       # emacs
       # emacs-all-the-icons-fonts
       fasd
-      fd                # Makes file search faster in doom-emacs
+      fd # Makes file search faster in doom-emacs
       fontconfig
       fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
@@ -83,31 +74,33 @@ in
       # haskellPackages.hpack
       # haskellPackages.ghc
 
-      htop              # Nicer top
-      iosevkass09
-      jq                # JSON viewer
-      less              # Better than busybox's less
+      htop # Nicer top
+      jq # JSON viewer
+      less # Better than busybox's less
       lorri
       mesloNerdP10k
       noto-fonts-emoji
-      nixfmt            # Formatter for nix code
-      nixpkgs-fmt       # Other formatter?
+      nixfmt # Formatter for nix code
+      nixpkgs-fmt # Other formatter?
       pkgs.niv
       openssl
-      (import ./texlive.nix {})
-      ripgrep           # Better grep
+      (import ./texlive.nix { })
+      ripgrep # Better grep
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       vimpager
       websocat
       wget
-      yq                # YAML viewer
+      yq # YAML viewer
     ];
+
+    sessionVariables = { LS_COLORS = "ow=01;34"; };
+
   };
 
   # NOTE: this does not exist when `useGlobalPkgs` is set
-      # nixpkgs.config = {
-      #   allowUnfree = true;
-      # };
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  # };
 
   programs = {
 
@@ -127,11 +120,11 @@ in
 
       # Added towards the end of ~/.config/fish/config.fish
       interactiveShellInit = ''
-      # Windows terminal wants to start us in C:/Users/<User>/...
-      # cd ~
-      # Need to find something else, because this breaks stuff like vscode debugging
+        # Windows terminal wants to start us in C:/Users/<User>/...
+        # cd ~
+        # Need to find something else, because this breaks stuff like vscode debugging
 
-      any-nix-shell fish --info-right | source
+        any-nix-shell fish --info-right | source
       '';
 
       plugins = [
@@ -206,7 +199,7 @@ in
 
     home-manager = {
       enable = true;
-      path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+      path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
     };
 
     vim = {
