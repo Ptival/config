@@ -53,6 +53,7 @@ in {
       binutils
       cabal2nix
       cachix
+      coreutils # Makes sure we have the version of `ls` that accepts arguments like --color
       dejavu_fonts
       # doom-emacs
       # emacs
@@ -184,6 +185,10 @@ in {
         gbv = "git branch --verbose";
         gco = "git checkout";
         gst = "git status";
+      };
+
+      shellAliases = {
+        ls = "ls --color=always";
       };
 
     };
