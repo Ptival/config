@@ -1,5 +1,5 @@
 { buildInputs ? ({ ... }: [ ])
-, compiler-nix-name ? "ghc8105"
+, compiler-nix-name ? "ghc8107"
 , lookupSha256 ? ({ ... }: null)
 , modules ? ({ ... }: [ ])
 , name
@@ -59,7 +59,7 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "1c5dayxvw00k4vfsfxg955ww32mcfx46124x386nabqzjz7d2cs6";
+      sha256 = "1gw0aafzvsf7lwg9hs7f80lshq1lpg4wc6bvikhz7xdj250qmim9";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
@@ -74,7 +74,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "0n45759s8mg55snj6fpzz8zchakc382mpdrkg5vszh2n9q4kif31";
+    plan-sha256 = "0mz6si45msnh9z60i7zl0a4yhqvzn2zpcm3227qnk11k4nspvgnn";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
@@ -119,7 +119,7 @@ set // {
     shellHook = shellHook info;
 
     tools = {
-      cabal = "3.2.0.0";
+      cabal = "latest";
       cabal-fmt = "latest";
       hlint = "latest";
       # hpack = "0.34.2";

@@ -29,22 +29,22 @@
         "homepage": "",
         "owner": "input-output-hk",
         "repo": "hackage.nix",
-        "rev": "5704506e551891700bbd5054ecffd250fd7186ec",
-        "sha256": "10d09lp7alga877gzjxpnn6lz6f10218g8ahim2q4aw297qbpp6c",
+        "rev": "ac7a98d37b5ed0a2a6519eed16837ac495012158",
+        "sha256": "1xakv2cgadrkanaz37jr29f205v046anl64kwkhzmmr8a5z8mgaq",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/hackage.nix/archive/5704506e551891700bbd5054ecffd250fd7186ec.tar.gz",
+        "url": "https://github.com/input-output-hk/hackage.nix/archive/ac7a98d37b5ed0a2a6519eed16837ac495012158.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-language-server": {
-        "branch": "1.3.0",
+        "branch": "1.4.0",
         "description": "Integration point for ghcide and haskell-ide-engine. One IDE to rule them all.",
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "e7c5e90b6df5dff2760d76169eddaea3bdd6a831",
-        "sha256": "1c5dayxvw00k4vfsfxg955ww32mcfx46124x386nabqzjz7d2cs6",
+        "rev": "253547816ee216c53ee7dacc0ad3cac43e863d30",
+        "sha256": "1gw0aafzvsf7lwg9hs7f80lshq1lpg4wc6bvikhz7xdj250qmim9",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-language-server/archive/e7c5e90b6df5dff2760d76169eddaea3bdd6a831.tar.gz",
+        "url": "https://github.com/haskell/haskell-language-server/archive/253547816ee216c53ee7dacc0ad3cac43e863d30.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell.nix": {
@@ -53,10 +53,10 @@
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "8aa77fdbd848fe043551e653d837248b4bb76afd",
-        "sha256": "0shqr33kjivb9g8l97rsfhfdqngqd0m5m70pzc06hq2ldf9z9n5i",
+        "rev": "cafe6e10e9312421b42c8023913ccb877b15f7f1",
+        "sha256": "0wcbp18ngdyhkiq0aiv34wwcvpbirylwn3cam085qhxjy83dg9mj",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/8aa77fdbd848fe043551e653d837248b4bb76afd.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/cafe6e10e9312421b42c8023913ccb877b15f7f1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "macos11-haskell-workaround": {
@@ -77,10 +77,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
-        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
+        "rev": "65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e",
+        "sha256": "17mirpsx5wyw262fpsd6n6m47jcgw8k2bwcp1iwdnrlzy4dhcgqh",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -89,10 +89,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "08ef0f28e3a41424b92ba1d203de64257a9fca6a",
-        "sha256": "1mql1gp86bk6pfsrp0lcww6hw5civi6f8542d4nh356506jdxmcy",
+        "rev": "1a56d76d718afb6c47dd96602c915b6d23f7c45d",
+        "sha256": "11hckny4zzyc6v7b0x3202iksmdzdri6fm01bfinn8d5arpx54pv",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/08ef0f28e3a41424b92ba1d203de64257a9fca6a.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/1a56d76d718afb6c47dd96602c915b6d23f7c45d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

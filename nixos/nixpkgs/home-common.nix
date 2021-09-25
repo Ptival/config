@@ -87,6 +87,7 @@ in {
       openssl
       (import ./texlive.nix { })
       ripgrep # Better grep
+      socat
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       vimpager
       websocat
