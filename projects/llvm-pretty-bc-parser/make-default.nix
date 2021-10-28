@@ -7,8 +7,17 @@ import ../haskell-scaffolding.nix (rec {
 
   buildInputs = { pkgs, ... }:
     [
+      pkgs.csmith
+      pkgs.llvm_12
       pkgs.nodejs_latest
     ];
+
+  modules = info: [
+    {
+      enableExecutableProfiling = true;
+      enableLibraryProfiling = true;
+    }
+  ];
 
   packages = pkgs:
     [

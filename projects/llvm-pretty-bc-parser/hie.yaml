@@ -1,0 +1,16 @@
+cradle:
+  cabal:
+    - path: "."
+      component: "llvm-pretty-bc-parser"
+    - path: "./disasm-test"
+      component: "disasm-test"
+    - path: "./fuzzing"
+      component: "fuzz-llvm-disasm"
+    - path: "./llvm-disasm"
+      component: "llvm-disasm"
+    - path: "./llvm-pretty"
+      component: "llvm-pretty"
+    - path: "./regression-test"
+      component: "regression-test"
+    - path: "./unit-test"
+      component: "unit-test"

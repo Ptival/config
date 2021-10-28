@@ -3,13 +3,14 @@ let
   configuration = import ./configuration.nix;
   pkgs = configuration.pkgs;
 
-  iosevkass09 = pkgs.iosevka.override {
-    privateBuildPlan = {
-      design = [ "ss09" ];
-      family = "Iosevka SS09";
-    };
-    set = "ss09";
-  };
+  # This is nice but it takes way too long to build!
+  # iosevkass09 = pkgs.iosevka.override {
+  #   privateBuildPlan = {
+  #     design = [ "ss09" ];
+  #     family = "Iosevka SS09";
+  #   };
+  #   set = "ss09";
+  # };
 
   vscode-insiders = ((pkgs.vscode.override { isInsiders = true; }).overrideAttrs
     (_: rec {
@@ -38,7 +39,7 @@ in {
     packages = [
       pkgs.vscode
       # vscode-insiders
-      iosevkass09
+      # iosevkass09
     ];
   };
 

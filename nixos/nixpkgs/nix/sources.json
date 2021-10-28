@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "dcc1f8044b75fab0520a8d6283450554dd324352",
-        "sha256": "18gix17iqdmnpgrjrvrvkiza2a7hz9xdxlws16w8mi97ryfza86n",
+        "rev": "b566527594054b87ff495db631da9b81f03f4e09",
+        "sha256": "02c88y8anixwzcn07xmr20sdpvc84108q78j54kg4sh1qrmyrbzq",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/dcc1f8044b75fab0520a8d6283450554dd324352.tar.gz",
+        "url": "https://github.com/nix-community/NUR/archive/b566527594054b87ff495db631da9b81f03f4e09.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "done": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "franciscolourenco",
         "repo": "done",
-        "rev": "7fda8f2c3e79835d5c1e6721fa48fe5ed4ba0858",
-        "sha256": "1snysg52fr1h6n188jhqzny4sfgzcjgpa9r9qvj9smkg7zmplmsy",
+        "rev": "d6abb267bb3fb7e987a9352bc43dcdb67bac9f06",
+        "sha256": "1h8v5jg9kkali50qq0jn0i1w68wp4c2l0fapnglnnpg0v4vv51za",
         "type": "tarball",
-        "url": "https://github.com/franciscolourenco/done/archive/7fda8f2c3e79835d5c1e6721fa48fe5ed4ba0858.tar.gz",
+        "url": "https://github.com/franciscolourenco/done/archive/d6abb267bb3fb7e987a9352bc43dcdb67bac9f06.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
@@ -29,10 +29,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "f45a4cb0cd42fd57457cd6cbbf1cde7ed3a1b3c8",
-        "sha256": "1djmk8fhskvqs32sl8xxryvbfzllhav0dx7lxm996l43il61yg6i",
+        "rev": "0300ad279e332835530ef98e2d6bfd7cc46d8c31",
+        "sha256": "119gsvkn6hvmm7xjhl3wb8i898jkk253nmyls6xw4ws6gxn6fyzb",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/f45a4cb0cd42fd57457cd6cbbf1cde7ed3a1b3c8.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/0300ad279e332835530ef98e2d6bfd7cc46d8c31.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-abbreviation-tips": {
@@ -65,10 +65,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "ad0fc085c7b954d5813a950cf0db7143e6b049e3",
-        "sha256": "1m5fprdnbl38hfvj65m67nqpajjs3ngz92flx9zfzwpkj8nhvcvf",
+        "rev": "b5d738b5a3f8c3738433e0aa6482afb4ac635380",
+        "sha256": "07afvwvr9fkrsv5hvv5jjwpphb3s8qw9c2lgh49kil6rd3jczy5h",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/ad0fc085c7b954d5813a950cf0db7143e6b049e3.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/b5d738b5a3f8c3738433e0aa6482afb4ac635380.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hydro": {
@@ -77,10 +77,10 @@
         "homepage": "",
         "owner": "jorgebucaran",
         "repo": "hydro",
-        "rev": "a5877e9ef76b3e915c06143630bffc5ddeaba2a1",
-        "sha256": "1lgknykah265wxx6wyy5pqc3w3jhkr2nnybwb4954nlklr12g7ww",
+        "rev": "e5f98b8770866b1c244a0e8415fd02a7722f71c5",
+        "sha256": "01vqbmshiaxgd3hpl14ww98xgjbcaj21s5jzc35b06vask71bsxh",
         "type": "tarball",
-        "url": "https://github.com/jorgebucaran/hydro/archive/a5877e9ef76b3e915c06143630bffc5ddeaba2a1.tar.gz",
+        "url": "https://github.com/jorgebucaran/hydro/archive/e5f98b8770866b1c244a0e8415fd02a7722f71c5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -89,10 +89,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
-        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
+        "rev": "65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e",
+        "sha256": "17mirpsx5wyw262fpsd6n6m47jcgw8k2bwcp1iwdnrlzy4dhcgqh",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
@@ -125,10 +125,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "697891710272f11611cf892ec0ab675fffa48e9c",
-        "sha256": "1g2m2m925f8v8j0g8d2c9l87kb8bqri73xi3mhrsmpziyma2pz55",
+        "rev": "8e1eab9eae4278c9bb1dcae426848a581943db5a",
+        "sha256": "0jf4rccc0z9in1iahw13i5wl93gbp1x6mkjd3qivjg97ms9qw3l0",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/697891710272f11611cf892ec0ab675fffa48e9c.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/8e1eab9eae4278c9bb1dcae426848a581943db5a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "plugin-bang-bang": {

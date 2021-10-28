@@ -76,11 +76,12 @@ in {
       # haskellPackages.ghc
 
       htop # Nicer top
+      # iosevka
       jq # JSON viewer
       less # Better than busybox's less
       lorri
       mesloNerdP10k
-      noto-fonts-emoji
+      # noto-fonts-emoji
       nixfmt # Formatter for nix code
       nixpkgs-fmt # Other formatter?
       pkgs.niv
@@ -88,6 +89,7 @@ in {
       (import ./texlive.nix { })
       ripgrep # Better grep
       socat
+      tree
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       vimpager
       websocat
