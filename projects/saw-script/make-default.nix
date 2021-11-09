@@ -24,8 +24,8 @@ import ../haskell-scaffolding.nix (rec {
 
   lookupSha256 = { location, tag, ... }:
     {
-      "https://github.com/eddywestbrook/hobbits.git"."e5918895396b6bcee2fc39f6bd0d77a90a52ba5f" =
-        "0qh1b3z6n7afgsd1zzsy8crrx00p7k31yy3jhckmzmpfpiknkl8m";
+      "https://github.com/eddywestbrook/hobbits.git"."20b6d18758312deaf6a544d474483e537d5f018f" =
+        "sha256-v/F3yPzWBL/qm9IJMnRG0Fimf3u4PBVqxkNd03y5YAs=";
     }."${location}"."${tag}";
 
   modules = info@{ macOSWorkaround, pkgs, ... }:

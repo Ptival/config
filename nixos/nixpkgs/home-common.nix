@@ -224,6 +224,7 @@ in {
         set smartindent                " Helps autoindent make smarter, language-based choices
         " syntax on
       '';
+      packageConfigurable = pkgs.vimHugeX;
     };
 
   };
