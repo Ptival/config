@@ -59,7 +59,7 @@ let
       name = "haskell-language-server";
       inherit (sources.haskell-language-server) owner repo rev;
       # Need to override the hash due to lack of niv submodule support
-      sha256 = "1gw0aafzvsf7lwg9hs7f80lshq1lpg4wc6bvikhz7xdj250qmim9";
+      sha256 = "sha256-qcaKQRGy9fPhjHsZxsm7NGCoKUDuaJgep8fp/Z1SgL8=";
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
@@ -74,7 +74,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "0mz6si45msnh9z60i7zl0a4yhqvzn2zpcm3227qnk11k4nspvgnn";
+    plan-sha256 = "sha256-Msdd1IWjHbwjQw5/mTCYrL5zlQzMh3Nz8nJNBtToMSg=";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;

@@ -26,11 +26,23 @@ let
   #   };
   # };
 
+  pkgs-bootstrap = import <nixpkgs> { config = { }; overlays = [ ]; };
+
+  lorelei-source = pkgs-bootstrap.fetchFromGitHub {
+    owner = "shajra";
+    repo = "direnv-nix-lorelei";
+    rev = "7342d5b95e84e4d9b885d4afa82b061c7278297c";
+    sha256 = "sha256-KhLyeRqIQsa4axO6+RSMxIi8iibWefgnLcaWC+dL7Gc=";
+    # sha256 = pkgs.lib.fakeSha256;
+  };
+  module-lorelei = (import lorelei-source).direnv-nix-lorelei-home;
+
   # myHomeManager = import (niv sources.home-manager) {};
 
   mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
 
-in {
+in
+{
 
   # Does not work on NixOS with useGlobalPkgs
   # fonts.fontconfig.enable = true;
@@ -106,17 +118,21 @@ in {
   #   allowUnfree = true;
   # };
 
+  imports = [ module-lorelei ];
+
   programs = {
 
     direnv = {
       enable = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       # enableZshIntegration = true;
       nix-direnv = {
         enable = true;
-        enableFlakes = true;
+        # enableFlakes = true;
       };
     };
+
+    direnv-nix-lorelei.enable = true;
 
     fish = {
       enable = true;

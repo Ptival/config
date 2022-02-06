@@ -17,13 +17,13 @@ import ../haskell-scaffolding.nix (rec {
     in
     [
       llvmPackages.clang
-      pkgs.elan
-      (pkgs.enableDebugging pkgs.gdb)
+      # pkgs.elan
+      # (pkgs.enableDebugging pkgs.gdb)
       llvmPackages.libstdcxxClang
-      pkgs.lean
+      # pkgs.lean
       llvmPackages.llvm
-      pkgs.yices
-      pkgs.z3
+      # pkgs.yices
+      # pkgs.z3
     ];
 
   packages = pkgs:
