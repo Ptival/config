@@ -78,6 +78,7 @@ in
       gitAndTools.git-delete-merged-branches
       github-cli
       gnumake
+      graphviz
 
       # EDIT: Actually it creates problems to have ghc/cabal available! :-D
       # It is nice to always have some Haskell packages available for
@@ -94,6 +95,7 @@ in
       lorri
       mesloNerdP10k
       # noto-fonts-emoji
+      nix-du
       nixfmt # Formatter for nix code
       nixpkgs-fmt # Other formatter?
       pkgs.niv
@@ -143,6 +145,7 @@ in
         # Windows terminal wants to start us in C:/Users/<User>/...
         # cd ~
         # Need to find something else, because this breaks stuff like vscode debugging
+        export NIX_PATH=$HOME/.nix-defexpr/channels
 
         any-nix-shell fish --info-right | source
       '';
@@ -217,6 +220,7 @@ in
       # delta = {
       #   enable = true;
       # };
+      lfs.enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "Valentin Robert";
     };

@@ -26,6 +26,12 @@ import ../haskell-scaffolding.nix (rec {
       # pkgs.z3
     ];
 
+  modules = { ... }: [
+    {
+      enableLibraryProfiling = true;
+    }
+  ];
+
   packages = pkgs:
     [
       pkgs.${name}

@@ -1,6 +1,6 @@
 { buildInputs ? ({ ... }: [ ])
 , compiler-nix-name ? "ghc8107"
-, lookupSha256 ? ({ ... }: null)
+, sha256map ? {}
 , modules ? ({ ... }: [ ])
 , name
 , overlays ? ({ sources }: [ ])
@@ -63,18 +63,17 @@ let
       fetchSubmodules = true;
     };
     # src = fetchNiv "haskell-language-server";
-    lookupSha256 = { location, tag, ... }:
-      {
+    sha256map = {
         "https://github.com/haskell/lsp.git"."ef59c28b41ed4c5775f0ab0c1e985839359cec96" =
           "1whcgw4hhn2aplrpy9w8q6rafwy7znnp0rczgr6py15fqyw2fwb5";
         "https://github.com/hsyl20/ghc-api-compat"."8fee87eac97a538dbe81ff1ab18cff10f2f9fa15" =
           "16bibb7f3s2sxdvdy2mq6w1nj1lc8zhms54lwmj17ijhvjys29vg";
-      }."${location}"."${tag}";
+      };
     inherit compiler-nix-name; # index-state; # checkMaterialization;
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "sha256-Msdd1IWjHbwjQw5/mTCYrL5zlQzMh3Nz8nJNBtToMSg=";
+    plan-sha256 = "sha256-8b8rWVfr2GjQQ6erq0LkiUdSQYkt43neB0fp4WS+CN0=";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;
@@ -84,7 +83,7 @@ let
   set = pkgs.haskell-nix.cabalProject {
 
     inherit compiler-nix-name;
-    inherit lookupSha256;
+    inherit sha256map;
     modules = modules info;
 
     src =
@@ -123,7 +122,7 @@ set // {
       cabal-fmt = "latest";
       hlint = "latest";
       # hpack = "0.34.2";
-      ormolu = "latest";
+      ormolu = "0.3.1.0";
     };
 
     withHoogle = true;

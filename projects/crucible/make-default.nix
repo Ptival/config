@@ -49,7 +49,7 @@ import ../haskell-scaffolding.nix (rec {
       pkgs.abcBridge # keep this for ABC library
       pkgs.crucible
       pkgs.crucible-concurrency
-      pkgs.crucible-go
+      # pkgs.crucible-go
       pkgs.crucible-jvm
       pkgs.crucible-llvm
       pkgs.crucible-wasm
