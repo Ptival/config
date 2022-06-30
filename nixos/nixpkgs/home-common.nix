@@ -113,6 +113,11 @@ in
       yq # YAML viewer
     ];
 
+    sessionPath = [
+      "$HOME/.ghcup/bin"
+      "$HOME/.local/bin"
+    ];
+
     sessionVariables = { LS_COLORS = "ow=01;34"; };
     stateVersion = "21.11";
     username = "val";
@@ -236,22 +241,46 @@ in
       path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
     };
 
-    vim = {
+    neovim = {
       enable = true;
-      extraConfig = ''
-        colorscheme delek
-        " filetype plugin indent on      " ?
-        set autoindent                 " Indent based on previous line indentation
-        " set backspace=indent,eol,start " ?
-        set expandtab                  " Pressing <TAB> inserts spaces according to 'shiftwidth' and 'softtabstop'
-        set number                     " Display line numbers
-        set softtabstop=2
-        set shiftwidth=2
-        set smartindent                " Helps autoindent make smarter, language-based choices
-        " syntax on
-      '';
-      packageConfigurable = pkgs.vimHugeX;
+      coc = {
+        enable = true;
+        # Temporary workaround for bug:
+        # https://github.com/nix-community/home-manager/issues/2966
+        package = pkgs.vimUtils.buildVimPluginFrom2Nix {
+          pname = "coc.nvim";
+          version = "2022-05-21";
+          src = pkgs.fetchFromGitHub {
+            owner = "neoclide";
+            repo = "coc.nvim";
+            rev = "791c9f673b882768486450e73d8bda10e391401d";
+            sha256 = "sha256-MobgwhFQ1Ld7pFknsurSFAsN5v+vGbEFojTAYD/kI9c=";
+          };
+          meta.homepage = "https://github.com/neoclide/coc.nvim/";
+        };
+      };
+      viAlias = true;
+      vimAlias = true;
+      withNodeJs = true;
     };
+
+    # vim = {
+    #   enable = true;
+    #   # extraConfig = ''
+    #   #   so ~/.vim/plugin/unicode.vim
+    #   #   " colorscheme delek
+    #   #   " " filetype plugin indent on      " ?
+    #   #   " set autoindent                 " Indent based on previous line indentation
+    #   #   " " set backspace=indent,eol,start " ?
+    #   #   " set expandtab                  " Pressing <TAB> inserts spaces according to 'shiftwidth' and 'softtabstop'
+    #   #   " set number                     " Display line numbers
+    #   #   " set softtabstop=2
+    #   #   " set shiftwidth=2
+    #   #   " set smartindent                " Helps autoindent make smarter, language-based choices
+    #   #   " " syntax on
+    #   # '';
+    #   packageConfigurable = pkgs.vimHugeX;
+    # };
 
   };
 
