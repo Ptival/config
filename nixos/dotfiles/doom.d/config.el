@@ -1,10 +1,12 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
 (setq
- doom-font (font-spec :family "Iosevka SS09" :size 20)
+ doom-font (font-spec :family "Iosevka" :size 20) ;; currently cannot build Iosevka SS09 :(
+ ;; doom-font (font-spec :family "Iosevka SS09" :size 20)
  ;; doom-font (font-spec :family "Iosevka SS09" :size 24)
  ;; not sure when this one gets used, so outrageous value to notice
- doom-big-font (font-spec :family "Iosevka SS09" :size 100))
+ doom-big-font (font-spec :family "Iosevka" :size 100))
+ ;; doom-big-font (font-spec :family "Iosevka SS09" :size 100))
 (when (eq system-type 'gnu/linux)
   (setq doom-unicode-font (font-spec :family "Symbola" :size 20)))
 (when (eq system-type 'darwin)
@@ -43,8 +45,8 @@
  :ensure t
  :config
  ;; (setq lsp-haskell-process-path-hie "hie")
- (setq lsp-haskell-process-path-hie "hie-wrapper")
- (lsp-haskell-set-formatter-ormolu)
+ ;; (setq lsp-haskell-process-path-hie "hie-wrapper")
+ ;; (lsp-haskell-set-formatter-ormolu)
  ;; TODO: once haskell-language-server becomes really good, this sets it up
  ;; (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
  ;; Comment/uncomment this line to see interactions between lsp client/server.

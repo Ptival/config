@@ -10,21 +10,21 @@ let
   # Disabled until this is fixed:
   # https://github.com/nix-community/emacs-overlay/issues/124
 
-  # doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
-  #   doomPrivateDir = ../dotfiles/doom.d;
-  #   # emacsPackages = (pkgs.emacsPackagesNgGen
-  #   #   (pkgs.emacsGit.override {
-  #   #     # inherit (pkgs) imagemagick;
-  #   #     # withGTK3 = true;
-  #   #     # withXwidgets = true;
-  #   #   }));
-  #   extraPackages = epkgs: [
-  #     pkgs.emacsPackages.proofgeneral_HEAD
-  #   ];
-  #   dependencyOverrides = {
-  #     "auctex" = throw "TODO";
-  #   };
-  # };
+  doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
+    doomPrivateDir = ../dotfiles/doom.d;
+    # emacsPackages = (pkgs.emacsPackagesNgGen
+    #   (pkgs.emacsGit.override {
+    #     # inherit (pkgs) imagemagick;
+    #     # withGTK3 = true;
+    #     # withXwidgets = true;
+    #   }));
+    extraPackages = epkgs: [
+      pkgs.emacsPackages.proof-general
+    ];
+    # dependencyOverrides = {
+    #   "auctex" = throw "TODO";
+    # };
+  };
 
   pkgs-bootstrap = import <nixpkgs> { config = { }; overlays = [ ]; };
 
@@ -45,15 +45,17 @@ in
 {
 
   # Does not work on NixOS with useGlobalPkgs
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   manual.manpages.enable = false;
 
-  home = {
+  home = rec {
 
     # file.".emacs.d/init.el".text = ''
     #   (load "default.el")
     # '';
+
+    homeDirectory = "/home/${username}";
 
     packages = with pkgs; [
       (pkgs.writeScriptBin "nixFlakes" ''
@@ -67,7 +69,7 @@ in
       cachix
       coreutils # Makes sure we have the version of `ls` that accepts arguments like --color
       dejavu_fonts
-      # doom-emacs
+      doom-emacs
       # emacs
       # emacs-all-the-icons-fonts
       fasd
@@ -112,6 +114,8 @@ in
     ];
 
     sessionVariables = { LS_COLORS = "ow=01;34"; };
+    stateVersion = "21.11";
+    username = "val";
 
   };
 
@@ -148,6 +152,8 @@ in
         export NIX_PATH=$HOME/.nix-defexpr/channels
 
         any-nix-shell fish --info-right | source
+
+        eval (opam env)
       '';
 
       plugins = [
