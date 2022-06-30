@@ -55,7 +55,10 @@ in
     #   (load "default.el")
     # '';
 
-    homeDirectory = "/home/${username}";
+    homeDirectory =
+      if pkgs.stdenv.isDarwin
+      then "/Users/${username}"
+      else "/home/${username}";
 
     packages = with pkgs; [
       (pkgs.writeScriptBin "nixFlakes" ''
