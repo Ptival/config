@@ -74,9 +74,10 @@ in
       dejavu_fonts
       doom-emacs
       # emacs
-      # emacs-all-the-icons-fonts
+      emacs-all-the-icons-fonts
       fasd
       fd # Makes file search faster in doom-emacs
+      fira-mono
       fontconfig
       fzf
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
@@ -107,6 +108,7 @@ in
       openssl
       (import ./texlive.nix { })
       ripgrep # Better grep
+      rustup
       socat
       tree
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
@@ -246,6 +248,11 @@ in
 
     neovim = {
       enable = true;
+
+      extraConfig = ''
+        colorscheme default
+      '';
+
       coc = {
         enable = true;
         # Temporary workaround for bug:
@@ -262,6 +269,7 @@ in
           meta.homepage = "https://github.com/neoclide/coc.nvim/";
         };
       };
+
       viAlias = true;
       vimAlias = true;
       withNodeJs = true;

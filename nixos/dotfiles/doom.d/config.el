@@ -8,7 +8,7 @@
  doom-big-font (font-spec :family "Iosevka" :size 100))
  ;; doom-big-font (font-spec :family "Iosevka SS09" :size 100))
 (when (eq system-type 'gnu/linux)
-  (setq doom-unicode-font (font-spec :family "Symbola" :size 20)))
+  (setq doom-unicode-font (font-spec :family "Fira Mono" :size 20)))
 (when (eq system-type 'darwin)
   (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 20)))
 

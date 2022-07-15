@@ -6,8 +6,12 @@ stdenv.mkDerivation rec {
 
   src = source;
 
+  buildDepends = [
+    clang
+  ];
+
   buildPhase = ''
-    clang -target x86_64-darwin -dynamiclib macos11ghcwa.c -o macos11ghcwa.dylib
+    ${clang}/bin/clang -target x86_64-darwin -dynamiclib macos11ghcwa.c -o macos11ghcwa.dylib
   '';
 
   installPhase = ''
