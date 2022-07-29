@@ -1,9 +1,9 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
 (setq
- doom-font (font-spec :family "Iosevka" :size 20) ;; currently cannot build Iosevka SS09 :(
+ ;; doom-font (font-spec :family "Iosevka" :size 20) ;; currently cannot build Iosevka SS09 :(
  ;; doom-font (font-spec :family "Iosevka SS09" :size 20)
- ;; doom-font (font-spec :family "Iosevka SS09" :size 24)
+ doom-font (font-spec :family "Iosevka Fixed SS09" :size 20)
  ;; not sure when this one gets used, so outrageous value to notice
  doom-big-font (font-spec :family "Iosevka" :size 100))
  ;; doom-big-font (font-spec :family "Iosevka SS09" :size 100))
@@ -11,6 +11,18 @@
   (setq doom-unicode-font (font-spec :family "Fira Mono" :size 20)))
 (when (eq system-type 'darwin)
   (setq doom-unicode-font (font-spec :family "Apple Color Emoji" :size 20)))
+
+(setq projectile-globally-ignored-file-suffixes
+      '(
+        ".aux"
+        ".glob"
+        ".vo"
+        ".vok"
+        ".vos"
+        )
+)
+
+(setq scroll-margin 10) ; Always keep N prev/next lines around cursor visible
 
 ;; Too slow on this computer to let flycheck go crazy at every keypress
 (setq flycheck-check-syntax-automatically '(mode-enabled save))

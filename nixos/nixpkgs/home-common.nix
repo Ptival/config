@@ -51,10 +51,6 @@ in
 
   home = rec {
 
-    # file.".emacs.d/init.el".text = ''
-    #   (load "default.el")
-    # '';
-
     homeDirectory =
       if pkgs.stdenv.isDarwin
       then "/Users/${username}"
@@ -105,6 +101,7 @@ in
       nixfmt # Formatter for nix code
       nixpkgs-fmt # Other formatter?
       pkgs.niv
+      opam # DO NOT REMOVE WITHOUT FIXING interactiveShellInit
       openssl
       (import ./texlive.nix { })
       ripgrep # Better grep
@@ -116,6 +113,15 @@ in
       websocat
       wget
       yq # YAML viewer
+
+      # The followings are necessary to install coqide via opam
+      # NVM: doesn't work, installing via system package manager instead
+      # cairo
+      # expat
+      # gnome.adwaita-icon-theme
+      # gtk3
+      # gtksourceview3
+
     ];
 
     sessionPath = [
@@ -294,6 +300,14 @@ in
     # };
 
   };
+
+  # This does not work on MacOS
+  # services = {
+  #   emacs = {
+  #     enable = true;
+  #     package = doom-emacs;
+  #   };
+  # };
 
   xdg.configFile."fish/conf.d/plugin-bobthefish.fish".text = pkgs.lib.mkAfter ''
     for f in $plugin_dir/*.fish
