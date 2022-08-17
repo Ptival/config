@@ -23,6 +23,7 @@
 )
 
 (setq scroll-margin 10) ; Always keep N prev/next lines around cursor visible
+(setq proof-three-window-mode-policy 'hybrid) ; Always display 3 windows nicely
 
 ;; Too slow on this computer to let flycheck go crazy at every keypress
 (setq flycheck-check-syntax-automatically '(mode-enabled save))

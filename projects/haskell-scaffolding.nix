@@ -76,7 +76,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
-    plan-sha256 = "sha256-nDonFa6lIwryZZectXf32cL2DGRINclETbvGGepxddY=";
+    plan-sha256 = "sha256-8b8rWVfr2GjQQ6erq0LkiUdSQYkt43neB0fp4WS+CN0=";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
       packages.haskell-language-server.doCheck = false;

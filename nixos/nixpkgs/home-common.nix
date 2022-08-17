@@ -63,9 +63,10 @@ in
       '')
       any-nix-shell
       bat # Nicer cat
-      binutils
+      # binutils # Incompatible with clang?
       cabal2nix
       cachix
+      clang # Needed for GHC to find `ld`?
       coreutils # Makes sure we have the version of `ls` that accepts arguments like --color
       dejavu_fonts
       doom-emacs
@@ -76,6 +77,7 @@ in
       fira-mono
       fontconfig
       fzf
+      difftastic
       gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
       gitAndTools.git-delete-merged-branches
       github-cli
@@ -94,8 +96,10 @@ in
       # iosevka
       jq # JSON viewer
       less # Better than busybox's less
+      libiconv # Needed by some Haskell packages
       lorri
       mesloNerdP10k
+      mosh
       # noto-fonts-emoji
       nix-du
       nixfmt # Formatter for nix code
