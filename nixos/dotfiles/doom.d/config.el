@@ -1,9 +1,15 @@
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
+;; The default purple makes comments unreadable.
+(custom-set-faces!
+  '(font-lock-comment-face :foreground "DarkGreen")
+  '(proof-locked-face :background "#331133")
+)
+
 (setq
  ;; doom-font (font-spec :family "Iosevka" :size 20) ;; currently cannot build Iosevka SS09 :(
  ;; doom-font (font-spec :family "Iosevka SS09" :size 20)
- doom-font (font-spec :family "Iosevka Fixed SS09" :size 20)
+ doom-font (font-spec :family "Iosevka Fixed SS09" :size 14)
  ;; not sure when this one gets used, so outrageous value to notice
  doom-big-font (font-spec :family "Iosevka" :size 100))
  ;; doom-big-font (font-spec :family "Iosevka SS09" :size 100))
@@ -98,6 +104,15 @@
   (setq coq-prog-env process-environment))
 (add-hook! 'coq-mode-hook
   (advice-add 'direnv-update-directory-environment :after #'update-coq-prog-env))
+
+(add-hook! 'coq-mode-hook
+  (define-key coq-mode-map
+    [(meta right)] 'proof-goto-point)
+  (define-key coq-mode-map
+    [(meta down)] 'proof-assert-next-command-interactive)
+  (define-key coq-mode-map
+    [(meta up)] 'proof-undo-last-successful-command)
+)
 
 ;;; Sadly, exec-path gets overwritten at some point in the stack, so we
 ;;; overwrite it again just before calling scomint-exec-1
@@ -197,11 +212,11 @@
 ;;     (setq coq-mode-abbrev-table '()))
 ;; (erase-coq-abbrev-table)
 ;; (add-hook 'coq-mode-hook #'erase-coq-abbrev-table)
-;; ; Disable the super annoying comment insertion behavior when pressing Enter
-;; ; inside a Coq comment
+; Disable the super annoying comment insertion behavior when pressing Enter
+; inside a Coq comment
 ;; (setq-hook! 'coq-mode-hook comment-line-break-function nil)
 ;; (setq-hook! 'coq-mode-hook coq-prefer-top-of-conclusion t)
-;; (setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
+(setq-hook! 'coq-mode-hook coq-highlighted-hyps-bg "dark violet")
 
 ;; ; prevents Evil from doing auto-completion when pressing Esc
 ;; ; (e.g. in ProofGeneral it's super annoying)
