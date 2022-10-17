@@ -19,6 +19,7 @@ import ../haskell-scaffolding.nix (rec {
       llvmPackages.clang
       # pkgs.elan
       # (pkgs.enableDebugging pkgs.gdb)
+      pkgs.ghidra
       llvmPackages.libstdcxxClang
       # pkgs.lean
       llvmPackages.llvm

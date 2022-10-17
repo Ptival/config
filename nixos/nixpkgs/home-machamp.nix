@@ -36,11 +36,20 @@ in {
   imports = [ (import ./home-common.nix { inherit configuration; }) ];
 
   home = {
+
     packages = [
+      pkgs.nodejs_latest
       pkgs.vscode
       # vscode-insiders
       # iosevkass09
     ];
+
+    sessionPath = [
+      "$HOME/.cabal/bin"
+      "$HOME/.ghcup/bin"
+      "$HOME/.local/bin"
+    ];
+
   };
 
 }

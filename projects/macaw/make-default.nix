@@ -9,7 +9,6 @@ import ../haskell-scaffolding.nix
     # DYLD_INSERT_LIBRARIES="${workaround}/macos11ghcwa.dylib";
 
     buildInputs = { pkgs, sources, ... }:
-
       let
         softfloat = pkgs.callPackage ../../nix-expressions/softfloat {
           source = sources.berkeley-softfloat-3;
@@ -18,11 +17,12 @@ import ../haskell-scaffolding.nix
       [
         pkgs.binutils
         pkgs.clang_11
+        pkgs.libiconv
+        pkgs.libffi
         # pkgs.llvm_11
         pkgs.zlib
-        pkgs.softfloat
+        softfloat
       ];
-
 
     overlays = { sources }:
       [
@@ -40,17 +40,17 @@ import ../haskell-scaffolding.nix
         pkgs.bv-sized
         pkgs.bv-sized-float
         pkgs.grift
-        # pkgs.macaw-aarch32
-        # pkgs.macaw-aarch32-symbolic
-        # pkgs.macaw-semmc
+        pkgs.macaw-aarch32
+        pkgs.macaw-aarch32-symbolic
+        pkgs.macaw-semmc
         pkgs.macaw-ppc
-        # pkgs.macaw-ppc-symbolic
-        # pkgs.macaw-refinement
+        pkgs.macaw-ppc-symbolic
+        pkgs.macaw-refinement
         pkgs.macaw-riscv
-        # pkgs.macaw-symbolic
-        # pkgs.macaw-x86
-        # pkgs.macaw-x86-symbolic
-        # pkgs.semmc
+        pkgs.macaw-symbolic
+        pkgs.macaw-x86
+        pkgs.macaw-x86-symbolic
+        pkgs.semmc
       ];
 
   })

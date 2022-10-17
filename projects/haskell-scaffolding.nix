@@ -76,6 +76,7 @@ let
     # Plan issues with the benchmarks, can try removing later
     configureArgs = "--disable-benchmarks";
     # Invalidate and update if you change the version
+    # plan-sha256 = pkgs.lib.fakeSha256;
     plan-sha256 = "sha256-8b8rWVfr2GjQQ6erq0LkiUdSQYkt43neB0fp4WS+CN0=";
     modules = [{
       # Tests don't pass for some reason, but this is a somewhat random revision.
@@ -123,7 +124,14 @@ set // {
     tools = {
       cabal = "latest";
       cabal-fmt = "latest";
-      hlint = "latest";
+      # NOTE: hlint has dependencies on ghc-lib-parser, which forces
+      # dependencies on base versions
+      # 3.4.1 will be compatible with base 4.14 (GHC 8.10.7)
+      # 3.5   will be compatible with base 4.15-4.17 (GHC 9.0.2 through 8.4.2 so far)
+      hlint =
+        if compiler-nix-name == "ghc8107"
+        then "3.4.1"
+        else "latest";
       # hpack = "0.34.2";
       ormolu = "0.3.1.0";
     };

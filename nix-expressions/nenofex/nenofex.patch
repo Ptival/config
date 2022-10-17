@@ -1,0 +1,39 @@
+diff --git a/makefile b/makefile
+index 0699e46..44dc3be 100644
+--- a/makefile
++++ b/makefile
+@@ -49,7 +49,7 @@ atpg.fpico: atpg.c stack.h queue.h mem.h nenofex_types.h
+ nenofex.o: nenofex.c nenofex_types.h stack.h mem.h
+ nenofex.fpico: nenofex.c nenofex_types.h stack.h mem.h
+ 
+-libnenofex.a: nenofex.o stack.o queue.o mem.o atpg.o ../picosat/picosat.o
++libnenofex.a: nenofex.o stack.o queue.o mem.o atpg.o # picosat/picosat.o
+ 	ar rc $@ $^
+ 	ranlib $@
+ 
+diff --git a/nenofex.c b/nenofex.c
+index 5d85dea..6d96c0b 100644
+--- a/nenofex.c
++++ b/nenofex.c
+@@ -29,7 +29,7 @@
+ #include <dirent.h>
+ #include <sys/types.h>
+ #include <sys/resource.h>
+-#include "../picosat/picosat.h"
++#include "picosat/picosat.h"
+ #include "nenofex_types.h"
+ #include "stack.h"
+ #include "mem.h"
+diff --git a/nenofex_types.h b/nenofex_types.h
+index 51a9f0a..a110fb0 100644
+--- a/nenofex_types.h
++++ b/nenofex_types.h
+@@ -21,7 +21,7 @@
+ #ifndef _NENOFEX_TYPES_H_
+ #define _NENOFEX_TYPES_H_
+ 
+-#include "../picosat/picosat.h"
++#include "picosat/picosat.h"
+ #include "mem.h"
+ #include "stack.h"
+ #include "queue.h"
