@@ -265,6 +265,7 @@
       "." = {
         "." = ("insertText:", "Ä");
       };
+      "\\^" = ("insertText:", "Â");
       "`" = ("insertText:", "À");
       "l" = {
         "p" = {
@@ -778,6 +779,7 @@
       "." = {
         "." = ("insertText:", "ä");
       };
+      "\\^" = ("insertText:", "â");
       "`" = ("insertText:", "à");
       "e" = ("insertText:", "æ");
       "l" = {
@@ -3337,7 +3339,9 @@
       "<" = ("insertText:", "⧀");
       "=" = ("insertText:", "⊜");
       ">" = ("insertText:", "⧁");
-      "\\" = ("insertText:", "⦸");
+      "\\" = {
+        "\\" = ("insertText:", "⦸");
+      };
       "\\^" = ("insertText:", "ô");
       "b" = {
         "o" = {
@@ -3547,7 +3551,9 @@
         " " = ("insertText:", "⋃");
         "+" = ("insertText:", "⨄");
       };
-      "\\" = ("insertText:", "⧅");
+      "\\" = {
+        "\\" = ("insertText:", "⧅");
+      };
       "a" = {
         "d" = {
           "c" = {
@@ -3605,7 +3611,9 @@
       };
       "e" = {
         "t" = {
-          "\\" = ("insertText:", "∖");
+          "\\" = {
+            "\\" = ("insertText:", "∖");
+          };
         };
       };
       "h" = {

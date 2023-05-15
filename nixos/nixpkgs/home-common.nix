@@ -39,6 +39,7 @@ let
 
   # myHomeManager = import (niv sources.home-manager) {};
 
+  binary-ninja = nur.repos.mic92.binary-ninja;
   mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
 
 in
@@ -63,17 +64,19 @@ in
       '')
       any-nix-shell
       bat # Nicer cat
+      # binary-ninja
       # binutils # Incompatible with clang?
-      cabal2nix
+      # cabal2nix # not currently using
       cachix
-      clang # Needed for GHC to find `ld`?
+      # clang # Needed for GHC to find `ld`?
       coreutils # Makes sure we have the version of `ls` that accepts arguments like --color
       dejavu_fonts
-      doom-emacs
+      # doom-emacs # not currently using
       # emacs
       emacs-all-the-icons-fonts
       fasd
       fd # Makes file search faster in doom-emacs
+      fira-code
       fira-mono
       fontconfig
       fzf
@@ -96,6 +99,7 @@ in
       # iosevka
       jq # JSON viewer
       less # Better than busybox's less
+      libertine # Font used by SIGPLAN LaTeX template
       libiconv # Needed by some Haskell packages
       lorri
       mesloNerdP10k
@@ -107,14 +111,14 @@ in
       pkgs.niv
       opam # DO NOT REMOVE WITHOUT FIXING interactiveShellInit
       openssl
-      (import ./texlive.nix { })
+      # (import ./texlive.nix { }) # not currently using, takes forever to compile
       ripgrep # Better grep
       rustup
-      socat
+      # socat # Was using to do FIFO stuff on transmute
       tree
       # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
       vimpager
-      websocat
+      # websocat # Was using to do FIFO stuff on crux
       wget
       yq # YAML viewer
 
@@ -303,6 +307,28 @@ in
     #   packageConfigurable = pkgs.vimHugeX;
     # };
 
+    zsh = {
+      autocd = true;
+      enable = true;
+      enableSyntaxHighlighting = true;
+      enableVteIntegration = true;
+      initExtra = ''
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+  source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+fi
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      '';
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "coot/zsh-haskell"; tags = ["14ac0fadc9b61fd27a65be35cd0591fd5504974a"]; }
+        ];
+      };
+    };
+
   };
 
   # This does not work on MacOS
@@ -313,10 +339,10 @@ in
   #   };
   # };
 
-  xdg.configFile."fish/conf.d/plugin-bobthefish.fish".text = pkgs.lib.mkAfter ''
-    for f in $plugin_dir/*.fish
-      source $f
-    end
-  '';
+  # xdg.configFile."fish/conf.d/plugin-bobthefish.fish".text = pkgs.lib.mkAfter ' ' # had to put a space between quotes to comment it out
+  #   for f in $plugin_dir/*.fish
+  #     source $f
+  #   end
+  # ' ';
 
 }

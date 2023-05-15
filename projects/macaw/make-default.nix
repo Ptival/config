@@ -15,13 +15,13 @@ import ../haskell-scaffolding.nix
         };
       in
       [
-        pkgs.binutils
-        pkgs.clang_11
-        pkgs.libiconv
-        pkgs.libffi
+        # pkgs.binutils
+        # pkgs.clang_11
+        # pkgs.libiconv
+        # pkgs.libffi
         # pkgs.llvm_11
-        pkgs.zlib
-        softfloat
+        # pkgs.zlib
+        # softfloat
       ];
 
     overlays = { sources }:
@@ -37,20 +37,21 @@ import ../haskell-scaffolding.nix
 
     packages = pkgs:
       [
-        pkgs.bv-sized
-        pkgs.bv-sized-float
-        pkgs.grift
-        pkgs.macaw-aarch32
-        pkgs.macaw-aarch32-symbolic
-        pkgs.macaw-semmc
-        pkgs.macaw-ppc
-        pkgs.macaw-ppc-symbolic
-        pkgs.macaw-refinement
-        pkgs.macaw-riscv
-        pkgs.macaw-symbolic
-        pkgs.macaw-x86
-        pkgs.macaw-x86-symbolic
-        pkgs.semmc
+        # pkgs.bv-sized
+        # pkgs.bv-sized-float
+        # pkgs.grift
+        # pkgs.macaw-aarch32
+        # pkgs.macaw-aarch32-symbolic
+        pkgs.macaw-base
+        # pkgs.macaw-semmc
+        # pkgs.macaw-ppc
+        # pkgs.macaw-ppc-symbolic
+        # pkgs.macaw-refinement
+        # pkgs.macaw-riscv
+        # pkgs.macaw-symbolic
+        # pkgs.macaw-x86
+        # pkgs.macaw-x86-symbolic
+        # pkgs.semmc
       ];
 
   })

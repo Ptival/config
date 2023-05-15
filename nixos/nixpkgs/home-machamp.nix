@@ -38,7 +38,13 @@ in {
   home = {
 
     packages = [
+      pkgs.colima
+      pkgs.docker
+      pkgs.docker-compose
+      pkgs.libiconv # otherwise lots of clang problems
       pkgs.nodejs_latest
+      # Broken on nixpkgs-unstable
+      # pkgs.python3Packages.poetry
       pkgs.vscode
       # vscode-insiders
       # iosevkass09

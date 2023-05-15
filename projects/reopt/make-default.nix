@@ -35,7 +35,9 @@ import ../haskell-scaffolding.nix (rec {
 
   packages = pkgs:
     [
-      pkgs.${name}
+      pkgs.reopt
+      # The following are listed so that their output shows up in Hoogle:
+      pkgs.macaw-x86 # Actually this does not work...
     ];
 
   sourceFilter = { filters, ... }: filters.nodeModulesFilter;
