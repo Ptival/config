@@ -105,7 +105,7 @@ in
       mesloNerdP10k
       mosh
       # noto-fonts-emoji
-      nix-du
+      # nix-du # Broken at the moment?
       nixfmt # Formatter for nix code
       nixpkgs-fmt # Other formatter?
       pkgs.niv
