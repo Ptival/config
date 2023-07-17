@@ -1,0 +1,204 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "[cpp]": {
+        // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "[haskell]": {
+        "editor.defaultFormatter": "haskell.haskell"
+    },
+    "[nix]": {
+        // "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
+    },
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": false
+    },
+    "cSpell.ignoreWords": [
+        "callees",
+        "datastructures",
+        "datatypes",
+        "eval",
+        "fmap",
+        "fprint",
+        "gadts",
+        "halloc",
+        "inlinable",
+        "intrinsics",
+        "mempty",
+        "noinline",
+        "postdominator",
+        "prettyprinter",
+        "regs",
+        "repr",
+        "stmts",
+        "struct",
+        "submodules",
+        "typeclass",
+        "varargs",
+        "vcat"
+    ],
+    "cSpell.userWords": [
+        "DARPA",
+        "Fuseki",
+        "direnv",
+        "prepend"
+    ],
+    "clangd.onConfigChanged": "restart",
+    "cmake.configureOnOpen": true,
+    "coq.interpretToEndOfSentence": true,
+    "debug.javascript.usePreview": true,
+    "debug.onTaskErrors": "abort",
+    "docker.dockerPath": "docker",
+    "editor.accessibilitySupport": "off",
+    "editor.cursorSurroundingLines": 10,
+    // "editor.fontFamily": "Iosevka Fixed SS09",
+    "editor.fontFamily": "XIosevka Term SS02",
+    // "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 15,
+    "editor.guides.bracketPairs": true,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    // "haskell.manageHLS": "PATH",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "files.exclude": {
+        "**/*.olean": true,
+        "**/.DS_Store": true,
+        "**/.classpath": true,
+        "**/.env": true,
+        "**/.factorypath": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.svn": true,
+        "**/.venv": true,
+        "**/CVS": true,
+        "**/dist-newstyle": true,
+        "**/venv": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.openRepositoryInParentFolders": "always",
+    "gitlens.codeLens.enabled": false,
+    "haskell.logFile": "/tmp/hls.log",
+    // "haskell.trace.server": "messages",
+    "haskell.updateBehavior": "prompt",
+    "idris.idris2Mode": true,
+    "idris.idrisPath": "idris2",
+    "indentRainbow.colors": [
+        "rgba(230,159,0,0.8)",
+        "rgba(86,180,233,0.8)",
+        "rgba(0,158,115,0.8)",
+        "rgba(240,228,66,0.8)",
+        "rgba(0,114,178,0.8)",
+        "rgba(213,94,0,0.8)"
+    ],
+    "indentRainbow.ignoreErrorLanguages": [
+        "coq",
+        "markdown",
+        "haskell"
+    ],
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.lightIndicatorStyleLineWidth": 1,
+    "liveshare.authenticationProvider": "GitHub",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.exclude": [
+        "deps/",
+        "typings/"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.diagnostics.sourceMapsEnabled": true,
+    "python.envFile": "${workspaceFolder}/.venv",
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.showStartPage": false,
+    "rewrap.wrappingColumn": 80,
+    "search.exclude": {
+        "**/*.code-search": true,
+        "**/.direnv": true,
+        "**/.git": true,
+        "**/.mypy_cache": true,
+        "**/bower_components": true,
+        "**/build": true,
+        "**/node_modules": true
+    },
+    "terminal.integrated.fontSize": 16,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "todo-tree.tree.showScanModeButton": false,
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vim.easymotion": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "args": "m",
+                    "command": "whichkey.triggerKey"
+                }
+            ]
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "args": "m",
+                    "command": "whichkey.triggerKey"
+                }
+            ]
+        }
+    ],
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "webview.experimental.useIframes": true,
+    "window.autoDetectColorScheme": true,
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Bearded Theme Light",
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.preferredDarkColorTheme": "Bearded Theme Vivid Black",
+    "workbench.preferredLightColorTheme": "Bearded Theme Light"
+}
