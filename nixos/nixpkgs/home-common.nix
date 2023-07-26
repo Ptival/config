@@ -112,7 +112,7 @@ in
       opam # DO NOT REMOVE WITHOUT FIXING interactiveShellInit
       openssl
       # (import ./texlive.nix { }) # not currently using, takes forever to compile
-      ripgrep # Better grep
+      # ripgrep # Better grep # Now done as home-manager module
       rustup
       # socat # Was using to do FIFO stuff on transmute
       tree
@@ -289,6 +289,14 @@ in
       withNodeJs = true;
     };
 
+    ripgrep = {
+      arguments = [
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
+      enable = true;
+    };
+
     # vim = {
     #   enable = true;
     #   # extraConfig = ''
@@ -310,21 +318,21 @@ in
     zsh = {
       autocd = true;
       enable = true;
-      enableSyntaxHighlighting = true;
       enableVteIntegration = true;
       initExtra = ''
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-  source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-fi
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+        # Initialization code that may require console input (password prompts, [y/n]
+        # confirmations, etc.) must go above this block, everything else may go below.
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       '';
+      syntaxHighlighting.enable = true;
       zplug = {
         enable = true;
         plugins = [
-          { name = "coot/zsh-haskell"; tags = ["14ac0fadc9b61fd27a65be35cd0591fd5504974a"]; }
+          { name = "coot/zsh-haskell"; tags = [ "14ac0fadc9b61fd27a65be35cd0591fd5504974a" ]; }
         ];
       };
     };

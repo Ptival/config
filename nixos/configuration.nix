@@ -1,7 +1,7 @@
 let
 
-  sources = import ./nix/sources.nix {};
-  home-manager-sources = import ./nixpkgs/nix/sources.nix {};
+  sources = import ./nix/sources.nix { };
+  home-manager-sources = import ./nixpkgs/nix/sources.nix { };
   fetchNiv = niv: fetchTarball { inherit (niv) url sha256; };
 
   pkgs = import (fetchNiv sources.nixpkgs) {
@@ -10,7 +10,7 @@ let
     };
   };
   homeManager = fetchNiv home-manager-sources.home-manager;
-  nur = pkgs.callPackage (fetchNiv sources.NUR) {};
+  nur = pkgs.callPackage (fetchNiv sources.NUR) { };
 
   userName = "val";
 
@@ -27,16 +27,16 @@ in
   # For general programming applications that are also relevant to
   # non-NixOS machines, I put those in ../nixpkgs/home.nix
   environment.systemPackages = with pkgs; [
-    adapta-kde-theme  # KDE theme
-    baobab            # Disk space usage viewer
+    adapta-kde-theme # KDE theme
+    baobab # Disk space usage viewer
     discord
-    feh               # Lightweight image viewer
+    feh # Lightweight image viewer
     firefox
     gimp
     slack
-    spectacle         # For taking screen captures
+    spectacle # For taking screen captures
     spotify
-    terminator        # Nice terminal
+    terminator # Nice terminal
   ];
 
   # Use the nixpkgs set by nixpkgs here

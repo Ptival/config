@@ -31,7 +31,8 @@ let
 
     }));
 
-in {
+in
+{
 
   imports = [ (import ./home-common.nix { inherit configuration; }) ];
 
