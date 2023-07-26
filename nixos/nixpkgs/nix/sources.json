@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "c81b1e527f3a220abfa9bf8096153d52784c5007",
-        "sha256": "0z6w28kcsd3q31mgk67a7izn6zl07scsc8xvw5c6i35mkx0qyl43",
+        "rev": "539f1e757a633e070c0e6fc4bb839612e4b06a66",
+        "sha256": "0br0n5845njd25lwajmrvry808za4i9r9azrm4n2jb0iqkjxjra0",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/c81b1e527f3a220abfa9bf8096153d52784c5007.tar.gz",
+        "url": "https://github.com/nix-community/NUR/archive/539f1e757a633e070c0e6fc4bb839612e4b06a66.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "done": {
@@ -29,10 +29,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "9e53c246a9f9db278b8e881b796f099119befe79",
-        "sha256": "18mq0bp1sz84n1snnxp64m32mrjl4743kjfax6hc5d4z7ybjc2yn",
+        "rev": "22c986c6ed401dcdbc5fdbfe7e0cf551a35b58dc",
+        "sha256": "1j5x6j7lr4vwbnxs7sh8y9rhz01b8wlzs09nkdjq6zwhzax217zg",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/9e53c246a9f9db278b8e881b796f099119befe79.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/22c986c6ed401dcdbc5fdbfe7e0cf551a35b58dc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-abbreviation-tips": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "Gazorby",
         "repo": "fish-abbreviation-tips",
-        "rev": "4ff1f565b5773aadba028051f432984def921762",
-        "sha256": "1bkgpmvyp1pk3p12lmrmjyslx3d2sfn9nfcry6bqis4k3yyr7xvy",
+        "rev": "8ed76a62bb044ba4ad8e3e6832640178880df485",
+        "sha256": "05b5qp7yly7mwsqykjlb79gl24bs6mbqzaj5b3xfn3v2b7apqnqp",
         "type": "tarball",
-        "url": "https://github.com/Gazorby/fish-abbreviation-tips/archive/4ff1f565b5773aadba028051f432984def921762.tar.gz",
+        "url": "https://github.com/Gazorby/fish-abbreviation-tips/archive/8ed76a62bb044ba4ad8e3e6832640178880df485.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fzf": {
@@ -65,10 +65,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "478610aa37c8339eacabfa03f07dacf5574edd47",
-        "sha256": "1viz7m0d0n1lbiwqq280m3c5x84fmv3j9j2n03b7j6ci50fmj68z",
+        "rev": "ba2c0737cc848db03470828fdb5e86df75ed42a8",
+        "sha256": "060nxjz7zgjxdmq0jmwmq07lyncr3mmlckhk74d6li04fhab126r",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/478610aa37c8339eacabfa03f07dacf5574edd47.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/ba2c0737cc848db03470828fdb5e86df75ed42a8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hydro": {
@@ -77,10 +77,10 @@
         "homepage": "",
         "owner": "jorgebucaran",
         "repo": "hydro",
-        "rev": "d4c107a2c99d1066950a09f605bffea61fc0efab",
-        "sha256": "1ajh6klw1rkn2mqk4rdghflxlk6ykc3wxgwp2pzfnjd58ba161ki",
+        "rev": "41b46a05c84a15fe391b9d43ecb71c7a243b5703",
+        "sha256": "0y1lh0pcwcfq3mfaidl59nniiz6ga99mjm12ggrxi3kxcby1lqff",
         "type": "tarball",
-        "url": "https://github.com/jorgebucaran/hydro/archive/d4c107a2c99d1066950a09f605bffea61fc0efab.tar.gz",
+        "url": "https://github.com/jorgebucaran/hydro/archive/41b46a05c84a15fe391b9d43ecb71c7a243b5703.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -89,10 +89,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "351d8bc316bf901a81885bab5f52687ec8ccab6e",
-        "sha256": "1yzhz7ihkh6p2sxhp3amqfbmm2yqzaadqqii1xijymvl8alw5rrr",
+        "rev": "914aba08a26cb10538b84d00d6cfb01c9776d80c",
+        "sha256": "0gx316gc7prjay5b0cr13x4zc2pdbiwxkfkpjvrlb2rml80lm4pm",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/351d8bc316bf901a81885bab5f52687ec8ccab6e.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/914aba08a26cb10538b84d00d6cfb01c9776d80c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
@@ -101,10 +101,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "3c02175dd06714c15ddd2f73708de9b4dacc6aa9",
-        "sha256": "1ha3lwpxd72hqz8dll0vx1qva0h9q6yqi0h66szrv69sg2kdi0px",
+        "rev": "9a5b34d9ba30842eb8f0d7deb08bf03a75930471",
+        "sha256": "16f571gd1jja3nqffzqnf0b4w3n907n1k01sl3sd8dl7c37p601p",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/3c02175dd06714c15ddd2f73708de9b4dacc6aa9.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/9a5b34d9ba30842eb8f0d7deb08bf03a75930471.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-env.fish": {
@@ -125,10 +125,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7e63eed145566cca98158613f3700515b4009ce3",
-        "sha256": "0xqxx0dn43cllzimpgma72i1rvlrbgdhrcfv45yd27m4yaqybmxy",
+        "rev": "a9b47d85504bdd199e90846622c76aa0bfeabfac",
+        "sha256": "1zccj4kx7q9sq1r0xadfd1xkxrxwpxqq9mxc5csfmqadkihwzzhn",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/7e63eed145566cca98158613f3700515b4009ce3.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/a9b47d85504bdd199e90846622c76aa0bfeabfac.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "plugin-bang-bang": {
@@ -137,10 +137,10 @@
         "homepage": null,
         "owner": "oh-my-fish",
         "repo": "plugin-bang-bang",
-        "rev": "816c66df34e1cb94a476fa6418d46206ef84e8d3",
-        "sha256": "0dx4z0mmrwfkg8qh1yis75vwf69ng51m3icsiiw7k2cwc02mg76z",
+        "rev": "ec991b80ba7d4dda7a962167b036efc5c2d79419",
+        "sha256": "1bf61f6h5p7mc0schwbd693cafp1vcjz2f7pzy6gn33nafsc5wx0",
         "type": "tarball",
-        "url": "https://github.com/oh-my-fish/plugin-bang-bang/archive/816c66df34e1cb94a476fa6418d46206ef84e8d3.tar.gz",
+        "url": "https://github.com/oh-my-fish/plugin-bang-bang/archive/ec991b80ba7d4dda7a962167b036efc5c2d79419.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "plugin-fasd": {
@@ -161,10 +161,10 @@
         "homepage": "",
         "owner": "oh-my-fish",
         "repo": "plugin-foreign-env",
-        "rev": "b3dd471bcc885b597c3922e4de836e06415e52dd",
-        "sha256": "13wdsvpazivlxk921ccqbk7gl6ya2md8f45rckbn8rn119ckf7fy",
+        "rev": "3ee95536106c11073d6ff466c1681cde31001383",
+        "sha256": "11jgpklcqy8xj8dsb4j1lrwx3y34kcnmmzck6agci3jbd5gvy9dz",
         "type": "tarball",
-        "url": "https://github.com/oh-my-fish/plugin-foreign-env/archive/b3dd471bcc885b597c3922e4de836e06415e52dd.tar.gz",
+        "url": "https://github.com/oh-my-fish/plugin-foreign-env/archive/3ee95536106c11073d6ff466c1681cde31001383.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "theme-agnoster": {
@@ -173,10 +173,10 @@
         "homepage": null,
         "owner": "oh-my-fish",
         "repo": "theme-agnoster",
-        "rev": "c142e802983bd1b34b4d91efac2126fc5913126d",
-        "sha256": "060yydkxmvmlzq2236pjqfmpgvm3g1085c5yzilq0nl1dvmz3wnh",
+        "rev": "9bc75df5df2cdd2cf39975a0780b6274eeadf803",
+        "sha256": "0rj5b3fl4y9g6sw4rgmqp30kbxgzdwk30lv9qy33hdym1bn2yqyb",
         "type": "tarball",
-        "url": "https://github.com/oh-my-fish/theme-agnoster/archive/c142e802983bd1b34b4d91efac2126fc5913126d.tar.gz",
+        "url": "https://github.com/oh-my-fish/theme-agnoster/archive/9bc75df5df2cdd2cf39975a0780b6274eeadf803.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "theme-bobthefish": {
@@ -185,10 +185,10 @@
         "homepage": "",
         "owner": "oh-my-fish",
         "repo": "theme-bobthefish",
-        "rev": "2dcfcab653ae69ae95ab57217fe64c97ae05d8de",
-        "sha256": "118hj100c4bb8hyhr22mrsjhg97pyd24cwb1l39bhryd0k9yc5lc",
+        "rev": "c2c47dc964a257131b3df2a127c2631b4760f3ec",
+        "sha256": "1p86nk25bzcwzdfg3fadxq2ibhlpw0bp7pz19sqv62rp83w207ic",
         "type": "tarball",
-        "url": "https://github.com/oh-my-fish/theme-bobthefish/archive/2dcfcab653ae69ae95ab57217fe64c97ae05d8de.tar.gz",
+        "url": "https://github.com/oh-my-fish/theme-bobthefish/archive/c2c47dc964a257131b3df2a127c2631b4760f3ec.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "theme-coffeeandcode": {
