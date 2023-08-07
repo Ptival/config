@@ -102,7 +102,7 @@ in
       libertine # Font used by SIGPLAN LaTeX template
       libiconv # Needed by some Haskell packages
       lorri
-      mesloNerdP10k
+      # mesloNerdP10k # disabled until I update it in NUR
       mosh
       # noto-fonts-emoji
       # nix-du # Broken at the moment?
