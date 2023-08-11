@@ -1,3 +1,11 @@
+[alias]
+  children = "!f() { git rev-list --all --not HEAD^@ --children | grep $(git rev-parse HEAD) | awk {'print $2'}; }; f"
+  dc = diff --cached
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  next = "!f() { git checkout `git children`; }; f"
+  prev = "!f() { git checkout HEAD^; }; f"
+
 [color]
   ui = auto
 
@@ -5,7 +13,13 @@
   pager = delta
 
 [delta]
+  features = decorations line-numbers side-by-side
   navigate = true
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
 
 [diff]
   colorMoved = default
@@ -18,12 +32,4 @@
 
 [user]
   name = Valentin Robert
-  email = valentin.robert.42@gmail.com
 
-[alias]
-  children = "!f() { git rev-list --all --not HEAD^@ --children | grep $(git rev-parse HEAD) | awk {'print $2'}; }; f"
-  dc = diff --cached
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  next = "!f() { git checkout `git children`; }; f"
-  prev = "!f() { git checkout HEAD^; }; f"
