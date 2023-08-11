@@ -193,12 +193,10 @@
     "webview.experimental.useIframes": true,
     "window.autoDetectColorScheme": true,
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "Ayu Dark Meta",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.decorations.colors": true,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
-    },
-    "workbench.preferredDarkColorTheme": "Bearded Theme Vivid Black",
-    "workbench.preferredLightColorTheme": "Bearded Theme Light"
+    }
 }
