@@ -193,7 +193,7 @@
     "webview.experimental.useIframes": true,
     "window.autoDetectColorScheme": true,
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "Bearded Theme Light",
+    "workbench.colorTheme": "Ayu Dark Meta",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.decorations.colors": true,
     "workbench.editorAssociations": {
