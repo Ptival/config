@@ -1,0 +1,203 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "shift+cmd+c",
+    "command": "editor.action.clipboardCopyWithSyntaxHighlightingAction"
+  },
+  {
+    "key": "tab",
+    "command": "extension.vim_tab",
+    "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+  },
+  {
+    "key": "tab",
+    "command": "-extension.vim_tab",
+    "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "x",
+    "command": "magit.discard-at-point",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "k",
+    "command": "-magit.discard-at-point"
+  },
+  {
+    "key": "-",
+    "command": "magit.reverse-at-point",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "v",
+    "command": "-magit.reverse-at-point"
+  },
+  {
+    "key": "shift+-",
+    "command": "magit.reverting",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+v",
+    "command": "-magit.reverting"
+  },
+  {
+    "key": "shift+o",
+    "command": "magit.resetting",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+x",
+    "command": "-magit.resetting"
+  },
+  {
+    "key": "x",
+    "command": "-magit.reset-mixed"
+  },
+  {
+    "key": "ctrl+u x",
+    "command": "-magit.reset-hard"
+  },
+  {
+    "key": "y",
+    "command": "-magit.show-refs"
+  },
+  {
+    "key": "y",
+    "command": "vspacecode.showMagitRefMenu",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "showNextParameterHint",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "showPrevParameterHint",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "file-browser.stepOut",
+    "when": "inFileBrowser"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "file-browser.stepIn",
+    "when": "inFileBrowser"
+  },
+  // {
+  //   "key": "alt+right",
+  //   "command": "extension.coq.interpretToPoint",
+  //   "when":"editorTextFocus && editorLangId == coq"
+  // },
+  // {
+  //   "key": "alt+up",
+  //   "command": "extension.coq.stepBackward",
+  //   "when":"editorTextFocus && editorLangId == coq"
+  // },
+  // {
+  //   "key": "alt+down",
+  //   "command": "extension.coq.stepForward",
+  //   "when":"editorTextFocus && editorLangId == coq"
+  // }
+  {
+    "key": "cmd+ctrl+c",
+    "command": "extension.coq.query.check",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "cmd+alt+p",
+    "command": "extension.coq.query.print",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "cmd+alt+a",
+    "command": "extension.coq.query.about",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "alt+right",
+    "command": "extension.coq.interpretToPoint",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "alt+right",
+    "command": "extension.coq.interpretToPoint",
+    "when": "resourceScheme==coq-view"
+  },
+  {
+    "key": "alt+down",
+    "command": "extension.coq.stepForward",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "alt+down",
+    "command": "extension.coq.stepForward",
+    "when": "resourceScheme==coq-view"
+  },
+  {
+    "key": "alt+up",
+    "command": "extension.coq.stepBackward",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "alt+up",
+    "command": "extension.coq.stepBackward",
+    "when": "resourceScheme==coq-view"
+  },
+  {
+    "key": "ctrl+alt+end",
+    "command": "extension.coq.interpretToEnd",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "ctrl+alt+end",
+    "command": "extension.coq.interpretToEnd",
+    "when": "resourceScheme==coq-view"
+  },
+  {
+    "key": "cmd+ctrl+pausebreak",
+    "command": "extension.coq.interrupt",
+    "when": "editorTextFocus && editorLangId == coq"
+  },
+  {
+    "key": "cmd+ctrl+pausebreak",
+    "command": "extension.coq.interrupt",
+    "when": "resourceScheme==coq-view"
+  },
+]
