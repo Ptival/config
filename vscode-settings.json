@@ -51,11 +51,13 @@
     "docker.dockerPath": "docker",
     "editor.accessibilitySupport": "off",
     "editor.cursorSurroundingLines": 10,
-    // "editor.fontFamily": "Iosevka Fixed SS09",
-    "editor.fontFamily": "XIosevka Term SS02",
+    "editor.fontFamily": "Iosevka Fixed SS09",
+    // "editor.fontFamily": "XIosevka Term SS02",
+    // "editor.fontFamily": "Fira Code",
+    // "editor.fontFamily": "Hack",
     // "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 15,
+    "editor.fontSize": 14,
     "editor.guides.bracketPairs": true,
     "editor.minimap.enabled": false,
     "editor.suggestSelection": "first",
@@ -103,6 +105,22 @@
     ],
     "indentRainbow.indicatorStyle": "light",
     "indentRainbow.lightIndicatorStyleLineWidth": 1,
+    "latex-workshop.latex.tools": [
+        {
+            "args": [
+                "-shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "command": "latexmk",
+            "env": {},
+            "name": "latexmk"
+        }
+    ],
     "liveshare.authenticationProvider": "GitHub",
     "notebook.cellToolbarLocation": {
         "default": "right",
@@ -192,11 +210,11 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "webview.experimental.useIframes": true,
     "window.autoDetectColorScheme": true,
-    "window.zoomLevel": -1,
-    "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.decorations.colors": true,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
-    }
+    },
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Ayu Mirage Bordered"
 }
