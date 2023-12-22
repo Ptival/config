@@ -10,16 +10,25 @@
   ui = auto
 
 [core]
-  pager = delta
+  pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 
 [delta]
-  features = decorations line-numbers side-by-side
   navigate = true
 
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
   file-decoration-style = none
+
+[delta "light-mode"]
+  features = "decorations line-numbers side-by-side"
+  light = true
+  syntax-theme = GitHub
+
+[delta "dark-mode"]
+  features = "decorations line-numbers side-by-side"
+  light = false
+  syntax-theme = Visual Studio Dark+
 
 [diff]
   colorMoved = default
