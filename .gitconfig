@@ -33,9 +33,6 @@
 [diff]
   colorMoved = default
 
-[interactive]
-  diffFilter = delta --color-only
-
 [merge]
   conflictStyle = diff3
 

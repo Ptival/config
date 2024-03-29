@@ -234,6 +234,7 @@ in
       ];
 
       shellAbbrs = {
+        gf = "git fetch --all --prune";
         gbv = "git branch --verbose";
         gco = "git checkout";
         gst = "git status";
