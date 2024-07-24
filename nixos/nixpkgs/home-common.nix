@@ -1,154 +1,115 @@
-{ configuration }:
-
+{ config, pkgs, ... }:
 let
-
-  niv = configuration.niv;
-  nur = configuration.nur;
-  pkgs = configuration.pkgs;
-  sources = configuration.sources;
-
-  # Disabled until this is fixed:
-  # https://github.com/nix-community/emacs-overlay/issues/124
-
-  doom-emacs = pkgs.callPackage (niv sources.nix-doom-emacs) {
-    doomPrivateDir = ../dotfiles/doom.d;
-    # emacsPackages = (pkgs.emacsPackagesNgGen
-    #   (pkgs.emacsGit.override {
-    #     # inherit (pkgs) imagemagick;
-    #     # withGTK3 = true;
-    #     # withXwidgets = true;
-    #   }));
-    extraPackages = epkgs: [
-      pkgs.emacsPackages.proof-general
-    ];
-    # dependencyOverrides = {
-    #   "auctex" = throw "TODO";
-    # };
+  niv = source: fetchTarball { inherit (source) url sha256; };
+  nur = pkgs.callPackage (niv sources.NUR) { };
+  pkgs = import (niv sources.nixpkgs) {
+    config = { allowUnfree = true; };
+    overlays = [ (import (niv sources.emacs-overlay)) ];
   };
+  sources = import ./nix/sources.nix { };
+in {
 
-  pkgs-bootstrap = import <nixpkgs> { config = { }; overlays = [ ]; };
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "val";
+  home.homeDirectory = "/Users/val";
 
-  lorelei-source = pkgs-bootstrap.fetchFromGitHub {
-    owner = "shajra";
-    repo = "direnv-nix-lorelei";
-    rev = "7342d5b95e84e4d9b885d4afa82b061c7278297c";
-    sha256 = "sha256-KhLyeRqIQsa4axO6+RSMxIi8iibWefgnLcaWC+dL7Gc=";
-    # sha256 = pkgs.lib.fakeSha256;
-  };
-  module-lorelei = (import lorelei-source).direnv-nix-lorelei-home;
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  # myHomeManager = import (niv sources.home-manager) {};
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home = {
 
-  binary-ninja = nur.repos.mic92.binary-ninja;
-  mesloNerdP10k = nur.repos.ptival.meslo-nerd-powerlevel10k;
+    packages = [
+      pkgs.any-nix-shell
+      pkgs.bat
+      pkgs.cachix
+      pkgs.capstone
 
-in
-{
+      # This interferes poorly with MacOS, for instance, the `cp` command won't support `-c`:
+      # pkgs.coreutils
 
-  # Does not work on NixOS with useGlobalPkgs
-  fonts.fontconfig.enable = true;
-
-  manual.manpages.enable = false;
-
-  home = rec {
-
-    homeDirectory =
-      if pkgs.stdenv.isDarwin
-      then "/Users/${username}"
-      else "/home/${username}";
-
-    packages = with pkgs; [
-      (pkgs.writeScriptBin "nixFlakes" ''
-        #! /usr/bin/env fish
-        exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$argv"
-      '')
-      any-nix-shell
-      bat # Nicer cat
-      # binary-ninja
-      # binutils # Incompatible with clang?
-      # cabal2nix # not currently using
-      cachix
-      # clang # Needed for GHC to find `ld`?
-      coreutils # Makes sure we have the version of `ls` that accepts arguments like --color
-      dejavu_fonts
-      # doom-emacs # not currently using
-      # emacs
-      emacs-all-the-icons-fonts
-      fasd
-      fd # Makes file search faster in doom-emacs
-      fira-code
-      fira-mono
-      fontconfig
-      fzf
-      difftastic
-      gitAndTools.delta # Nicer pager, is not automatically installed when git.delta.enable is true
-      gitAndTools.git-delete-merged-branches
-      github-cli
-      gnumake
-      graphviz
-
-      # EDIT: Actually it creates problems to have ghc/cabal available! :-D
-      # It is nice to always have some Haskell packages available for
-      # bootstrapping project, even if the projects bring their own copy of
-      # such tools.
-      # haskellPackages.cabal-install
-      # haskellPackages.hpack
-      # haskellPackages.ghc
-
-      htop # Nicer top
-      # iosevka
-      jq # JSON viewer
-      less # Better than busybox's less
-      libertine # Font used by SIGPLAN LaTeX template
-      libiconv # Needed by some Haskell packages
-      lorri
-      # mesloNerdP10k # disabled until I update it in NUR
-      mosh
-      # noto-fonts-emoji
-      # nix-du # Broken at the moment?
-      nixfmt # Formatter for nix code
-      nixpkgs-fmt # Other formatter?
+      pkgs.entr
+      pkgs.expect
+      pkgs.fzf
+      pkgs.difftastic
+      pkgs.gitAndTools.delta
+      pkgs.gitAndTools.git-delete-merged-branches
+      pkgs.github-cli
+      pkgs.gnumake
+      pkgs.graphviz
+      pkgs.htop
+      pkgs.nixfmt
       pkgs.niv
-      opam # DO NOT REMOVE WITHOUT FIXING interactiveShellInit
-      openssl
-      # (import ./texlive.nix { }) # not currently using, takes forever to compile
-      # ripgrep # Better grep # Now done as home-manager module
-      rustup
-      # socat # Was using to do FIFO stuff on transmute
-      tree
-      # vscode          # UNWANTED on WSL2 machines, put it it machine-specific nix files
-      vimpager
-      # websocat # Was using to do FIFO stuff on crux
-      wget
-      yq # YAML viewer
-
-      # The followings are necessary to install coqide via opam
-      # NVM: doesn't work, installing via system package manager instead
-      # cairo
-      # expat
-      # gnome.adwaita-icon-theme
-      # gtk3
-      # gtksourceview3
-
+      pkgs.jq
+      pkgs.less
+      pkgs.mosh
+      pkgs.tree
+      pkgs.wget
+      pkgs.yq
     ];
 
     sessionPath = [
+      "$HOME/.cargo/bin"
       "$HOME/.ghcup/bin"
       "$HOME/.local/bin"
+      "$HOME/.opam/default/bin"
+      "/opt/homebrew/bin"
+      "/opt/homebrew/opt/binutils/bin"
+      "/opt/homebrew/opt/llvm@12/bin"
     ];
 
-    sessionVariables = { LS_COLORS = "ow=01;34"; };
-    stateVersion = "21.11";
-    username = "val";
-
+    sessionVariables = {
+      LS_COLORS = "ow=01;34";
+      HOMEBREW_PREFIX = "/opt/homebrew";
+      HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+      HOMEBREW_REPOSITORY = "/opt/homebrew";
+      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:$PATH";
+      MANPATH = "/opt/homebrew/share/man:$MANPATH";
+      INFOPATH = "/opt/homebrew/share/info:$INFOPATH";
+    };
   };
 
-  # NOTE: this does not exist when `useGlobalPkgs` is set
-  # nixpkgs.config = {
-  #   allowUnfree = true;
-  # };
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-  imports = [ module-lorelei ];
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+
+  # You can also manage environment variables but you will have to manually
+  # source
+  #
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  /etc/profiles/per-user/val/etc/profile.d/hm-session-vars.sh
+  #
+  # if you don't want to manage your shell through Home Manager.
+  home.sessionVariables = {
+    # EDITOR = "emacs";
+  };
+
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   programs = {
 
@@ -162,7 +123,7 @@ in
       };
     };
 
-    direnv-nix-lorelei.enable = true;
+    # direnv-nix-lorelei.enable = true;
 
     fish = {
       enable = true;
@@ -176,6 +137,13 @@ in
         export NIX_PATH=$HOME/.nix-defexpr/channels
 
         any-nix-shell fish --info-right | source
+
+        export HOMEBREW_PREFIX="/opt/homebrew"
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+        set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
+        set -q PATH; or set PATH ""; set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH;
+        set -q MANPATH; or set MANPATH ""; set -gx MANPATH "/opt/homebrew/share/man" $MANPATH;
+        set -q INFOPATH; or set INFOPATH ""; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 
         eval (opam env)
       '';
@@ -234,15 +202,12 @@ in
       ];
 
       shellAbbrs = {
-        gf = "git fetch --all --prune";
         gbv = "git branch --verbose";
         gco = "git checkout";
         gst = "git status";
       };
 
-      shellAliases = {
-        ls = "ls --color=always";
-      };
+      shellAliases = { ls = "ls --color=always"; };
 
     };
 
@@ -251,6 +216,9 @@ in
       # delta = {
       #   enable = true;
       # };
+      diff-so-fancy = {
+        enable = true;
+      };
       lfs.enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "Valentin Robert";
@@ -291,67 +259,15 @@ in
     };
 
     ripgrep = {
-      arguments = [
-        "--max-columns-preview"
-        "--colors=line:style:bold"
-      ];
+      arguments = [ "--max-columns-preview" "--colors=line:style:bold" ];
       enable = true;
     };
 
-    # vim = {
-    #   enable = true;
-    #   # extraConfig = ''
-    #   #   so ~/.vim/plugin/unicode.vim
-    #   #   " colorscheme delek
-    #   #   " " filetype plugin indent on      " ?
-    #   #   " set autoindent                 " Indent based on previous line indentation
-    #   #   " " set backspace=indent,eol,start " ?
-    #   #   " set expandtab                  " Pressing <TAB> inserts spaces according to 'shiftwidth' and 'softtabstop'
-    #   #   " set number                     " Display line numbers
-    #   #   " set softtabstop=2
-    #   #   " set shiftwidth=2
-    #   #   " set smartindent                " Helps autoindent make smarter, language-based choices
-    #   #   " " syntax on
-    #   # '';
-    #   packageConfigurable = pkgs.vimHugeX;
-    # };
-
-    zsh = {
-      autocd = true;
+    zoxide = {
       enable = true;
-      enableVteIntegration = true;
-      initExtra = ''
-        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-        # Initialization code that may require console input (password prompts, [y/n]
-        # confirmations, etc.) must go above this block, everything else may go below.
-        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        fi
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-      '';
-      syntaxHighlighting.enable = true;
-      zplug = {
-        enable = true;
-        plugins = [
-          { name = "coot/zsh-haskell"; tags = [ "14ac0fadc9b61fd27a65be35cd0591fd5504974a" ]; }
-        ];
-      };
+      enableFishIntegration = true;
     };
 
   };
-
-  # This does not work on MacOS
-  # services = {
-  #   emacs = {
-  #     enable = true;
-  #     package = doom-emacs;
-  #   };
-  # };
-
-  # xdg.configFile."fish/conf.d/plugin-bobthefish.fish".text = pkgs.lib.mkAfter ' ' # had to put a space between quotes to comment it out
-  #   for f in $plugin_dir/*.fish
-  #     source $f
-  #   end
-  # ' ';
 
 }
