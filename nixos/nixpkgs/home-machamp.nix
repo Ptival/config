@@ -55,6 +55,7 @@ in
       "$HOME/.cabal/bin"
       "$HOME/.ghcup/bin"
       "$HOME/.local/bin"
+      "$HOME/Library/Application Support/Coursier/bin"
     ];
 
   };

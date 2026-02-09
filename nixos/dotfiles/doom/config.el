@@ -1,3 +1,11 @@
+;;;
+
+!!!NOTE!!!
+
+This is unused now?  See ~/dotfiles/doom/dot-config/doom/config.el instead
+
+;;;
+
 ;;; private/ptival/config.el -*- lexical-binding: t; -*-
 
 ;; The default purple makes comments unreadable.
@@ -5,6 +13,14 @@
   '(font-lock-comment-face :foreground "DarkGreen")
   '(proof-locked-face :background "#331133")
 )
+
+(setq lsp-haskell-server-path "/Users/val/personal/haskell-language-server/dist-newstyle/build/aarch64-osx/ghc-9.8.4/haskell-language-server-2.11.0.0/x/haskell-language-server/build/haskell-language-server/haskell-language-server")
+
+;; Have Emacs use POSIX shell when spawning, to avoid fish-related issues
+(setq shell-file-name (executable-find "bash"))
+;; But let the terminal emulators use fish
+(setq-default vterm-shell "/Users/val/.nix-profile/bin/fish")
+(setq-default explicit-shell-file-name "/Users/val/.nix-profile/bin/fish")
 
 (setq
  ;; doom-font (font-spec :family "Iosevka" :size 20) ;; currently cannot build Iosevka SS09 :(

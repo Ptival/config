@@ -32,6 +32,7 @@ in {
       pkgs.bat
       pkgs.cachix
       pkgs.capstone
+      pkgs.difftastic
 
       # This interferes poorly with MacOS, for instance, the `cp` command won't support `-c`:
       # pkgs.coreutils
@@ -39,14 +40,14 @@ in {
       pkgs.entr
       pkgs.expect
       pkgs.fzf
-      pkgs.difftastic
+      pkgs.ghciwatch
       pkgs.gitAndTools.delta
       pkgs.gitAndTools.git-delete-merged-branches
       pkgs.github-cli
       pkgs.gnumake
       pkgs.graphviz
       pkgs.htop
-      pkgs.nixfmt
+      pkgs.nixfmt-rfc-style
       pkgs.niv
       pkgs.jq
       pkgs.less
@@ -62,8 +63,10 @@ in {
       "$HOME/.local/bin"
       "$HOME/.opam/default/bin"
       "/opt/homebrew/bin"
-      "/opt/homebrew/opt/binutils/bin"
-      "/opt/homebrew/opt/llvm@12/bin"
+      # Messes up GHC?
+      # "/opt/homebrew/opt/binutils/bin"
+      # Messes up GHC?
+      # "/opt/homebrew/opt/llvm@12/bin"
     ];
 
     sessionVariables = {
@@ -108,10 +111,14 @@ in {
 
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    # settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   programs = {
+
+    diff-so-fancy = {
+      enable = true;
+    };
 
     direnv = {
       enable = true;
@@ -124,6 +131,8 @@ in {
     };
 
     # direnv-nix-lorelei.enable = true;
+
+    fd.enable = true; # DOOM Emacs uses this for faster project file search
 
     fish = {
       enable = true;
@@ -202,6 +211,7 @@ in {
       ];
 
       shellAbbrs = {
+        cat = "bat";
         gbv = "git branch --verbose";
         gco = "git checkout";
         gst = "git status";
@@ -216,12 +226,12 @@ in {
       # delta = {
       #   enable = true;
       # };
-      diff-so-fancy = {
-        enable = true;
-      };
+      # diff-so-fancy = {
+      #   enable = true;
+      # };
       lfs.enable = true;
       package = pkgs.gitAndTools.gitFull;
-      userName = "Valentin Robert";
+      settings.user.name = "Valentin Robert";
     };
 
     home-manager = {
@@ -240,7 +250,7 @@ in {
         enable = true;
         # Temporary workaround for bug:
         # https://github.com/nix-community/home-manager/issues/2966
-        package = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        package = pkgs.vimUtils.buildVimPlugin {
           pname = "coc.nvim";
           version = "2022-05-21";
           src = pkgs.fetchFromGitHub {
