@@ -21,7 +21,7 @@ in {
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "26.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -32,26 +32,25 @@ in {
       pkgs.bat
       pkgs.cachix
       pkgs.capstone
-      pkgs.difftastic
 
       # This interferes poorly with MacOS, for instance, the `cp` command won't support `-c`:
       # pkgs.coreutils
 
+      pkgs.difftastic
       pkgs.entr
       pkgs.expect
       pkgs.fzf
       pkgs.ghciwatch
-      pkgs.gitAndTools.delta
       pkgs.gitAndTools.git-delete-merged-branches
       pkgs.github-cli
       pkgs.gnumake
       pkgs.graphviz
       pkgs.htop
-      pkgs.nixfmt-rfc-style
-      pkgs.niv
       pkgs.jq
       pkgs.less
       pkgs.mosh
+      pkgs.niv
+      pkgs.nixfmt-rfc-style
       pkgs.tree
       pkgs.wget
       pkgs.yq
@@ -78,6 +77,8 @@ in {
       MANPATH = "/opt/homebrew/share/man:$MANPATH";
       INFOPATH = "/opt/homebrew/share/info:$INFOPATH";
     };
+
+    shell.enableFishIntegration = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -109,28 +110,24 @@ in {
     # EDITOR = "emacs";
   };
 
-  nix = {
-    package = pkgs.nix;
-    # settings.experimental-features = [ "nix-command" "flakes" ];
-  };
+  nix.package = pkgs.nix;
 
   programs = {
 
-    diff-so-fancy = {
+    delta = {
       enable = true;
+      enableGitIntegration = true;
+      options = {
+        line-numbers = true;
+        side-by-side = true;
+        true-color = "always";
+      };
     };
 
     direnv = {
       enable = true;
-      # enableFishIntegration = true;
-      # enableZshIntegration = true;
-      nix-direnv = {
-        enable = true;
-        # enableFlakes = true;
-      };
+      nix-direnv.enable = true;
     };
-
-    # direnv-nix-lorelei.enable = true;
 
     fd.enable = true; # DOOM Emacs uses this for faster project file search
 
@@ -159,11 +156,6 @@ in {
 
       plugins = [
 
-        # {
-        #   name = "coffeeandcode";
-        #   src = niv sources.theme-coffeeandcode;
-        # }
-
         # /!\ WARNING: themes requires setting xdg down below!
         {
           name = "bobthefish";
@@ -186,11 +178,6 @@ in {
           name = "fish-abbreviation-tips";
           src = niv sources.fish-abbreviation-tips;
         }
-
-        # {
-        #   name = "hydro";
-        #   src = niv sources.hydro;
-        # }
 
         {
           name = "fzf";
@@ -223,12 +210,6 @@ in {
 
     git = {
       enable = true;
-      # delta = {
-      #   enable = true;
-      # };
-      # diff-so-fancy = {
-      #   enable = true;
-      # };
       lfs.enable = true;
       package = pkgs.gitAndTools.gitFull;
       settings.user.name = "Valentin Robert";
@@ -239,29 +220,31 @@ in {
       path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
     };
 
+    man = {
+      enable = true;
+      generateCaches = true;
+      package = pkgs.man-db;
+    };
+
     neovim = {
+      coc.enable = true;
       enable = true;
 
       extraConfig = ''
-        colorscheme default
+        colorscheme gruvbox
       '';
 
-      coc = {
-        enable = true;
-        # Temporary workaround for bug:
-        # https://github.com/nix-community/home-manager/issues/2966
-        package = pkgs.vimUtils.buildVimPlugin {
-          pname = "coc.nvim";
-          version = "2022-05-21";
-          src = pkgs.fetchFromGitHub {
-            owner = "neoclide";
-            repo = "coc.nvim";
-            rev = "791c9f673b882768486450e73d8bda10e391401d";
-            sha256 = "sha256-MobgwhFQ1Ld7pFknsurSFAsN5v+vGbEFojTAYD/kI9c=";
-          };
-          meta.homepage = "https://github.com/neoclide/coc.nvim/";
-        };
-      };
+      initLua = ''
+        vim.wo.number = true
+      '';
+
+      plugins = with pkgs.vimPlugins; [
+        gruvbox
+        tagbar
+        vim-airline
+        vim-indent-guides
+        vim-llvm
+      ];
 
       viAlias = true;
       vimAlias = true;
