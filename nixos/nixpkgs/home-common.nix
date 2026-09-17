@@ -256,6 +256,13 @@ in {
       enable = true;
     };
 
+    # This seems to be causing memory leaks that really slow down my system after a couple days.
+    # zellij = {
+    #   enableBashIntegration = true;
+    #   enableFishIntegration = true;
+    #   enable = true;
+    # };
+
     zoxide = {
       enable = true;
       enableFishIntegration = true;

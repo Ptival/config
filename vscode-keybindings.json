@@ -200,4 +200,84 @@
     "command": "extension.coq.interrupt",
     "when": "resourceScheme==coq-view"
   },
+  {
+    "key": "alt+down",
+    "command": "extension.rocq.stepForward",
+    "when": "editorTextFocus && editorLangId == 'rocq'"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "-extension.rocq.stepForward",
+    "when": "editorTextFocus && editorLangId == 'rocq'"
+  },
+  {
+    "key": "alt+down",
+    "command": "extension.rocq.stepForward",
+    "when": "resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "-extension.rocq.stepForward",
+    "when": "resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "alt+up",
+    "command": "extension.rocq.stepBackward",
+    "when": "editorTextFocus && editorLangId == 'rocq'"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "-extension.rocq.stepBackward",
+    "when": "editorTextFocus && editorLangId == 'rocq'"
+  },
+  {
+    "key": "alt+up",
+    "command": "extension.rocq.stepBackward",
+    "when": "resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "-extension.rocq.stepBackward",
+    "when": "resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "alt+enter",
+    "command": "extension.rocq.interpretToEnd",
+    "when": "editorTextFocus && config.vsrocq.proof.mode == '0' && editorLangId == 'rocq'"
+  },
+  {
+    "key": "ctrl+alt+end",
+    "command": "-extension.rocq.interpretToEnd",
+    "when": "editorTextFocus && config.vsrocq.proof.mode == '0' && editorLangId == 'rocq'"
+  },
+  {
+    "key": "alt+enter",
+    "command": "extension.rocq.interpretToEnd",
+    "when": "config.vsrocq.proof.mode == '0' && resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "ctrl+alt+end",
+    "command": "-extension.rocq.interpretToEnd",
+    "when": "config.vsrocq.proof.mode == '0' && resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "alt+right",
+    "command": "extension.rocq.interpretToPoint",
+    "when": "editorTextFocus && config.vsrocq.proof.mode == '0' && editorLangId == 'rocq'"
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "-extension.rocq.interpretToPoint",
+    "when": "editorTextFocus && config.vsrocq.proof.mode == '0' && editorLangId == 'rocq'"
+  },
+  {
+    "key": "alt+right",
+    "command": "extension.rocq.interpretToPoint",
+    "when": "config.vsrocq.proof.mode == '0' && resourceScheme == 'rocq-view'"
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "-extension.rocq.interpretToPoint",
+    "when": "config.vsrocq.proof.mode == '0' && resourceScheme == 'rocq-view'"
+  },
 ]
