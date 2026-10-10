@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ configuration, pkgs, ... }:
 let
   niv = source: fetchTarball { inherit (source) url sha256; };
   nur = pkgs.callPackage (niv sources.NUR) { };
@@ -57,6 +57,7 @@ in {
     ];
 
     sessionPath = [
+      "$HOME/.cabal/bin"
       "$HOME/.cargo/bin"
       "$HOME/.ghcup/bin"
       "$HOME/.local/bin"
@@ -127,6 +128,14 @@ in {
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      icons = "auto";
+      extraOptions = [ "--group-directories-first" ];
     };
 
     fd.enable = true; # DOOM Emacs uses this for faster project file search
@@ -204,9 +213,18 @@ in {
         gst = "git status";
       };
 
-      shellAliases = { ls = "ls --color=always"; };
+      shellAliases = {
+        ls = "eza --git-ignore";
+        lsa = "eza -a";
+      };
 
     };
+
+    # Note: ghostty is marked broken on darwin because of codesigning reasons it
+    # seems, so installing it via brew
+    # ghostty = {
+    #   enable = true;
+    # };
 
     git = {
       enable = true;
@@ -249,6 +267,11 @@ in {
       viAlias = true;
       vimAlias = true;
       withNodeJs = true;
+    };
+
+    opam = {
+      enable = true;
+      enableFishIntegration = true;
     };
 
     ripgrep = {
